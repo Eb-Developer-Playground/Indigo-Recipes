@@ -1,0 +1,89 @@
+// .section {
+//     // height: 95%;
+//     // margin: 0;
+//     // padding: 0;
+//     // overflow-y: hidden;
+//     // overflow-x: hidden;
+
+//     /* Prevent scroll bars */
+// }
+
+body {
+    display: flex;
+    background: linear-gradient(to right, white 40%, indigo 60%);
+    // background-size: 100% 100%;
+
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.login-section,
+.registration-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-section {
+    background-color: white;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                flex: 1;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.registration-section {
+    background-color: indigo;
+
+    h1 {
+        font-size: 2em;
+        color: white;
+    }
+
+    h4 {
+        font-size: 1.2em;
+        color: white;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #fff;
+        color: indigo;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+}
