@@ -47,7 +47,7 @@ export class LoginComponent {
   }
 
   login(): void {
-    this.notificationMan.showNotificationMessage("Login Successfull!!", "success")
+    this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success')
   }
 
   loginWithGoogle(): void {

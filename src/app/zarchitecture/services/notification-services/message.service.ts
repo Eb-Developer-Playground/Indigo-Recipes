@@ -10,20 +10,20 @@ export class MessageService {
     private _snacbar: MatSnackBar
   ) { }
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  horizontalPosition: MatSnackBarHorizontalPosition = "start";
+  verticalPosition: MatSnackBarVerticalPosition = "top";
 
   /**Show success and error notifications */
   showNotificationMessage(
     message: string,
-    type: 'success' | 'error',
-    duration: number = 300,
+    type: 'snackbar-danger' | 'snackbar-success' | 'login-snackbar',
+    duration: number = 3000,
   ): void {
     this._snacbar.open(message, 'X', {
       duration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       panelClass: [type]
-    })
+    });
   }
 }
