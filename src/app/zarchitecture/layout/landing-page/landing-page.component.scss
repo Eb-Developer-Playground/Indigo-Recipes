@@ -1,7 +1,32 @@
-.home-card {
-    background-color: #f5f5f5;
+section {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.margin {
-height: 50vh;
+
+.header-Font {
+    padding: 2rem;
+    font-size: x-large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-display:  swap;
+}
+
+.scrollable-card {
+    background-color: #f5f5f5;
+    position: fixed;
+    top: calc(100px + 1rem);
+    /* Adjust top position based on header height + padding/margin */
+    width: 100%;
+    transition: top 0.3s ease-in-out;
+}
+
+/* Add some padding for visual separation from the header */
+mat-card {
+    padding: 1rem;
+}
+
+
+/* Center the div */
+.parent-container {
+    display: flex;
+    justify-content: center;
 }
