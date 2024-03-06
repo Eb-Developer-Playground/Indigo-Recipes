@@ -5,11 +5,13 @@ $space-above-header: 4rem; // Set the space above the header
 //******************* TOP HEADER    *******************************************/
 
 .header {
+    // position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
     padding: 10px;
+
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -22,7 +24,7 @@ $space-above-header: 4rem; // Set the space above the header
             height: auto; // Maintain aspect ratio
             font-size: 1.5rem;
             text-decoration: none;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
     }
 

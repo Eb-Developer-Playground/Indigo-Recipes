@@ -7,21 +7,31 @@ section {
     padding: 2rem;
     font-size: x-large;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-display:  swap;
+    // font-display: swap;
+}
+
+.primary {
+    background-color: green;
+    text-align: center;
+    color: #f5f5f5;
 }
 
 .scrollable-card {
     background-color: #f5f5f5;
     position: fixed;
     top: calc(100px + 2rem);
-    /* Adjust top position based on header height + padding/margin */
     width: 100%;
+    transition: top 0.3s ease-in-out;
+}
+
+.scrollable-card2 {
+    background-color: #f5f5f5;
     transition: top 0.3s ease-in-out;
 }
 
 /* Add some padding for visual separation from the header */
 mat-card {
-    padding: 1rem;
+    padding: 2rem;
 }
 
 
@@ -29,4 +39,21 @@ mat-card {
 .parent-container {
     display: flex;
     justify-content: center;
+}
+
+/*********************************** Button Management ****/
+.button-row {
+    display: flex;
+    /* Arrange buttons horizontally */
+    justify-content: space-around;
+    /* Distribute buttons evenly */
+    margin: 1rem;
+    /* Adjust the margin value for spacing */
+}
+
+.button-row button {
+    /* Optional: Add individual button margin (if needed) */
+    margin: 1rem;
+    /* Adjust as desired */
+    flex-basis: 150px;
 }

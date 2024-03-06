@@ -17,9 +17,9 @@ export class MessageService {
   showNotificationMessage(
     message: string,
     type: 'snackbar-danger' | 'snackbar-success' | 'login-snackbar',
-    duration: number = 3000,
+    duration: number = 500,
   ): void {
-    this._snacbar.open(message, 'X', {
+    this._snacbar.open(message, '', {
       duration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
