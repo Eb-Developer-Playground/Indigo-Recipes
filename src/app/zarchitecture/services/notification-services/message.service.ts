@@ -10,7 +10,7 @@ export class MessageService {
     private _snacbar: MatSnackBar
   ) { }
 
-  horizontalPosition: MatSnackBarHorizontalPosition = "start";
+  horizontalPosition: MatSnackBarHorizontalPosition = "end";
   verticalPosition: MatSnackBarVerticalPosition = "top";
 
   /**Show success and error notifications */
@@ -19,7 +19,7 @@ export class MessageService {
     type: 'snackbar-danger' | 'snackbar-success' | 'login-snackbar',
     duration: number = 500,
   ): void {
-    this._snacbar.open(message, '', {
+    this._snacbar.open(message, 'X', {
       duration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,

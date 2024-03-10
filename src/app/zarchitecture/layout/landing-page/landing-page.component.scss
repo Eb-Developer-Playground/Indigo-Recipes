@@ -1,6 +1,25 @@
 section {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 60px;
+    /* Adjust the margin to match the height of your app-header */
+    // overflow-y: auto;
+    /* Allow the content to scroll vertically if needed */
+    padding: 20px;
+    /* Add padding as needed */
 }
+
+// app-header {
+    //     position: fixed;
+    //     width: 100%;
+    //     // background-color: #333;
+    //     /* Adjust the background color as needed */
+    //     color: white;
+    //     /* Adjust the text color as needed */
+    //     padding: 10px;
+    //     z-index: 1000;
+    //     /* Ensure the header stays above other elements */
+    // }
 
 
 .header-Font {
@@ -8,6 +27,10 @@ section {
     font-size: x-large;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     // font-display: swap;
+}
+
+.position {
+    position: fixed;
 }
 
 .primary {
@@ -56,4 +79,126 @@ mat-card {
     margin: 1rem;
     /* Adjust as desired */
     flex-basis: 150px;
+}
+
+/******************************* Hover Effect****/
+
+
+
+
+.hover-effect {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 0 2px black;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+
+    // margin-bottom: 15px;
+
+
+    &:hover {
+        background-color: white;
+        color: black;
+
+    }
+
+
+}
+
+.col-xl-3,
+/* Add other column sizes if needed */
+.col-lg-3,
+.col-md-12,
+.col-sm-12 {
+    margin: 1rem 1rem;
+    /* Adjust margin values for horizontal and vertical spacing */
+}
+
+.center {
+    justify-content: center;
+}
+
+.example-action-button {
+    margin-bottom: 20px;
+    border-bottom: none;
+}
+
+mat-tab-group,
+mat-tab-header {
+    border-bottom: none;
+
+
+}
+
+/****** Center the page */
+
+.content-container {
+    max-width: 90%;
+    margin: auto;
+}
+
+
+
+/* Card section styling */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow cards to wrap next to line if needed */
+    justify-content: space-around;
+    /* Distribute cards evenly  in container */
+    width: 80%;
+    margin: 0 auto;
+    /* Center container horizontally */
+}
+
+.custom-card {
+    /* Customize card size, elevation, etc. */
+    width: 100%;
+    /* Adjust width to 100% for flexbox behavior */
+    transition: box-shadow 0.3s ease;
+    margin: 1rem 0.5rem;
+}
+
+
+.card-row {
+    display: flex;
+    justify-content: space-around;
+    /* Distribute cards evenly */
+    margin: 1rem;
+}
+
+
+
+.custom-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.23);
+    /* Raise card on hover */
+}
+
+.image-container {
+    /* Style the image container for padding and square aspect ratio */
+    padding: 1rem;
+    /* Adjust padding as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    /* Adjust height to match desired square size */
+    width: 90%;
+    /* Adjust width to match height */
+}
+
+.image-container img {
+    max-width: 100%;
+    /* Ensure image scales within container */
+    max-height: 100%;
+}
+
+.card-content {
+    padding: 0.5rem;
+    /* Adjust padding for card content */
+    text-align: center;
+    /* Center text content */
 }

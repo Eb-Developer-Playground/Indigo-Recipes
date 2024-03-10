@@ -10,16 +10,19 @@ import { MessageService } from '../../services/notification-services/message.ser
   styleUrl: './landing-page.component.scss',
   imports: [
     HeaderComponent,
-    SharedModule
+    SharedModule,
   ]
 })
 export class LandingPageComponent implements OnInit {
 
+
   cards: any[] = [
-    { title: 'Indigo Recipes', description: 'Embark on a gastronomic journey...' },
-    // Add your card data for the second card here:
-    { title: 'Another Great Recipe', description: 'Try out this delicious recipe!', description2: 'This is an optional second description for the second card.' }
+    { id: 1, imageUrl: './../../../../assets/political.png', name: 'Image 1' },
+    { id: 2, imageUrl: './../../../../assets/political.png', name: 'Image 2' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' }
   ];
+  currentlyHoveredCardId: number | null = null;
+
 
   viewPortHeight!: number;
 
@@ -40,8 +43,20 @@ export class LandingPageComponent implements OnInit {
 
   /**** Setting the country */
   setCountry(country: string): void {
-    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger")
+    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-success");
+  }
 
+  isHovering(cardId: number): boolean {
+    return this.currentlyHoveredCardId === cardId;
+  }
+
+
+  links = ['First', 'Second', 'Third'];
+  activeLink = this.links[0];
+  background = '';
+
+  toggleBackground() {
+    this.background = this.background ? '' : 'primary';
   }
 
 }
