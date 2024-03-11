@@ -18,12 +18,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, 
+    CommonModule,
     MatFormField
   ],
   exports: [
@@ -48,7 +50,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatCheckboxModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatButtonToggleModule,    
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatListModule,
+
   ]
 
 })

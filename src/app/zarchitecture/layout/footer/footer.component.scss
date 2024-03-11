@@ -1,0 +1,127 @@
+// .app-mat-card {
+//     background-color: black;
+//     color: white;
+//     display: flex;
+//     flex-direction: row;
+//     height: 100%;
+//     /* Ensure card takes the full height of its container */
+// }
+
+// .left-section,
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+}
+
+// .divider {
+//     border-right: 10px solid white;
+//     height: 100%;
+//     margin-right: 20px;
+//     max-width: 10px;
+//     /* Add margin to make the divider visible */
+// }
+
+.table-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: stretch;
+    /* Make items stretch across the container */
+}
+
+.table-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.table-wrapper table {
+    width: 100%;
+}
+
+// .footer {
+//     padding: 10px;
+//     text-align: center;
+// }
+
+
+h1 {
+    font-size: 3.125rem;
+    color: white;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.125rem;
+    margin: 0;
+    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+}
+
+p {
+    margin: 0;
+    color: white;
+}
+
+.custom-input {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    height: 80px;
+    width: 100%;
+    /* Adjust height as needed */
+}
+
+main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: inherit;
+    position: relative;
+    background-color: black;
+    color: white;
+}
+
+
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 3rem;
+}
+
+.content h1 {
+    margin-top: 1.75rem;
+}
+
+.content p {
+    margin-top: 1.5rem;
+}
+
+.divider {
+    width: 1px;
+    // background: var(--red-to-pink-to-purple-vertical-gradient);
+    background: white;
+    margin-inline: 0.5rem;
+}
+
+
+@media screen and (max-width: 650px) {
+    .content {
+        flex-direction: column;
+        width: max-content;
+    }
+
+    .divider {
+        height: 1px;
+        width: 100%;
+        background: var(--red-to-pink-to-purple-horizontal-gradient);
+        margin-block: 1.5rem;
+    }
+}

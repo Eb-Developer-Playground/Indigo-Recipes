@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChi
 import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,6 +12,7 @@ import { MessageService } from '../../services/notification-services/message.ser
   imports: [
     HeaderComponent,
     SharedModule,
+    FooterComponent,
   ]
 })
 export class LandingPageComponent implements OnInit {
