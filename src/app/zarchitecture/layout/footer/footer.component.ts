@@ -25,7 +25,7 @@ export class FooterComponent {
 
   ngOnInit(): void {
     this.mngForm = this._fb.group({
-      email: [''], //Pick this from the session storage
+      // email: [''], //Pick this from the session storage
       response: ['', [Validators.required, Validators.maxLength(3000)]], 
     })
   }

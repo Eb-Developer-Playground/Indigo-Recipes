@@ -15,10 +15,16 @@ export class HeaderComponent {
 
   constructor(
     private router: Router,
+
   ) { }
   
   addButton() {
     const route = `/add`;
+    this.router.navigate([route]);
+  }
+
+  callCards(): void {
+  const  route = `/card/centre`;
     this.router.navigate([route]);
   }
 

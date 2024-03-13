@@ -2,7 +2,6 @@ section {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: flex;
     margin-top: 60px;
-    /* Adjust the margin to match the height of your app-header */
     // overflow-y: auto;
     /* Allow the content to scroll vertically if needed */
     padding: 20px;
@@ -10,16 +9,16 @@ section {
 }
 
 // app-header {
-    //     position: fixed;
-    //     width: 100%;
-    //     // background-color: #333;
-    //     /* Adjust the background color as needed */
-    //     color: white;
-    //     /* Adjust the text color as needed */
-    //     padding: 10px;
-    //     z-index: 1000;
-    //     /* Ensure the header stays above other elements */
-    // }
+//     position: fixed;
+//     width: 100%;
+//     // background-color: #333;
+//     /* Adjust the background color as needed */
+//     color: white;
+//     /* Adjust the text color as needed */
+//     padding: 10px;
+//     z-index: 1000;
+//     /* Ensure the header stays above other elements */
+// }
 
 
 .header-Font {
@@ -83,9 +82,6 @@ mat-card {
 
 /******************************* Hover Effect****/
 
-
-
-
 .hover-effect {
     background-color: black;
     color: white;
@@ -94,17 +90,12 @@ mat-card {
     box-shadow: 0 0 0 2px black;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
-
     // margin-bottom: 15px;
-
 
     &:hover {
         background-color: white;
         color: black;
-
     }
-
-
 }
 
 .col-xl-3,
@@ -125,12 +116,12 @@ mat-card {
     border-bottom: none;
 }
 
-mat-tab-group,
-mat-tab-header {
-    border-bottom: none;
+// mat-tab-group,
+// mat-tab-header {
+//     border-bottom: none;
 
 
-}
+// }
 
 /****** Center the page */
 
@@ -138,8 +129,6 @@ mat-tab-header {
     max-width: 90%;
     margin: auto;
 }
-
-
 
 /* Card section styling */
 
@@ -156,7 +145,8 @@ mat-tab-header {
 
 .custom-card {
     /* Customize card size, elevation, etc. */
-    width: 100%;
+    width: 25%;
+    flex: 1 0 calc(25% - 1rem);
     /* Adjust width to 100% for flexbox behavior */
     transition: box-shadow 0.3s ease;
     margin: 1rem 0.5rem;
@@ -168,8 +158,9 @@ mat-tab-header {
     justify-content: space-around;
     /* Distribute cards evenly */
     margin: 1rem;
+    flex-wrap: wrap;
+    /* Enable wrapping of cards onto new lines */
 }
-
 
 
 .custom-card:hover {
@@ -201,4 +192,47 @@ mat-tab-header {
     /* Adjust padding for card content */
     text-align: center;
     /* Center text content */
+}
+
+
+
+//*********************************************************************************************************/
+/******** Shaping a card, with an image extending top and bottom*/
+
+.cross-card-container {
+    position: relative;
+    /* Enable positioning of child elements */
+    background-color: black;
+    width: 100vw;
+    /* Span entire viewport width */
+    height: fit-content;
+    /* Adjust height as needed */
+    overflow: hidden;
+    /* Clip overflowing content */
+}
+
+.cross-card-image {
+    position: absolute;
+    /* Position image absolutely within container */
+    top: -3rem;
+    /* Extend image 3rem above the card */
+    left: -3rem;
+    /* Extend image 3rem to the left of the card */
+    width: calc(100% + 6rem);
+    /* Image width: card width + 3rem on each side */
+    height: calc(100% + 6rem);
+    /* Image height: card height + 3rem on each side */
+    object-fit: cover;
+    /* Ensure image covers the space */
+}
+
+.cross-card-content {
+    background-color: white;
+    /* Set background color for content area */
+    padding: 2rem;
+    /* Add some padding inside the content area */
+    margin: 0 auto;
+    /* Center content horizontally */
+    max-width: 90%;
+    /* Set maximum width for content (optional) */
 }

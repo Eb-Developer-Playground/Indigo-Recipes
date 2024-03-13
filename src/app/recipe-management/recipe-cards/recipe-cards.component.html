@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+
+<!-- The Title Section -->
+<section>
+    <h5>
+        New In
+    </h5>
+</section>
+<div class="filterarea">
+    <!-- Search Filter Buttons -->
+    <div class="filter-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Time</mat-label>
+            <mat-select (selectionChange)="onTimeChange($event.value)">
+                <mat-option *ngFor="let time of timeOptions" [value]="time.value">
+                    {{ time.label }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Place</mat-label>
+            <mat-select (selectionChange)="onPlaceChange($event.value)">
+                <mat-option *ngFor="let place of placeOptions" [value]="place.value">
+                    {{ place.label }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Dietary</mat-label>
+            <mat-select (selectionChange)="onDietaryChange($event.value)">
+                <mat-option *ngFor="let dietary of dietaryOptions" [value]="dietary.value">
+                    <mat-checkbox></mat-checkbox>
+                    {{ dietary.label }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+
+
+
+<!-- The recipe cards -->
+
+<div>
+    <div class="content-container">
+        <div>
+            <div class="card-width">
+                <div class="card-row">
+                    <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
+                        (mouseleave)="onMouseLeave(card.id)">
+                        <div class="mat-card-header">
+                            <div class="mat-card-title">
+                                {{ card.recipeTitle }}
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img [src]="card.imageUrl" alt="{{ card.name }}">
+                        </div>
+                        <div class="card-content">
+                            {{ card.name }}
+                        </div>
+                        <div class="button-container">
+                            <button mat-icon-button (click)="onComment(card.id)">
+                                <mat-icon>comment</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="onLike(card.id)">
+                                <mat-icon>favorite_border</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="onShare(card.id)">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                        </div>
+                        <div class="rating-container" *ngIf="showRating">
+                            <mat-icon class="star" *ngFor="let rating of [1, 2, 3, 4, 5]; let i = index"
+                                [ngClass]="{ 'selected': card.rating === i + 1 }">
+                                star
+                            </mat-icon>
+                        </div>
+
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

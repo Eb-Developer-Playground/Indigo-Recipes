@@ -1,0 +1,191 @@
+//**********************************************************************/
+// Title Styling
+section {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  margin-left: 10%;
+  margin-top: 60px;
+  padding: 10px;
+}
+
+.filterarea {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  margin-left: 10%;
+  margin-top: 2px;
+  padding: 2px;
+}
+
+/*************************************************************************************************************
+*Filter Styling
+*/
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  mat-form-field {
+    flex: 1 0 auto;
+    /* Allow form fields to grow equally */
+  }
+}
+
+
+
+mat-select {
+  .mat-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mat-select-value {
+      flex: 1 0 auto;
+      /* Allow selected value text to grow */
+    }
+
+    .mat-select-arrow {
+      transform: rotate(0deg);
+      /* Initially no rotation */
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
+  &.mat-select-opened {
+    .mat-select-arrow {
+      transform: rotate(180deg);
+      /* Rotate arrow on open */
+    }
+  }
+}
+
+
+
+/**************************************************************************************************************************/
+/*************  CARD STYLING **********************************************************************************************/
+/****** Center the page */
+
+.content-container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.scrollable-card2 {
+  background-color: #f5f5f5;
+  transition: top 0.3s ease-in-out;
+}
+
+/* Add some padding for visual separation from the header */
+mat-card {
+  padding: 2rem;
+  border-bottom: 0%;
+}
+
+
+/********************** Card Organization ******************/
+.custom-card {
+  /* Customize card size, elevation */
+  width: 25%;
+  flex: 1 0 calc(25% - 1rem);
+  /* Adjust width to 100% for flexbox behavior */
+  transition: box-shadow 0.3s ease;
+  margin: 1rem 0.5rem;
+}
+
+
+.card-row {
+  display: flex;
+  justify-content: space-around;
+  /* Distribute cards evenly */
+  margin: 1rem;
+  flex-wrap: wrap;
+  /* Enable wrapping of cards onto new lines */
+}
+
+
+.custom-card:hover {
+  /* Raise card on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.23);
+  /* Increase card height on hover to accommodate rating */
+  height: calc(100% + 3rem);
+}
+
+.image-container {
+  /* Style the image container for padding and square aspect ratio */
+  padding: 1rem;
+  /* Adjust padding as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 90%;
+}
+
+.image-container img {
+  max-width: 100%;
+  /* Ensure image scales within container */
+  max-height: 100%;
+}
+
+.card-content {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+
+
+//*********************************************************************************************************/
+/*************** CARD DETAILS  ***************************************************************************/
+.mat-card-header {
+  /* Remove default padding */
+  padding: 0 16px 8px;
+  /* Add top and side padding, adjust as needed */
+}
+
+.mat-card-title {
+  /* Center text alignment */
+  text-align: center;
+}
+
+/*************************** Button Management *********************************************************/
+.button-container {
+  display: flex;
+  /* Arrange buttons horizontally */
+  justify-content: center;
+  /* Center buttons within the container */
+}
+
+.button-container button {
+  margin: 0.5rem;
+  /* Add some margin between buttons (optional) */
+}
+
+
+/********************************* Rating Styling **************************************************/
+.rating-container {
+  display: flex;
+  /* Arrange stars horizontally */
+  justify-content: space-between;
+  /* Distribute stars evenly */
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.star {
+  /* Style the star icon (color, size, etc.) */
+  color: orange;
+  font-size: 1.5rem;
+  /* Adjust star size */
+  cursor: pointer;
+  /* Indicate hover interaction */
+}
+
+.star:hover {
+  /* Change star color on hover (optional) */
+  color: gold;
+}
+
+.star.selected {
+  /* Style for the selected star (color, etc.) */
+  color: gold;
+  /* Adjust color as needed */
+}

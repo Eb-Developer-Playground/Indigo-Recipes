@@ -67,17 +67,19 @@
             <mat-tab-group>
                 <mat-tab label="NEW IN">
 
-                    <div class="card-row">
-                        <mat-card class="custom-card" *ngFor="let card of cards"
-                            [attr.mat-card-hover]="isHovering(card.id)">
-                            <div class="image-container">
-                                <img [src]="card.imageUrl" alt="{{ card.name }}">
-                            </div>
+                    <div class="card-width">
+                        <div class="card-row">
+                            <mat-card class="custom-card" *ngFor="let card of cards"
+                                [attr.mat-card-hover]="isHovering(card.id)">
+                                <div class="image-container">
+                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
+                                </div>
 
-                            <div class="card-content">
-                                {{ card.name }}
-                            </div>
-                        </mat-card>
+                                <div class="card-content">
+                                    {{ card.name }}
+                                </div>
+                            </mat-card>
+                        </div>
                     </div>
                 </mat-tab>
 
@@ -156,10 +158,19 @@
                     </p>
                 </div>
             </mat-card>
+
+            <!-- <div class="parent-container"> -->
+        <div class="cross-card-container">
+            <img src="./../../../../assets/political.png" alt="Image description" class="cross-card-image">
+            <div class="cross-card-content">
+            </div>
+        </div>
+            <!-- </div> -->
+
+
+
+
         </ng-container>
     </div>
-
     <app-footer></app-footer>
-
-
 </div>

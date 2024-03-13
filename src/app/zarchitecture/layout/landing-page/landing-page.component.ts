@@ -3,6 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
 import { FooterComponent } from '../footer/footer.component';
+import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,6 +14,7 @@ import { FooterComponent } from '../footer/footer.component';
     HeaderComponent,
     SharedModule,
     FooterComponent,
+    RecipeCardsComponent
   ]
 })
 export class LandingPageComponent implements OnInit {
@@ -21,7 +23,11 @@ export class LandingPageComponent implements OnInit {
   cards: any[] = [
     { id: 1, imageUrl: './../../../../assets/political.png', name: 'Image 1' },
     { id: 2, imageUrl: './../../../../assets/political.png', name: 'Image 2' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' }
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 4' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' }, { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
   ];
   currentlyHoveredCardId: number | null = null;
 
@@ -62,3 +68,4 @@ export class LandingPageComponent implements OnInit {
   }
 
 }
+
