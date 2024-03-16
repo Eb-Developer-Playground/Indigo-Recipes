@@ -24,8 +24,8 @@ interface Option {
     SharedModule,
   ],
 })
-  
-  
+
+
 
 
 
@@ -52,10 +52,9 @@ export class RecipeCardsComponent implements OnInit {
     { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5' },
   ];
 
-
-
+  selectedFilters: string[] = [];
   viewPortHeight!: number;
-dietarty: any;
+  dietarty: any;
 
   constructor() {
 
@@ -70,10 +69,10 @@ dietarty: any;
   }
 
 
-  
 
-  
-  
+
+
+
   /**********************************************************************************************************************************
    * Card Button Functions
    */
@@ -129,7 +128,7 @@ dietarty: any;
 
   onTimeChange(value: string) {
     this.selectedTime = value;
-    // Implement logic to handle time filter change
+    this.updateSelectedFilters(value);
   }
 
   onPlaceChange(value: string) {
@@ -140,5 +139,18 @@ dietarty: any;
   onDietaryChange(value: Option[]) {
     this.selectedDietary = value;
     // Implement logic to handle dietary filter change
+  }
+
+  updateSelectedFilters(...filters: string[]) {
+    this.selectedFilters = filters.filter(filter => filter); // Remove empty filters
+  }
+
+  removeFilter(filter: string) {
+    this.selectedFilters = this.selectedFilters.filter(f => f !== filter);
+    // Implement logic to update selections based on removed filter
+  }
+
+  trackByFilter(index: number, filter: string) {
+    return filter;
   }
 }

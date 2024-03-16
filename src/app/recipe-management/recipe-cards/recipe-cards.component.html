@@ -7,38 +7,47 @@
         New In
     </h5>
 </section>
+
+<!-- Search Filter Buttons -->
 <div class="filterarea">
-    <!-- Search Filter Buttons -->
     <div class="filter-container">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="filter-field">
             <mat-label>Time</mat-label>
-            <mat-select (selectionChange)="onTimeChange($event.value)">
+            <mat-select [(value)]="selectedTime" (selectionChange)="onTimeChange($event.value)">
                 <mat-option *ngFor="let time of timeOptions" [value]="time.value">
                     {{ time.label }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="filter-field">
             <mat-label>Place</mat-label>
-            <mat-select (selectionChange)="onPlaceChange($event.value)">
+            <mat-select [(value)]="selectedPlace" (selectionChange)="onPlaceChange($event.value)">
                 <mat-option *ngFor="let place of placeOptions" [value]="place.value">
-                    {{ place.label }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="filter-field">
             <mat-label>Dietary</mat-label>
-            <mat-select (selectionChange)="onDietaryChange($event.value)">
+            <mat-select [(value)]="selectedDietary" (selectionChange)="onDietaryChange($event.value)">
                 <mat-option *ngFor="let dietary of dietaryOptions" [value]="dietary.value">
                     <mat-checkbox></mat-checkbox>
                     {{ dietary.label }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
     </div>
+    <div class="m-5 selected-filters">
+        <span *ngFor="let filter of selectedFilters; trackBy: trackByFilter">
+            {{ filter }}
+            <mat-icon (click)="removeFilter(filter)">close</mat-icon>
+        </span>
+    </div>
+
 </div>
+
 
 
 
