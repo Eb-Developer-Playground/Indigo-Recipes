@@ -9,11 +9,17 @@ section {
 }
 
 .filterarea {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  // font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   margin-left: 10%;
   margin-top: 2px;
   padding: 2px;
+
+  /* Increase horizontal space between filters */
+  // justify-content: space-evenly;
+  /* Evenly distribute filters */
+  width: calc(100% - 20%);
+  /* Span more horizontally (adjust as needed) */
 }
 
 /*************************************************************************************************************
@@ -188,4 +194,55 @@ mat-card {
   /* Style for the selected star (color, etc.) */
   color: gold;
   /* Adjust color as needed */
+}
+
+
+
+
+/******************************************************************************************************************************************** */
+// Test Ground
+
+/****** Rotate the drop down arrow*/
+.rotation {
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, etc. */
+  -ms-transform: rotate(180deg);
+  /* Internet Explorer */
+  -moz-transform: rotate(180deg);
+  /* Firefox */
+  transform: rotate(180deg);
+}
+
+
+.filtercontainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.custom-dropdown {
+  margin-right: 1rem;
+
+  mat-label {
+    cursor: pointer;
+    position: relative;
+
+    mat-icon {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &.rotate-180 {
+      mat-icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  mat-checkbox {
+    margin-top: 5px;
+  }
 }

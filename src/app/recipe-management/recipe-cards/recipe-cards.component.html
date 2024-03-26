@@ -2,33 +2,58 @@
 
 
 <!-- The Title Section -->
+
+
+<section>
+    <div class="filtercontainer">
+        <div class="custom-dropdown" *ngFor="let dropdown of dropdowns; trackBy: trackByDropdown">
+            <mat-label (click)="toggleDropdown(dropdown.id)">
+                {{ dropdown.label }}<sup><mat-icon
+                        [ngClass]="{'rotation': dropdown.isOpen}">arrow_drop_down</mat-icon></sup>
+            </mat-label>
+            <mat-checkbox *ngFor="let item of dropdown.items; trackBy: trackByItem"
+                (change)="onSelectionChange(dropdown.id, item.value)">
+                {{ item.label }}
+            </mat-checkbox>
+        </div>
+    </div>
+</section>
+
 <section>
     <h5>
         New In
     </h5>
+
+    
 </section>
 
 <!-- Search Filter Buttons -->
 <div class="filterarea">
     <div class="filter-container">
-        <mat-form-field appearance="fill" class="filter-field">
+        <div class="filter-item">
             <mat-label>Time</mat-label>
+            
             <mat-select [(value)]="selectedTime" (selectionChange)="onTimeChange($event.value)">
                 <mat-option *ngFor="let time of timeOptions" [value]="time.value">
+                    <mat-checkbox></mat-checkbox>
                     {{ time.label }}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
 
-        <mat-form-field appearance="fill" class="filter-field">
+        </div>
+
+        <div class="filter-item">
             <mat-label>Place</mat-label>
             <mat-select [(value)]="selectedPlace" (selectionChange)="onPlaceChange($event.value)">
                 <mat-option *ngFor="let place of placeOptions" [value]="place.value">
+                    <mat-checkbox></mat-checkbox>
+                    {{ place.label }}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
 
-        <mat-form-field appearance="fill" class="filter-field">
+        </div>
+
+        <div class="filter-item">
             <mat-label>Dietary</mat-label>
             <mat-select [(value)]="selectedDietary" (selectionChange)="onDietaryChange($event.value)">
                 <mat-option *ngFor="let dietary of dietaryOptions" [value]="dietary.value">
@@ -36,17 +61,29 @@
                     {{ dietary.label }}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
 
+        </div>
     </div>
-    <div class="m-5 selected-filters">
-        <span *ngFor="let filter of selectedFilters; trackBy: trackByFilter">
-            {{ filter }}
-            <mat-icon (click)="removeFilter(filter)">close</mat-icon>
+    <div>
+        <span *ngIf="selectedTime" class="selected-filter">Time: {{ selectedTime }} <mat-icon
+                (click)="removeFilter('time')">close</mat-icon></span>
+        <span *ngIf="selectedPlace" class="selected-filter">Place: {{ selectedPlace }} <mat-icon
+                (click)="removeFilter('place')">close</mat-icon></span>
+        <span *ngFor="let filter of selectedDietaryFilters; trackBy: trackByFilter">
+            <span *ngIf="filter">Dietary: {{ filter }} <mat-icon
+                    (click)="removeFilter('dietary', filter)">close</mat-icon></span>
         </span>
     </div>
-
 </div>
+
+
+
+<!-- Test Ground -->
+
+
+
+
+
 
 
 
