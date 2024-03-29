@@ -20,18 +20,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MatFormField
+    MatFormField,
+    MatInputModule
+    // MatFormFieldControl
+
   ],
   exports: [
     MatFormField,
     MatFormFieldModule,
-    // MatInputModule,
+    MatInputModule,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -54,6 +61,10 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatListModule,
     MatCheckboxModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    // MatFormFieldControlModule
+    // MatFormFieldControl
 
 
   ]

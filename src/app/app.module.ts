@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
     // MatThemeModule,
 
   ],
