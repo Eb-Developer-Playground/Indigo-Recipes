@@ -29,12 +29,20 @@ export class HeaderComponent {
     this.router.navigate([route]);
   }
 
+  /**** Adding a recipe */
+  addRecipe(): void {
+    console.log("Adding Recipe");
+    let route = '/manage/recipe';
+    this.router.navigate([route]);
+  }
+
   /**** Navigate back to home */
-  navigateToHome() {
+  navigateToHome(): void {
     let route = '/home'
     this.router.navigate([route]);
   }
 
+  /**** Logging out */
   onLogout(): void {
     const route = '/#'
     this.router.navigate([route]);

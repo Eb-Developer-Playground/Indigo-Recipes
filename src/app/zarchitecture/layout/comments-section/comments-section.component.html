@@ -1,16 +1,18 @@
-<div class="popup-container">
-    <h2>{{ title }}</h2>
-    <div class="messages-container">
-        <div *ngFor="let comment of comments" class="comment">
-            <div class="comment-header">{{ comment.sender }}</div>
-            <div class="comment-body">{{ comment.text }}</div>
+<section>
+    <div class="popup-container">
+        <h2>{{ title }}</h2>
+        <div class="messages-container">
+            <div *ngFor="let comment of comments" class="comment">
+                <div class="comment-header">{{ comment.sender }}</div>
+                <div class="comment-body">{{ comment.text }}</div>
+            </div>
+        </div>
+        <!-- <textarea matInput placeholder="Enter your comment" [(ngModel)]="newMessageText"></textarea>
+        <button mat-raised-button color="primary" (click)="addMessage()">Send</button> -->
+        <div class="search-container">
+            <textarea type="text" class="search-input" placeholder="Enter your comment" [(ngModel)]="newComment"></textarea>
+            <button class="button" mat-button (click)="addComment()">
+                <i class="fas fa-search"></i>Add Comment </button>
         </div>
     </div>
-    <!-- <textarea matInput placeholder="Enter your comment" [(ngModel)]="newMessageText"></textarea>
-    <button mat-raised-button color="primary" (click)="addMessage()">Send</button> -->
-    <div class="search-container">
-        <textarea type="text" class="search-input" placeholder="Enter your comment" [(ngModel)]="newComment"></textarea>
-        <button class="button" mat-button (click)="addComment()">
-            <i class="fas fa-search"></i>Add Comment </button>
-    </div>
-</div>
+</section>

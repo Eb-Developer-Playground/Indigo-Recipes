@@ -1,3 +1,4 @@
+<section>
 <header class="header">
     <div class="header-left mx-2" (click)="navigateToHome()">
         <h6>
@@ -7,7 +8,7 @@
     </div>
     <div class="header-right mx-2">
         <!-- <button mat-button (click)="callCards()">About Us</button> -->
-        <button mat-button>Add Recipe</button>
+        <button mat-button (click)="addRecipe()">Add Recipe</button>
         <button mat-button>My Profile</button>
         <button mat-button (click)="onLogout()">Logout</button>
     </div>
@@ -23,3 +24,4 @@
             <i class="fas fa-search"></i>Search </button>
     </div>
 </header>
+</section>

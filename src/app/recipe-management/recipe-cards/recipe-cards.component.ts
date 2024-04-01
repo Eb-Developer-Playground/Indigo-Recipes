@@ -6,6 +6,8 @@ import { MessageService } from '../../zarchitecture/services/notification-servic
 import Swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
+import { Router } from '@angular/router';
+import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 
 interface Recipe {
   imageUrl: string;
@@ -27,13 +29,14 @@ interface Option {
   imports: [
     HeaderComponent,
     SharedModule,
+    FooterComponent
   ],
 })
 
 export class RecipeCardsComponent implements OnInit {
 
   /**********************************************************************************************************************************
-   * Function Declarations
+   * Variable Declarations
    */
   showRating: boolean = false;
   currentlyHoveredCardId: number | null = null;
@@ -42,18 +45,20 @@ export class RecipeCardsComponent implements OnInit {
   isPlaceDropdownOpen: boolean = false;
   isDietDropdownOpen: boolean = false;
   selectedItem: string = '';
+  hoverUnderline: boolean = false;
+  currentHoveredCardId: number | null = null;
 
 
   // Dummy Data
   cards: any[] = [
     { id: 1, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 1', rating: 3 },
     { id: 2, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 2', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 3', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 4', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 3, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', },
+    { id: 4, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 3', rating: 3 },
+    { id: 5, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 4', rating: 3 },
+    { id: 6, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+    { id: 7, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+    { id: 8, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+    { id: 9, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', },
   ];
   timeOptions: Option[] = [
     { value: 'breakfast', label: 'Breakfast' },
@@ -83,6 +88,7 @@ export class RecipeCardsComponent implements OnInit {
     (
       private messageServiceMan: MessageService,
       private dialog: MatDialog,
+      private router: Router,
     ) {
 
 
@@ -163,13 +169,32 @@ export class RecipeCardsComponent implements OnInit {
 
   /**** Handle Mouse Hover */
   onMouseEnter(id: number): void {
-    // this.showRating = true
-    // console.log("SIATRUE", this.showRating);
-
+    this.currentHoveredCardId = id;
   }
 
-  onMouseLeave(id: number): void {
+  onMouseLeave(): void {
+    this.currentHoveredCardId == null;
+  }
 
+  /**** Check what card is being hovered */
+  isBeingHovered(cardId: number): boolean {
+    this.showRating = this.currentHoveredCardId === cardId ? true : false;
+    return this.currentHoveredCardId === cardId;
+  }
+
+
+
+  /**** On Selection of a single card */
+  selectSingleRecipe(cardId: number): void {
+    console.log("Title Clicked::", cardId);
+    const additionalData = cardId;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/view';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
   }
 
 

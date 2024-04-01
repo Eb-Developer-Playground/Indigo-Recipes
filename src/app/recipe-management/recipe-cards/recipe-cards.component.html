@@ -1,163 +1,164 @@
-<app-header></app-header>
+<body>
+    <app-header></app-header>
 
-<div class="content-below-header">
-<section>
-    <h5>
-        New In
-    </h5>
-
-
-</section>
-
-<!-- Search Filter Buttons -->
-<div class="filterarea">
-    <div class="filter-container">
-        <div class="filter-item">
-            <div class="dropdown">
-                <button class="dropdown-toggle" (click)="onTimeFilter()">Time</button>
-                <div class="dropdown-menu" [ngClass]="{ 'show': isTimeDropdownOpen }">
-                    <a href="#" *ngFor="let time of timeOptions" (click)="selectedTime(time.value)">{{ time.label }}</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="filter-item">
-            <div class="dropdown">
-                <button class="dropdown-toggle" (click)="onPlaceFilter()">Place</button>
-                <div class="dropdown-menu" [ngClass]="{ 'show': isPlaceDropdownOpen }">
-                    <a href="#" *ngFor="let place of placeOptions" (click)="selectedPlace(place.value)">{{ place.label
-                        }}</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="filter-item">
-            <div class="dropdown">
-                <button class="dropdown-toggle" (click)="onDietFilter()">Diet</button>
-                <div class="dropdown-menu" [ngClass]="{ 'show': isDietDropdownOpen }">
-                    <a href="#" *ngFor="let diet of dietaryOptions" (click)="selectedDiet(diet.value)">{{ diet.label
-                        }}</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <div class="content-below-header">
+        <section>
+            <h5>
+                New In
+            </h5>
 
 
+        </section>
 
-<!-- Test Ground -->
-
-<!-- <div class="dropdown">
-    <button class="dropdown-toggle" (click)="toggleDropdown2()">Dropdown</button>
-    <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
-        <a href="#" (click)="selectItem('Item 1')">Item 1</a>
-        <a href="#" (click)="selectItem('Item 2')">Item 2</a>
-        <a href="#" (click)="selectItem('Item 3')">Item 3</a>
-        
-    </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-<!-- The recipe cards -->
-
-<!-- <div>
-    <div class="content-container">
-        <div>
-            <div class="card-width">
-                <div class="card-row">
-                    <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
-                        (mouseleave)="onMouseLeave(card.id)">
-
-                        <div class="image-container">
-                            <img [src]="card.imageUrl" alt="{{ card.name }}">
+        <!-- Search Filter Buttons -->
+        <div class="filterarea">
+            <div class="filter-container">
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onTimeFilter()">Time</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isTimeDropdownOpen }">
+                            <a href="#" *ngFor="let time of timeOptions" (click)="selectedTime(time.value)">{{
+                                time.label
+                                }}</a>
                         </div>
-                        <div class="mat-card-header">
-                            <div class="mat-card-title">
-                                {{ card.recipeTitle }}
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onPlaceFilter()">Place</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isPlaceDropdownOpen }">
+                            <a href="#" *ngFor="let place of placeOptions" (click)="selectedPlace(place.value)">{{
+                                place.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onDietFilter()">Diet</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isDietDropdownOpen }">
+                            <a href="#" *ngFor="let diet of dietaryOptions" (click)="selectedDiet(diet.value)">{{
+                                diet.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+      
+
+
+
+
+
+
+
+
+
+        <!-- The recipe cards -->
+
+        <!-- <div>
+        <div class="content-container">
+            <div>
+                <div class="card-width">
+                    <div class="card-row">
+                        <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
+                            (mouseleave)="onMouseLeave(card.id)">
+    
+                            <div class="image-container">
+                                <img [src]="card.imageUrl" alt="{{ card.name }}">
                             </div>
-                        </div>
-                        <div class="button-container">
-                            <button mat-icon-button (click)="onComment(card.id)">
-                                <mat-icon>comment</mat-icon>
-                            </button>
-                            <button mat-icon-button (click)="onLike(card.id)">
-                                <mat-icon>favorite_border</mat-icon>
-                            </button>
-                            <button mat-icon-button (click)="onShare(card.id)">
-                                <mat-icon>share</mat-icon>
-                            </button>
-                        </div>
-                        <div class="rating-container" *ngIf="!showRating">
-                            <mat-icon class="star" *ngFor="let rating of [1, 2, 3, 4, 5]; let i = index"
-                                [ngClass]="{ 'selected': card.rating === i + 1 }">
-                                star
-                            </mat-icon>
-                        </div>
-
-                    </mat-card>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- Testing Ground -->
-<div>
-    <div class="content-container">
-        <div>
-            <div class="card-width">
-                <div class="card-row">
-                    <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
-                        (mouseleave)="onMouseLeave(card.id)">
-
-                        <div class="image-container">
-                            <!-- Move the like button to the top right of the image -->
-                            <div class="circle-container">
-                                <button mat-icon-button class="top-right-button" (click)="onLike(card.id)">
+                            <div class="mat-card-header">
+                                <div class="mat-card-title" (click)="selectSingleRecipe(card.id)">
+                                    {{ card.recipeTitle }}
+                                </div>
+                            </div>
+                            <div class="button-container">
+                                <button mat-icon-button (click)="onComment(card.id)">
+                                    <mat-icon>comment</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="onLike(card.id)">
                                     <mat-icon>favorite_border</mat-icon>
                                 </button>
+                                <button mat-icon-button (click)="onShare(card.id)">
+                                    <mat-icon>share</mat-icon>
+                                </button>
                             </div>
-                            <img [src]="card.imageUrl" alt="{{ card.name }}">
-                        </div>
-                        <div class="mat-card-header">
-                            <div class="mat-card-title">
-                                {{ card.recipeTitle }}
+                            <div class="rating-container" *ngIf="!showRating">
+                                <mat-icon class="star" *ngFor="let rating of [1, 2, 3, 4, 5]; let i = index"
+                                    [ngClass]="{ 'selected': card.rating === i + 1 }">
+                                    star
+                                </mat-icon>
                             </div>
-                        </div>
-                       
-                        <!-- Add the rating bar below the buttons -->
-                        <div class="rating-container">
-                            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-                                <mat-icon class="rating-star"
-                                    [ngClass]="{ 'filled': card.rating >= star }">star</mat-icon>
-                            </ng-container>
+    
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+        <!-- Testing Ground -->
+        <div>
+            <div class="content-container">
+                <div>
+                    <div class="card-width">
+                        <div class="card-row">
+                            <mat-card class="custom-card" *ngFor="let card of cards"
+                                [ngClass]="{ 'hovering': isBeingHovered(card.id) }" (mouseenter)="onMouseEnter(card.id)"
+                                (mouseleave)="onMouseLeave()">
+
+                                <div class="image-container">
+                                    <div [hidden]="!showRating" class="circle-container">
+                                        <button mat-icon-button class="top-right-button" (click)="onLike(card.id)">
+                                            <mat-icon>favorite_border</mat-icon>
+                                        </button>
+                                    </div>
+                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
+                                </div>
+                                <br>
+                                <div class="mat-card-header">
+                                    <div (mouseenter)="hoverUnderline = true" (mouseleave)="hoverUnderline = false"
+                                        (click)="selectSingleRecipe(card.id)">
+                                        <div class="mat-card-title"
+                                            [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.id) }">
+                                            {{ card.recipeTitle }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div [hidden]="!showRating" class="rating-container">
+                                    <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                        <mat-icon class="rating-star"
+                                            [ngClass]="{ 'filled': card.rating >= star }">star</mat-icon>
+                                    </ng-container>
+
+                                </div>
+
+                                <div class="button-container">
+                                    <button mat-icon-button (click)="commentsLookup(card.recipeTitle)">
+                                        <mat-icon>comment</mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="onShare(card.id)">
+                                        <mat-icon>share</mat-icon>
+                                    </button>
+                                </div>
+
+                            </mat-card>
+
 
                         </div>
-
-                        <div class="button-container">
-                            <!-- Leave the share button at the bottom -->
-                            <button mat-icon-button (click)="commentsLookup(card.recipeTitle)">
-                                <mat-icon>comment</mat-icon>
-                            </button>
-                            <button mat-icon-button (click)="onShare(card.id)">
-                                <mat-icon>share</mat-icon>
-                            </button>
-                        </div>
-
-                    </mat-card>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 
-
-
+    <!-- Footer -->
+    <app-footer></app-footer>
+</body>
