@@ -1,13 +1,15 @@
 <header class="header">
-    <div class="header-left mx-2">
-        <h6><img src="./../../../../assets/Indigo Recipesb.png" width="50" height="50" alt=""><strong>
-                Indigo Recipes</strong></h6>
+    <div class="header-left mx-2" (click)="navigateToHome()">
+        <h6>
+            <img src="./../../../../assets/Indigo Recipesb.png" width="50" height="50" alt="">
+            <strong>Indigo Recipes</strong>
+        </h6>
     </div>
     <div class="header-right mx-2">
         <!-- <button mat-button (click)="callCards()">About Us</button> -->
         <button mat-button>Add Recipe</button>
         <button mat-button>My Profile</button>
-        <button mat-button>Logout</button>
+        <button mat-button (click)="onLogout()">Logout</button>
     </div>
 </header>
 <header class="bottom-header">

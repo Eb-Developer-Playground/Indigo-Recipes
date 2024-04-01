@@ -9,21 +9,26 @@
 // }
 
 // body {
-    //     display: flex;
-    //     background: linear-gradient(to right, white 40%, indigo 60%);
-    //     // background-size: 100% 100%;
+//     display: flex;
+//     background: linear-gradient(to right, white 40%, indigo 60%);
+//     // background-size: 100% 100%;
 
-    // }
+// }
+
+.button-color {
+    color: black;
+}
 
 .login-container {
     display: flex;
     height: 100vh;
+    
 }
 
 .login-section,
 .registration-section {
     flex: 1;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -32,6 +37,7 @@
 
 .login-section {
     background-color: white;
+    display: inline-flex;
 
     form {
         display: flex;
@@ -66,6 +72,7 @@
 
 .registration-section {
     background-color: indigo;
+    display: inline-flex;
 
     h1 {
         font-size: 2em;

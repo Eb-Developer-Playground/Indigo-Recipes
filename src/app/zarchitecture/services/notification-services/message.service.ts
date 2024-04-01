@@ -28,18 +28,10 @@ export class MessageService {
     });
   }
 
-  onWindowScroll(event: any) {
-    // const header = this.elementRef.nativeElement.querySelector('app-header');
-    // const contentBelowHeader = this.elementRef.nativeElement.querySelector('.content-below-header');
-
-    // if (contentBelowHeader) {
-    //   if (window.scrollY > 0) {
-    //     contentBelowHeader.style.position = 'relative'; // or 'static'
-    //   } else {
-    //     const headerHeight = header ? header.offsetHeight : 0;
-    //     contentBelowHeader.style.position = 'fixed';
-    //     contentBelowHeader.style.top = headerHeight + 'px';
-    //   }
-    // }
+  openSnackBar(message: string, panelClass: string): void {
+    this._snacbar.open(message, 'Close', {
+      duration: 2000,
+      panelClass: [panelClass],
+    });
   }
 }

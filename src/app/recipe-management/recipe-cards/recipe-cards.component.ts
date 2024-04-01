@@ -3,6 +3,9 @@ import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
 import { LoginComponent } from '../../zarchitecture/layout/login/login.component';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
+import Swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
 
 interface Recipe {
   imageUrl: string;
@@ -74,47 +77,88 @@ export class RecipeCardsComponent implements OnInit {
   selectedFilters: string[] = [];
   viewPortHeight!: number;
   dietarty: any;
-  
+
 
   constructor
     (
-    private messageServiceMan: MessageService,
-  ) {
-    
-    
+      private messageServiceMan: MessageService,
+      private dialog: MatDialog,
+    ) {
+
+
   }
 
 
   /***************************************************************************************************************
    * LifeCycle Hooks
    */
-  
+
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
-    this.callWindowScroll();
+
   }
 
-  @HostListener('window:scroll', ['$event'])
-  callWindowScroll(): void {
-    this.messageServiceMan.onWindowScroll(event)
-    console.log('Window scrolled!');
-  }
 
-  
 
 
 
   /***************************************************************************************************************
    * Card Button Functions
    */
-  onComment(id: number): void {
-  }
+
   onLike(arg0: any) {
     throw new Error('Method not implemented.');
   }
-  onShare(arg0: any) {
-    throw new Error('Method not implemented.');
+
+  /**** Sharing a recipe */
+  onShare(title: string) {
+    // Generate shareable link
+    const shareLink = `https://example.com/share?title=${encodeURIComponent(title)}`;
+
+    // Open Sweet Alert dialog with sharing options
+    Swal.fire({
+      title: 'Share via',
+      showCancelButton: true,
+      confirmButtonText: 'Facebook',
+      cancelButtonText: 'WhatsApp',
+      showCloseButton: true,
+      html: `You can also <a href="mailto:?subject=Check out this article&amp;body=${shareLink}">Email</a> it.`,
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.messageServiceMan.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared on Facebook');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.messageServiceMan.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared on WhatsApp');
+      } else {
+        this.messageServiceMan.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared via Email');
+      }
+    });
   }
+
+  /**** Comments Look Up  */
+  commentsLookup(cardTitle: string): void {
+    console.log("Card Comments Called for recipe: ", cardTitle);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.hasBackdrop = true;
+    // dialogConfig.width = "600px";
+    // dialogConfig.height = "900px";
+    dialogConfig.data = {
+      action: "View Comments",
+      selectedCard: cardTitle,
+    }
+
+    const dialogRef = this.dialog.open(CommentsSectionComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      //Save the input messages
+    )
+
+
+  }
+
 
 
   /**** Handle Mouse Hover */
@@ -173,5 +217,7 @@ export class RecipeCardsComponent implements OnInit {
     this.dietSelected = item;
     this.onDietFilter();
   }
+
+
 
 }

@@ -5,6 +5,7 @@ import { MessageService } from '../../services/notification-services/message.ser
 import { FooterComponent } from '../footer/footer.component';
 import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,8 +13,8 @@ import { Router } from '@angular/router';
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   imports: [
-    HeaderComponent,
     SharedModule,
+    HeaderComponent,
     FooterComponent,
     RecipeCardsComponent
   ]
@@ -37,6 +38,7 @@ export class LandingPageComponent implements OnInit {
   constructor(
     private _notificationManService: MessageService,
     private router: Router,
+    private snackbar: MatSnackBar
   ) {
   }
 
@@ -60,7 +62,9 @@ export class LandingPageComponent implements OnInit {
         data: serializedData
       }
     });
+
     this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger");
+    this._notificationManService.openSnackBar("Success", 'error-notification')
   }
 
   isHovering(cardId: number): boolean {
