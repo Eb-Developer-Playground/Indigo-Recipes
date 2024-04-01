@@ -4,21 +4,22 @@ import { Page404Component } from './zarchitecture/layout/page404/page404.compone
 import { LandingPageComponent } from './zarchitecture/layout/landing-page/landing-page.component';
 import { RecipeCardsComponent } from './recipe-management/recipe-cards/recipe-cards.component';
 import { ManageSingularRecipeComponent } from './recipe-management/manage-singular-recipe/manage-singular-recipe.component';
+import { LoginComponent } from './zarchitecture/layout/login/login.component';
 
 const routes: Routes = [
   {
     path: "",
-    component: ManageSingularRecipeComponent,
+    component: LoginComponent,
     children: [
       {
         path: '',
         redirectTo: "home", pathMatch: "full"
       },
-      {
-        path: 'card',
-        component: RecipeCardsComponent,
-      }
     ]
+  },
+  {
+    path: 'card',
+    component: RecipeCardsComponent,
   },
   {
     path: 'home',

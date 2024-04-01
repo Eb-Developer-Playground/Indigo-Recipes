@@ -1,5 +1,5 @@
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class MessageService {
 
   constructor(
-    private _snacbar: MatSnackBar
+    private _snacbar: MatSnackBar, 
+    // private elementRef: ElementRef,
   ) { }
 
   horizontalPosition: MatSnackBarHorizontalPosition = "end";
@@ -25,5 +26,20 @@ export class MessageService {
       verticalPosition: this.verticalPosition,
       panelClass: [type]
     });
+  }
+
+  onWindowScroll(event: any) {
+    // const header = this.elementRef.nativeElement.querySelector('app-header');
+    // const contentBelowHeader = this.elementRef.nativeElement.querySelector('.content-below-header');
+
+    // if (contentBelowHeader) {
+    //   if (window.scrollY > 0) {
+    //     contentBelowHeader.style.position = 'relative'; // or 'static'
+    //   } else {
+    //     const headerHeight = header ? header.offsetHeight : 0;
+    //     contentBelowHeader.style.position = 'fixed';
+    //     contentBelowHeader.style.top = headerHeight + 'px';
+    //   }
+    // }
   }
 }

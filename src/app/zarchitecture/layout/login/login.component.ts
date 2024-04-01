@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent {
   constructor(
     private notificationMan: MessageService,
     private _fb: FormBuilder,
+    private router: Router,
   ) {
 
   }
@@ -47,7 +49,13 @@ export class LoginComponent {
   }
 
   login(): void {
-    this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success')
+
+    if (this.loginForm.value.email == 'sw.muriu@gmail.com' && this.loginForm.value.password == 1234) {
+      this.router.navigate(['/home']);
+      this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success');
+    } else {
+      this.notificationMan.showNotificationMessage("Username or password is incorrect", "snackbar-danger");
+    }
   }
 
   loginWithGoogle(): void {

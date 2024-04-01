@@ -1,11 +1,27 @@
 //**********************************************************************/
 // Title Styling
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  /* Ensure the header appears above other content */
+}
+
+.content-below-header {
+  /* Add padding-top to accommodate the height of the header */
+  padding-top: 120px;
+  /* Adjust as needed */
+}
+
 section {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   margin-left: 10%;
   margin-top: 60px;
   padding: 10px;
+  display: flex;
 }
 
 .filterarea {
@@ -14,12 +30,7 @@ section {
   margin-left: 10%;
   margin-top: 2px;
   padding: 2px;
-
-  /* Increase horizontal space between filters */
-  // justify-content: space-evenly;
-  /* Evenly distribute filters */
   width: calc(100% - 20%);
-  /* Span more horizontally (adjust as needed) */
 }
 
 /*************************************************************************************************************
@@ -108,6 +119,7 @@ mat-card {
 }
 
 
+
 .custom-card:hover {
   /* Raise card on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.23);
@@ -117,13 +129,14 @@ mat-card {
 
 .image-container {
   /* Style the image container for padding and square aspect ratio */
-  padding: 1rem;
-  /* Adjust padding as needed */
+  padding: 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
-  width: 90%;
+  height: 90%;
+  width: 100%;
+  flex: 0 0 40%;
+  /* Adjust width of image container */
 }
 
 .image-container img {
@@ -133,6 +146,7 @@ mat-card {
 }
 
 .card-content {
+  flex: 1 1 60%;
   padding: 0.5rem;
   text-align: center;
 }
@@ -167,34 +181,75 @@ mat-card {
 
 
 /********************************* Rating Styling **************************************************/
-.rating-container {
+.top-right-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: flex;
-  /* Arrange stars horizontally */
-  justify-content: space-between;
-  /* Distribute stars evenly */
-  padding: 0.5rem;
-  margin-top: 0.5rem;
 }
 
-.star {
-  /* Style the star icon (color, size, etc.) */
-  color: orange;
-  font-size: 1.5rem;
-  /* Adjust star size */
-  cursor: pointer;
-  /* Indicate hover interaction */
+.rating-container {
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  /* Adjust as needed */
 }
 
-.star:hover {
-  /* Change star color on hover (optional) */
-  color: gold;
+.rating-star {
+  font-size: 24px;
+  color: white;
+  outline: #000;
+  display: flex;
 }
 
-.star.selected {
-  /* Style for the selected star (color, etc.) */
-  color: gold;
-  /* Adjust color as needed */
+.rating-star.filled {
+  color: #000;
+  display: flex;
+  /* Filled star color */
 }
+
+.rating-value {
+  margin-left: 5px;
+  /* Adjust as needed */
+  font-size: 14px;
+  /* Adjust as needed */
+}
+
+.circle-container {
+  width: 40px;
+  /* Adjust as needed */
+  height: 40px;
+  /* Adjust as needed */
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+// .star {
+//   /* Style the star icon (color, size, etc.) */
+//   color: orange;
+//   font-size: 1.5rem;
+//   /* Adjust star size */
+//   cursor: pointer;
+//   /* Indicate hover interaction */
+// }
+
+// .star:hover {
+//   /* Change star color on hover (optional) */
+//   color: gold;
+// }
+
+// .star.selected {
+//   /* Style for the selected star (color, etc.) */
+//   color: gold;
+//   /* Adjust color as needed */
+// }
 
 
 
@@ -202,47 +257,53 @@ mat-card {
 /******************************************************************************************************************************************** */
 // Test Ground
 
-/****** Rotate the drop down arrow*/
-.rotation {
-  -webkit-transform: rotate(180deg);
-  /* Chrome, Safari, etc. */
-  -ms-transform: rotate(180deg);
-  /* Internet Explorer */
-  -moz-transform: rotate(180deg);
-  /* Firefox */
-  transform: rotate(180deg);
-}
-
-
 .filtercontainer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.custom-dropdown {
-  margin-right: 1rem;
+/******************************************************************************************************************************************** */
 
-  mat-label {
-    cursor: pointer;
-    position: relative;
+.dropdown {
+  position: relative;
+  display: inline-block;
 
-    mat-icon {
-      position: absolute;
-      top: 50%;
-      right: 5px;
-      transform: translateY(-50%);
-      transition: transform 0.2s ease-in-out;
-    }
-
-    &.rotate-180 {
-      mat-icon {
-        transform: translateY(-50%) rotate(180deg);
-      }
-    }
+  .button:hover {
+    color: #415569;
   }
+}
 
-  mat-checkbox {
-    margin-top: 5px;
-  }
+.dropdown-toggle {
+  background-color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
 }

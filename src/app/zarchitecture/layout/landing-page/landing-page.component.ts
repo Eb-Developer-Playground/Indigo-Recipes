@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
 import { FooterComponent } from '../footer/footer.component';
 import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -27,15 +28,15 @@ export class LandingPageComponent implements OnInit {
     { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 4' },
     { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
     { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' }, { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
   ];
   currentlyHoveredCardId: number | null = null;
-
-
   viewPortHeight!: number;
 
   constructor(
-    private _notificationManService: MessageService
+    private _notificationManService: MessageService,
+    private router: Router,
   ) {
   }
 
@@ -51,21 +52,19 @@ export class LandingPageComponent implements OnInit {
 
   /**** Setting the country */
   setCountry(country: string): void {
-    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-success");
+    const additionalData = country;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/card';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    });
+    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger");
   }
 
   isHovering(cardId: number): boolean {
     return this.currentlyHoveredCardId === cardId;
   }
-
-
-  links = ['First', 'Second', 'Third'];
-  activeLink = this.links[0];
-  background = '';
-
-  toggleBackground() {
-    this.background = this.background ? '' : 'primary';
-  }
-
 }
 

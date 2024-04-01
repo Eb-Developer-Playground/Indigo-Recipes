@@ -1,78 +1,45 @@
 <app-header></app-header>
 
-
-<!-- The Title Section -->
-
-
-<section>
-    <div class="filtercontainer">
-        <div class="custom-dropdown" *ngFor="let dropdown of dropdowns; trackBy: trackByDropdown">
-            <mat-label (click)="toggleDropdown(dropdown.id)">
-                {{ dropdown.label }}<sup><mat-icon
-                        [ngClass]="{'rotation': dropdown.isOpen}">arrow_drop_down</mat-icon></sup>
-            </mat-label>
-            <mat-checkbox *ngFor="let item of dropdown.items; trackBy: trackByItem"
-                (change)="onSelectionChange(dropdown.id, item.value)">
-                {{ item.label }}
-            </mat-checkbox>
-        </div>
-    </div>
-</section>
-
+<div class="content-below-header">
 <section>
     <h5>
         New In
     </h5>
 
-    
+
 </section>
 
 <!-- Search Filter Buttons -->
 <div class="filterarea">
     <div class="filter-container">
         <div class="filter-item">
-            <mat-label>Time</mat-label>
-            
-            <mat-select [(value)]="selectedTime" (selectionChange)="onTimeChange($event.value)">
-                <mat-option *ngFor="let time of timeOptions" [value]="time.value">
-                    <mat-checkbox></mat-checkbox>
-                    {{ time.label }}
-                </mat-option>
-            </mat-select>
-
+            <div class="dropdown">
+                <button class="dropdown-toggle" (click)="onTimeFilter()">Time</button>
+                <div class="dropdown-menu" [ngClass]="{ 'show': isTimeDropdownOpen }">
+                    <a href="#" *ngFor="let time of timeOptions" (click)="selectedTime(time.value)">{{ time.label }}</a>
+                </div>
+            </div>
         </div>
 
         <div class="filter-item">
-            <mat-label>Place</mat-label>
-            <mat-select [(value)]="selectedPlace" (selectionChange)="onPlaceChange($event.value)">
-                <mat-option *ngFor="let place of placeOptions" [value]="place.value">
-                    <mat-checkbox></mat-checkbox>
-                    {{ place.label }}
-                </mat-option>
-            </mat-select>
-
+            <div class="dropdown">
+                <button class="dropdown-toggle" (click)="onPlaceFilter()">Place</button>
+                <div class="dropdown-menu" [ngClass]="{ 'show': isPlaceDropdownOpen }">
+                    <a href="#" *ngFor="let place of placeOptions" (click)="selectedPlace(place.value)">{{ place.label
+                        }}</a>
+                </div>
+            </div>
         </div>
 
         <div class="filter-item">
-            <mat-label>Dietary</mat-label>
-            <mat-select [(value)]="selectedDietary" (selectionChange)="onDietaryChange($event.value)">
-                <mat-option *ngFor="let dietary of dietaryOptions" [value]="dietary.value">
-                    <mat-checkbox></mat-checkbox>
-                    {{ dietary.label }}
-                </mat-option>
-            </mat-select>
-
+            <div class="dropdown">
+                <button class="dropdown-toggle" (click)="onDietFilter()">Diet</button>
+                <div class="dropdown-menu" [ngClass]="{ 'show': isDietDropdownOpen }">
+                    <a href="#" *ngFor="let diet of dietaryOptions" (click)="selectedDiet(diet.value)">{{ diet.label
+                        }}</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div>
-        <span *ngIf="selectedTime" class="selected-filter">Time: {{ selectedTime }} <mat-icon
-                (click)="removeFilter('time')">close</mat-icon></span>
-        <span *ngIf="selectedPlace" class="selected-filter">Place: {{ selectedPlace }} <mat-icon
-                (click)="removeFilter('place')">close</mat-icon></span>
-        <span *ngFor="let filter of selectedDietaryFilters; trackBy: trackByFilter">
-            <span *ngIf="filter">Dietary: {{ filter }} <mat-icon
-                    (click)="removeFilter('dietary', filter)">close</mat-icon></span>
-        </span>
     </div>
 </div>
 
@@ -80,6 +47,15 @@
 
 <!-- Test Ground -->
 
+<!-- <div class="dropdown">
+    <button class="dropdown-toggle" (click)="toggleDropdown2()">Dropdown</button>
+    <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+        <a href="#" (click)="selectItem('Item 1')">Item 1</a>
+        <a href="#" (click)="selectItem('Item 2')">Item 2</a>
+        <a href="#" (click)="selectItem('Item 3')">Item 3</a>
+        
+    </div>
+</div> -->
 
 
 
@@ -91,23 +67,21 @@
 
 <!-- The recipe cards -->
 
-<div>
+<!-- <div>
     <div class="content-container">
         <div>
             <div class="card-width">
                 <div class="card-row">
                     <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
                         (mouseleave)="onMouseLeave(card.id)">
+
+                        <div class="image-container">
+                            <img [src]="card.imageUrl" alt="{{ card.name }}">
+                        </div>
                         <div class="mat-card-header">
                             <div class="mat-card-title">
                                 {{ card.recipeTitle }}
                             </div>
-                        </div>
-                        <div class="image-container">
-                            <img [src]="card.imageUrl" alt="{{ card.name }}">
-                        </div>
-                        <div class="card-content">
-                            {{ card.name }}
                         </div>
                         <div class="button-container">
                             <button mat-icon-button (click)="onComment(card.id)">
@@ -120,7 +94,7 @@
                                 <mat-icon>share</mat-icon>
                             </button>
                         </div>
-                        <div class="rating-container" *ngIf="showRating">
+                        <div class="rating-container" *ngIf="!showRating">
                             <mat-icon class="star" *ngFor="let rating of [1, 2, 3, 4, 5]; let i = index"
                                 [ngClass]="{ 'selected': card.rating === i + 1 }">
                                 star
@@ -132,4 +106,58 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<!-- Testing Ground -->
+<div>
+    <div class="content-container">
+        <div>
+            <div class="card-width">
+                <div class="card-row">
+                    <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
+                        (mouseleave)="onMouseLeave(card.id)">
+
+                        <div class="image-container">
+                            <!-- Move the like button to the top right of the image -->
+                            <div class="circle-container">
+                                <button mat-icon-button class="top-right-button" (click)="onLike(card.id)">
+                                    <mat-icon>favorite_border</mat-icon>
+                                </button>
+                            </div>
+                            <img [src]="card.imageUrl" alt="{{ card.name }}">
+                        </div>
+                        <div class="mat-card-header">
+                            <div class="mat-card-title">
+                                {{ card.recipeTitle }}
+                            </div>
+                        </div>
+                       
+                        <!-- Add the rating bar below the buttons -->
+                        <div class="rating-container">
+                            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                <mat-icon class="rating-star"
+                                    [ngClass]="{ 'filled': card.rating >= star }">star</mat-icon>
+                            </ng-container>
+
+                        </div>
+
+                        <div class="button-container">
+                            <!-- Leave the share button at the bottom -->
+                            <button mat-icon-button (click)="onComment(card.id)">
+                                <mat-icon>comment</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="onShare(card.id)">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                        </div>
+
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
+
+
