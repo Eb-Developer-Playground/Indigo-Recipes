@@ -63,8 +63,7 @@ export class LandingPageComponent implements OnInit {
       }
     });
 
-    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger");
-    this._notificationManService.openSnackBar("Success", 'error-notification')
+
   }
 
   isHovering(cardId: number): boolean {

@@ -115,6 +115,38 @@ main {
     margin-inline: 0.5rem;
 }
 
+.search-container {
+    display: flex;
+    align-items: center;
+
+}
+
+.search-input {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: white;
+    position: relative;
+    padding-right: 35px;
+}
+
+.search-button {
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px;
+    border-color: #fff;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 650px) {
     .content {

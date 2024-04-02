@@ -8,18 +8,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
+import { Option } from '../../../assets/db/db-arrays/interfaces';
+import { Recipe } from '../../../assets/db/db-arrays/interfaces';
 
-interface Recipe {
-  imageUrl: string;
-  name: string;
-  isFavorited?: boolean; // Optional property for favorite state
-};
 
-interface Option {
-  value: string;
-  label: string;
-  selected?: boolean; // Optional for Dietary filter
-};
 
 @Component({
   selector: 'app-recipe-cards',
@@ -49,6 +41,7 @@ export class RecipeCardsComponent implements OnInit {
   currentHoveredCardId: number | null = null;
 
 
+
   // Dummy Data
   cards: any[] = [
     { id: 1, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 1', rating: 3 },
@@ -66,12 +59,13 @@ export class RecipeCardsComponent implements OnInit {
     { value: 'lunch', label: 'Lunch' },
     { value: 'dinner', label: 'Dinner' },
   ];
-
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
     { value: 'african', label: 'African' },
     { value: 'italian', label: 'Italian' },
   ];
+
+
 
   dietaryOptions: Option[] = [
     { value: 'glutenfree', label: 'Gluten-Free', selected: false },

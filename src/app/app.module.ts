@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    HttpClientModule,
     // MatThemeModule,
 
   ],

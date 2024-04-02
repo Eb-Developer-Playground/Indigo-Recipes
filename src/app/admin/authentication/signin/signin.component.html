@@ -1,0 +1,122 @@
+<section>
+
+    <!-- LogIn Section -->
+    <div [hidden]="pageFunction=='Register'">
+        <div class="login-section">
+            <mat-card class="login-card">
+                <h6>
+                    <img src="./../../../../assets/Indigo Recipesb.png" width="50" height="50" alt="">
+                    <strong>Indigo Recipes</strong>
+                </h6>
+                <br>
+                <h5>
+                    Sign In
+                </h5>
+                <br>
+
+                <form [formGroup]="loginForm" class="login-form">
+
+                    <mat-form-field class="input-field" appearance="outline">
+                        <mat-label>Username or Email Address</mat-label>
+                        <input matInput  formControlName="usernameOrEmail" placeholder="Enter Your Username/Email">
+                        <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">The username or
+                            email is required </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password" placeholder="Enter Your Password">
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" class="login-button"
+                        [disabled]="!loginForm.valid" (click)="onLogin()">Login</button>
+
+                    <button mat-raised-button color="primary" type="button" class="gmail-login"
+                        (click)="loginWithGmail()">
+                        Login with Gmail
+                    </button>
+
+                    <div class="footer" (click)="onNavigateToRegistration()">
+                        <a href="#">Forgot password</a>
+                        <span class="spacer"></span>
+                        <a href="#">New? Register instead</a>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+
+    <!-- Sign Up -->
+    <div [hidden]="pageFunction=='Login'">
+        <div class="signup-section">
+            <mat-card class="signup-card">
+                <div class="center-items">
+                    <h6>
+                        <img src="./../../../../assets/Indigo Recipesb.png" width="50" height="50" alt="">
+                        <strong>Indigo Recipes</strong>
+                    </h6>
+                </div>
+                <div class="center-items">
+                    <br>
+                    <h5>
+                        Sign Up
+                    </h5>
+                    <br>
+                </div>
+
+
+                <form [formGroup]="signupForm" class="signup-form">
+                    <div>
+                        <mat-form-field class="signup-input-field" appearance="outline">
+                            <input matInput type="text" formControlName="firstName" placeholder="First Name">
+                            <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">The
+                                first name is required </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="signup-input-field" appearance="outline">
+                            <input matInput type="text" formControlName="lastName" placeholder="Last Name">
+                            <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">The
+                                last name is required </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field class="signup-input-field" appearance="outline">
+                        <input matInput type="email" formControlName="email" placeholder="Email">
+                        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">The
+                            email is required </mat-error>
+                        <mat-error *ngIf="signupForm.get('email')?.hasError('valid')">The
+                            email is not valid </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="signup-input-field" appearance="outline">
+                        <input matInput type="text" formControlName="username" placeholder="Username">
+                        <mat-error *ngIf="signupForm.get('username')?.hasError('required')">The
+                            username is required </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="signup-input-field" appearance="outline">
+                        <input matInput type="password" formControlName="password" placeholder="Password">
+                        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">The
+                            password is required </mat-error>
+                        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Minimum 6 characters required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="signup-input-field" appearance="outline">
+                        <input matInput type="password" formControlName="confirmPassword"
+                            placeholder="Confirm Password">
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" class="signup-button"
+                        [disabled]="!signupForm.valid" (click)="onSignup()">Sign
+                        Up</button>
+                    <button mat-raised-button color="primary" type="submit" class="signup-button"
+                        (click)="backToLogin()">Back to Sign In</button>
+                </form>
+            </mat-card>
+        </div>
+
+    </div>
+
+
+</section>

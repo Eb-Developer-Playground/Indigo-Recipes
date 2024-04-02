@@ -28,10 +28,4 @@ export class MessageService {
     });
   }
 
-  openSnackBar(message: string, panelClass: string): void {
-    this._snacbar.open(message, 'Close', {
-      duration: 2000,
-      panelClass: [panelClass],
-    });
-  }
 }

@@ -7,11 +7,13 @@ import { ManageSingularRecipeComponent } from './recipe-management/manage-singul
 import { LoginComponent } from './zarchitecture/layout/login/login.component';
 import { CommentsSectionComponent } from './zarchitecture/layout/comments-section/comments-section.component';
 import { SingularViewPointComponent } from './recipe-management/singular-view-point/singular-view-point.component';
+import { SigninComponent } from './admin/authentication/signin/signin.component';
+import { RegistrationGuardService } from './admin/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
-    component: LoginComponent,
+    component: SigninComponent,
     children: [
       {
         path: '',
@@ -19,24 +21,13 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: '#',
-    component: LoginComponent,
-  },
+
   {
     path: 'manage/recipe',
+    // canActivate: RegistrationGuardService,
     component: ManageSingularRecipeComponent
   },
-  // {
-  //   path: 'manage',
-  //   children: [
-  //     {
-  //       path: 'recipe',
-  //       component: ManageSingularRecipeComponent
-  //     },
 
-  //   ]
-  // },
 
   {
     path: 'card',

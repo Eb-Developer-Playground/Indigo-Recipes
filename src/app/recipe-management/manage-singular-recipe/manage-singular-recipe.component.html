@@ -32,8 +32,8 @@
                                                 <ng-container>
                                                     <mat-form-field appearance="outline">
                                                         <mat-label>Yield</mat-label>
-                                                        <input matInput formControlName="yield"
-                                                            placeholder="Yield (persons)" required>
+                                                        <input matInput formControlName="yield" type="number"
+                                                            placeholder="Yield (Persons)" required>
                                                         <mat-error
                                                             *ngIf="recipeDetailsForm.get('yield')?.hasError('required')">The
                                                             yeild is required </mat-error>
@@ -44,8 +44,8 @@
                                                 <ng-container>
                                                     <mat-form-field appearance="outline">
                                                         <mat-label>Prep Time</mat-label>
-                                                        <input matInput formControlName="prepTime"
-                                                            placeholder="Prep Time" required>
+                                                        <input matInput formControlName="prepTime" type="number"
+                                                            placeholder="Prep Time (Minutes)" required>
                                                         <mat-error
                                                             *ngIf="recipeDetailsForm.get('prepTime')?.hasError('required')">The
                                                             prep time is required </mat-error>
@@ -56,14 +56,29 @@
                                                 <ng-container>
                                                     <mat-form-field appearance="outline">
                                                         <mat-label>Cook Time</mat-label>
-                                                        <input matInput formControlName="cookTime"
-                                                            placeholder="Cook Time" required>
+                                                        <input matInput formControlName="cookTime" type="number"
+                                                            placeholder="Cook Time (Minutes)" required>
                                                         <mat-error
                                                             *ngIf="recipeDetailsForm.get('cookTime')?.hasError('required')">The
                                                             cook time is required </mat-error>
                                                     </mat-form-field>
                                                 </ng-container>
                                             </div>
+                                            <div>
+                                                <ng-container>
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>Cuisine</mat-label>
+                                                        <mat-select formControlName="place" placeholder="Cusiine">
+                                                            <mat-option *ngFor="let option of placeOptions"
+                                                                [value]="option">{{ option.label }}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error
+                                                            *ngIf="recipeDetailsForm.get('place')?.hasError('required')">The
+                                                            place is required</mat-error>
+                                                    </mat-form-field>
+                                                </ng-container>
+                                            </div>
+
                                         </div>
                                         <div>
                                             <button type="submit" mat-button matStepperNext
@@ -207,7 +222,7 @@
                         <div>
                             <mat-step>
                                 <p>Review your recipe details and submit.</p>
-                                <button type="submit" mat-button (click)="submit()">Submit</button>
+                                <button type="submit" mat-button (click)="onSubmit()">Submit</button>
                             </mat-step>
                         </div>
                     </mat-horizontal-stepper>
