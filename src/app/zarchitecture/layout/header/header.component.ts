@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { Router } from '@angular/router';
 import { usersArray } from '../../../../assets/db-arrays/interfaces';
@@ -14,23 +14,11 @@ import { usersArray } from '../../../../assets/db-arrays/interfaces';
 })
 export class HeaderComponent {
 
-  // allRecipes
-
   constructor(
     private router: Router,
-    private elementRef: ElementRef,
 
   ) { }
 
-  addButton() {
-    const route = `/add`;
-    this.router.navigate([route]);
-  }
-
-  callCards(): void {
-    const route = `/card/centre`;
-    this.router.navigate([route]);
-  }
 
   /**** Adding a recipe */
   addRecipe(): void {

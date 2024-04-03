@@ -1,12 +1,16 @@
 <section>
-    <!-- <div class="position">
-        
-    </div> -->
     <app-header></app-header>
     <br>
     <br>
 
     <div class="content-below-header">
+        <header class="header2">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+                <button mat-button>
+                    <i class="fas fa-search"></i>Search </button>
+            </div>
+        </header>
         <div class="section">
             <div class="my-1">
                 <ng-container>
@@ -45,17 +49,17 @@
                 <div class="my-3">
                     <div class="row-placement">
                         <div class="responsive-column hover-effect" (click)="setCountry('African')">
-                            <div class="mat-card">
+                            <div>
                                 AFRICAN
                             </div>
                         </div>
                         <div class="responsive-column hover-effect" (click)="setCountry('Italian')">
-                            <div class="mat-card">
+                            <div>
                                 ITALIAN
                             </div>
                         </div>
                         <div class="responsive-column hover-effect" (click)="setCountry('Chinese')">
-                            <div class="mat-card">
+                            <div>
                                 CHINESE
                             </div>
                         </div>
@@ -65,74 +69,65 @@
 
 
             <div class="content-container">
-                <div class="m-4">
+                <div>
                     <mat-tab-group (selectedChange)="onTabChange($event)">
 
 
                         <!-- ALL RECIPES -->
                         <mat-tab label="ALL RECIPES">
-                            <div class="card-row">
-                                <mat-card class="custom-card" *ngFor="let card of allRecipes"
-                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
-                                    <div class="image-container">
-                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
-                                    </div>
-
-                                    <div class="card-content">
-                                        {{ card.title }}
-                                    </div>
-                                </mat-card>
+                            <div>
+                                <app-recipe-holder [cards]="recipes" [showRating]="showRating" (like)="onLike($event)"
+                                    (selectRecipe)="onSelectSingleRecipe($event)"
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                </app-recipe-holder>
                             </div>
                         </mat-tab>
 
                         <!-- NEW IN -->
                         <mat-tab label="NEW IN">
-                            <div class="card-width">
-                                <div class="card-row">
-                                    <mat-card class="custom-card" *ngFor="let card of newRecipes "
-                                        [attr.mat-card-hover]="isHovering(card.recipeId)">
-                                        <div class="image-container">
-                                            <img [src]="card.imageUrl" alt="{{ card.title }}">
-                                        </div>
-
-                                        <div class="card-content">
-                                            {{ card.title }}
-                                        </div>
-                                    </mat-card>
-                                </div>
+                            <div [hidden]="newRecipes.length  === 0">
+                                <app-recipe-holder [cards]="newRecipes" [showRating]="showRating"
+                                    (like)="onLike($event)" (selectRecipe)="onSelectSingleRecipe($event)"
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                </app-recipe-holder>
+                            </div>
+                            <div class="center-message" class="center-message" [hidden]="newRecipes.length  !== 0">
+                                No new recipes available at this time. Please check back later!
                             </div>
                         </mat-tab>
 
 
                         <!-- FAVORITES -->
                         <mat-tab label="FAVORITES">
-                            <div class="card-row">
-                                <mat-card class="custom-card" *ngFor="let card of favoriteRecipes"
-                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
-                                    <div class="image-container">
-                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
-                                    </div>
-
-                                    <div class="card-content">
-                                        {{ card.title }}
-                                    </div>
-                                </mat-card>
+                            <div [hidden]="favoriteRecipes.length  === 0">
+                                <app-recipe-holder [cards]="favoriteRecipes" [showRating]="showRating"
+                                    (like)="onLike($event)" (selectRecipe)="onSelectSingleRecipe($event)"
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                </app-recipe-holder>
+                            </div>
+                            <div class="center-message" [hidden]="favoriteRecipes.length  !== 0">
+                                You haven't added any favorite recipes yet. Click on a recipe heart to add it to
+                                your favorites.
                             </div>
                         </mat-tab>
 
                         <!-- MY RECIPES -->
                         <mat-tab label="MY RECIPES">
-                            <div class="card-row">
-                                <mat-card class="custom-card" *ngFor="let card of myRecipes"
-                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
-                                    <div class="image-container">
-                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
-                                    </div>
-
-                                    <div class="card-content">
-                                        {{ card.title }}
-                                    </div>
-                                </mat-card>
+                            <div [hidden]="myRecipes.length  === 0">
+                                <app-recipe-holder [cards]="myRecipes" [showRating]="showRating" (like)="onLike($event)"
+                                    (selectRecipe)="onSelectSingleRecipe($event)"
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                </app-recipe-holder>
+                            </div>
+                            <div [hidden]="myRecipes.length  !== 0">
+                                <div class="center-message">
+                                    You have no recipes, hit 'Add Recipes' to add your own recipes
+                                </div>
+                                <br>
+                                <div class="lettering">
+                                    <button mat-button-raised class="add-button" (click)="addRecipe()">
+                                        <i class="fas fa-search"></i>ADD RECIPE</button>
+                                </div>
                             </div>
                         </mat-tab>
 

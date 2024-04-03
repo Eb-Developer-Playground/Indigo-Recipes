@@ -9,6 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { CardManagementService } from '../../../recipe-management/services/card-management.service';
+import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/recipe-holder.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CommentsSectionComponent } from '../comments-section/comments-section.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-landing-page',
@@ -19,7 +23,8 @@ import { CardManagementService } from '../../../recipe-management/services/card-
     SharedModule,
     HeaderComponent,
     FooterComponent,
-    RecipeCardsComponent
+    RecipeCardsComponent,
+    RecipeHolderComponent,
   ]
 })
 export class LandingPageComponent implements OnInit {
@@ -42,6 +47,7 @@ export class LandingPageComponent implements OnInit {
   myRecipes: any;
   newRecipes: any;
   allRecipes: any;
+  recipes: Recipe[] = [];
 
 
   constructor(
@@ -49,22 +55,24 @@ export class LandingPageComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private cardManServices: CardManagementService,
+    private dialog: MatDialog
   ) {
     this.username = sessionStorage.getItem('username');
-    
+
   }
 
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
     this.allRecipes = this.cardManServices.recipeSample;
-    
+    this.recipes = this.allRecipes;
+
 
     /**** Fetching Recipes */
     this.favoriteRecipes = this.findRecipeByOwnerAndFavorited(this.allRecipes, this.username, true);
     this.myRecipes = this.findRecipesByOwner(this.allRecipes, this.username);
     this.newRecipes = this.fetchLastFourRecipes(this.allRecipes);
-    
+
 
 
 
@@ -97,8 +105,8 @@ export class LandingPageComponent implements OnInit {
 
 
   /******* Fetching favourite recipes */
-  findRecipeByOwnerAndFavorited(recipes: Recipe[], owner: string | null, isFavourited: boolean): Recipe | undefined {
-    return recipes.find(recipe => recipe.owner === owner && recipe.isFavourited === isFavourited);
+  findRecipeByOwnerAndFavorited(recipes: Recipe[], owner: string | null, isFavourited: boolean): Recipe[] {
+    return recipes.filter(recipe => recipe.owner === owner && recipe.isFavourited === isFavourited);
   }
 
   /**** Fetching My Recipes */
@@ -112,8 +120,6 @@ export class LandingPageComponent implements OnInit {
     return numOfRecipes >= 4 ? recipes.slice(-4) : recipes;
   }
 
-
-
   /**** Listening for the changing of tabs */
   onTabChange(event: Event) {
     if (event instanceof MatTabChangeEvent) {
@@ -122,6 +128,79 @@ export class LandingPageComponent implements OnInit {
       console.log('Selected tab label:', selectedTabLabel);
     }
   }
+
+  /**** Test Grounds */
+
+  showRating = true; // Set to true to display rating
+
+  onLike(title: string) {
+    this._notificationManService.showNotificationMessage(`${title} added to your favorite recipes`, 'snackbar-success');
+  }
+
+  onShare(title: string): void {
+    // Generate shareable link
+    const shareLink = `https://example.com/share?title=${encodeURIComponent(title)}`;
+
+    // Open Sweet Alert dialog with sharing options
+    Swal.fire({
+      title: 'Share via',
+      showCancelButton: true,
+      confirmButtonText: 'Facebook',
+      cancelButtonText: 'WhatsApp',
+      showCloseButton: true,
+      html: `You can also <a href="mailto:?subject=Check out this article&amp;body=${shareLink}">Email</a> it.`,
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._notificationManService.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared on Facebook');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this._notificationManService.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared on WhatsApp');
+      } else {
+        this._notificationManService.showNotificationMessage("Recipe shared successfully", 'snackbar-success');
+        console.log('Shared via Email');
+      }
+    });
+  }
+
+  onSelectRecipe(recipeId: number) {
+    console.log('Selected recipe ID:', recipeId);
+  }
+
+  callCommentsDialog(title: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.hasBackdrop = true;
+    // dialogConfig.width = "600px";
+    // dialogConfig.height = "900px";
+    dialogConfig.data = {
+      action: "View Comments",
+      selectedCard: title,
+    }
+
+    const dialogRef = this.dialog.open(CommentsSectionComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      //Save chenye wamecomment
+    )
+  }
+  onSelectSingleRecipe(recipeId: number): void {
+    console.log("Title Clicked::", recipeId);
+    const additionalData = recipeId;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/view';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
+  }
+
+  addRecipe(): void {
+    let route = '/manage/recipe';
+    this.router.navigate([route]);
+  }
+
 
 }
 
