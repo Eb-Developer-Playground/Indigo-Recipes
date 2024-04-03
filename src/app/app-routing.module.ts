@@ -21,7 +21,10 @@ const routes: Routes = [
       },
     ]
   },
-
+  {
+    path: "logout",
+    component: SigninComponent
+  },
   {
     path: 'manage/recipe',
     // canActivate: RegistrationGuardService,

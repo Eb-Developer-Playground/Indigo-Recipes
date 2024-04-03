@@ -34,17 +34,21 @@ export class LandingPageComponent implements OnInit {
   ];
   currentlyHoveredCardId: number | null = null;
   viewPortHeight!: number;
+  username: string | null;
 
   constructor(
     private _notificationManService: MessageService,
     private router: Router,
     private snackbar: MatSnackBar
   ) {
+    this.username = sessionStorage.getItem('username')
   }
 
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
+
+
   }
 
 
@@ -59,7 +63,8 @@ export class LandingPageComponent implements OnInit {
     let route = '/card';
     this.router.navigate([route], {
       queryParams: {
-        data: serializedData
+        data: serializedData,
+        username: this.username
       }
     });
 
@@ -69,5 +74,10 @@ export class LandingPageComponent implements OnInit {
   isHovering(cardId: number): boolean {
     return this.currentlyHoveredCardId === cardId;
   }
+
+  fetchNewInRecipes(): void {
+    
+  }
+
 }
 

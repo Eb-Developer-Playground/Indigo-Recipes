@@ -50,7 +50,7 @@
 
 
 
-      
+
 
 
 
@@ -67,25 +67,25 @@
             <div>
                 <div class="card-width">
                     <div class="card-row">
-                        <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.id)"
-                            (mouseleave)="onMouseLeave(card.id)">
+                        <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.recipeId)"
+                            (mouseleave)="onMouseLeave(card.recipeId)">
     
                             <div class="image-container">
                                 <img [src]="card.imageUrl" alt="{{ card.name }}">
                             </div>
                             <div class="mat-card-header">
-                                <div class="mat-card-title" (click)="selectSingleRecipe(card.id)">
-                                    {{ card.recipeTitle }}
+                                <div class="mat-card-title" (click)="selectSingleRecipe(card.recipeId)">
+                                    {{ card.title }}
                                 </div>
                             </div>
                             <div class="button-container">
-                                <button mat-icon-button (click)="onComment(card.id)">
+                                <button mat-icon-button (click)="onComment(card.recipeId)">
                                     <mat-icon>comment</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="onLike(card.id)">
+                                <button mat-icon-button (click)="onLike(card.recipeId)">
                                     <mat-icon>favorite_border</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="onShare(card.id)">
+                                <button mat-icon-button (click)="onShare(card.recipeId)">
                                     <mat-icon>share</mat-icon>
                                 </button>
                             </div>
@@ -110,24 +110,25 @@
                     <div class="card-width">
                         <div class="card-row">
                             <mat-card class="custom-card" *ngFor="let card of cards"
-                                [ngClass]="{ 'hovering': isBeingHovered(card.id) }" (mouseenter)="onMouseEnter(card.id)"
-                                (mouseleave)="onMouseLeave()">
+                                [ngClass]="{ 'hovering': isBeingHovered(card.recipeId) }"
+                                (mouseenter)="onMouseEnter(card.recipeId)" (mouseleave)="onMouseLeave()">
 
                                 <div class="image-container">
                                     <div [hidden]="!showRating" class="circle-container">
-                                        <button mat-icon-button class="top-right-button" (click)="onLike(card.id)">
+                                        <button mat-icon-button class="top-right-button"
+                                            (click)="onLike(card.recipeId)">
                                             <mat-icon>favorite_border</mat-icon>
                                         </button>
                                     </div>
-                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
+                                    <img [src]="card.imageUrl" alt="{{ card.title }}">
                                 </div>
                                 <br>
                                 <div class="mat-card-header">
                                     <div (mouseenter)="hoverUnderline = true" (mouseleave)="hoverUnderline = false"
-                                        (click)="selectSingleRecipe(card.id)">
+                                        (click)="selectSingleRecipe(card.recipeId)">
                                         <div class="mat-card-title"
-                                            [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.id) }">
-                                            {{ card.recipeTitle }}
+                                            [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.recipeId) }">
+                                            {{ card.title }}
                                         </div>
                                     </div>
                                 </div>
@@ -141,10 +142,10 @@
                                 </div>
 
                                 <div class="button-container">
-                                    <button mat-icon-button (click)="commentsLookup(card.recipeTitle)">
+                                    <button mat-icon-button (click)="commentsLookup(card.title)">
                                         <mat-icon>comment</mat-icon>
                                     </button>
-                                    <button mat-icon-button (click)="onShare(card.id)">
+                                    <button mat-icon-button (click)="onShare(card.title)">
                                         <mat-icon>share</mat-icon>
                                     </button>
                                 </div>

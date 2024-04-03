@@ -11,13 +11,16 @@ export interface User {
 
 /**** Recipe interface */
 export interface Recipe {
-    recipeId?: string;
+    owner?: string | null;
+    recipeId: number;
     title: string;
     yield: number;
     prepTime: number;
     cookTime: number;
     totalTime: number;
+    comments: {};
     isFavourited?: boolean;
+    rating: number;
     imageUrl?: string;
     place: {
         value: string;
@@ -35,3 +38,9 @@ export interface Option {
     label: string;
     selected?: boolean; // Optional for Dietary filter
 };
+
+
+
+
+/******************************************************************************************************** */
+export const usersArray: User[] = [];

@@ -18,7 +18,7 @@
 
                     <mat-form-field class="input-field" appearance="outline">
                         <mat-label>Username or Email Address</mat-label>
-                        <input matInput  formControlName="usernameOrEmail" placeholder="Enter Your Username/Email">
+                        <input matInput formControlName="usernameOrEmail" placeholder="Enter Your Username/Email">
                         <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">The username or
                             email is required </mat-error>
                     </mat-form-field>
@@ -108,7 +108,8 @@
                     </mat-form-field>
 
                     <button mat-raised-button color="primary" type="submit" class="signup-button"
-                        [disabled]="!signupForm.valid" (click)="onSignup()">Sign
+                        [disabled]="!signupForm.valid && !signupForm.value.password != !signupForm.value.confirmPassword  "
+                        (click)="onSignup()">Sign
                         Up</button>
                     <button mat-raised-button color="primary" type="submit" class="signup-button"
                         (click)="backToLogin()">Back to Sign In</button>

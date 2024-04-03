@@ -74,13 +74,15 @@ export class SigninComponent {
   /**** Loggin In */
   onLogin(): void {
     if (this.loginForm.valid) {
-      this.authManService.loginUser(this.loginForm.value.usernameOrEmail, this.loginForm.value.password); 
-      let route = '/home';
-      this.router.navigate([route]);
-      this.notificationMan.showNotificationMessage("Login successful", "snackbar-success");
-    } else {
-      this.notificationMan.showNotificationMessage("Invalid credentials", "snackbar-danger");
-    }
+      const isUserLoggedIn = this.authManService.isUserLoggedIn(this.loginForm.value.usernameOrEmail, this.loginForm.value.password) ? true : false;
+      if (isUserLoggedIn) {
+        let route = '/home';
+        this.router.navigate([route]);
+        this.notificationMan.showNotificationMessage("Login successful", "snackbar-success");
+      } else {
+        this.notificationMan.showNotificationMessage("Invalid credentials", "snackbar-danger");
+      }
+    } 
   };
 
   /**** Sign in with gmail */

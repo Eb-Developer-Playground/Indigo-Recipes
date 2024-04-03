@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { Router } from '@angular/router';
+import { usersArray } from '../../../../assets/db-arrays/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -40,12 +41,15 @@ export class HeaderComponent {
   navigateToHome(): void {
     let route = '/home'
     this.router.navigate([route]);
+    console.log("Remaining Users::", usersArray);
   }
 
   /**** Logging out */
   onLogout(): void {
-    const route = '/#'
+    const route = '/logout'
     this.router.navigate([route]);
+    console.log("Remaining Users::", usersArray);
+
   }
 
 }

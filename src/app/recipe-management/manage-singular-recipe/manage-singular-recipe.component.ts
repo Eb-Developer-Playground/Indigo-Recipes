@@ -3,7 +3,7 @@ import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
-import { Option } from '../../../assets/db/db-arrays/interfaces';
+import { Option } from '../../../assets/db-arrays/interfaces';
 import { CardManagementService } from '../services/card-management.service';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { Router } from '@angular/router';
@@ -26,6 +26,7 @@ export class ManageSingularRecipeComponent implements OnInit {
   instructionsForm: FormGroup;
   tipsForm: FormGroup;
   pageFunction: string = "Add";
+  username: string | null;
 
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
@@ -36,9 +37,9 @@ export class ManageSingularRecipeComponent implements OnInit {
   /**** Dependency Injection */
   constructor(
     private fb: FormBuilder,
-    private cardManService: CardManagementService, 
-    private notificationManService: MessageService, 
-    private router:Router,
+    private cardManService: CardManagementService,
+    private notificationManService: MessageService,
+    private router: Router,
   ) {
     /**** Generate the forms whose form fields are not fixed */
     this.ingredientsForm = this.fb.group({
@@ -52,6 +53,8 @@ export class ManageSingularRecipeComponent implements OnInit {
     this.tipsForm = this.fb.group({
       tips: this.fb.array([]) as FormArray,
     });
+
+    this.username = sessionStorage.getItem('username');
   }
 
 
@@ -142,5 +145,6 @@ export class ManageSingularRecipeComponent implements OnInit {
     this.recipeDetailsForm.value.instructions.push(this.instructionsForm.value);
     this.recipeDetailsForm.value.tips.push(this.tipsForm.value);
     this.recipeDetailsForm.value.totalTime = this.recipeDetailsForm.value.prepTime + this.recipeDetailsForm.value.cookTime;
+
   }
 }

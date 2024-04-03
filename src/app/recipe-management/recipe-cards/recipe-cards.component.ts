@@ -6,10 +6,11 @@ import { MessageService } from '../../zarchitecture/services/notification-servic
 import Swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
-import { Option } from '../../../assets/db/db-arrays/interfaces';
-import { Recipe } from '../../../assets/db/db-arrays/interfaces';
+import { Option } from '../../../assets/db-arrays/interfaces';
+import { Recipe } from '../../../assets/db-arrays/interfaces';
+import { CardManagementService } from '../services/card-management.service';
 
 
 
@@ -43,16 +44,16 @@ export class RecipeCardsComponent implements OnInit {
 
 
   // Dummy Data
-  cards: any[] = [
-    { id: 1, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 1', rating: 3 },
-    { id: 2, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 2', rating: 3 },
-    { id: 4, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 3', rating: 3 },
-    { id: 5, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 4', rating: 3 },
-    { id: 6, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 7, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 8, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
-    { id: 9, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', },
-  ];
+  // cards: any[] = [
+  //   { id: 1, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 1', rating: 3 },
+  //   { id: 2, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 2', rating: 3 },
+  //   { id: 4, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 3', rating: 3 },
+  //   { id: 5, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 4', rating: 3 },
+  //   { id: 6, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+  //   { id: 7, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+  //   { id: 8, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', rating: 3 },
+  //   { id: 9, recipeTitle: "TEST TITLE", imageUrl: './../../../../assets/political.png', name: 'Image 5', },
+  // ];
   timeOptions: Option[] = [
     { value: 'breakfast', label: 'Breakfast' },
     { value: 'brunch', label: 'Brunch' },
@@ -76,6 +77,9 @@ export class RecipeCardsComponent implements OnInit {
   selectedFilters: string[] = [];
   viewPortHeight!: number;
   dietarty: any;
+  cards: Recipe[] = [];
+  username: any;
+  currentCuisine!: string;
 
 
   constructor
@@ -83,6 +87,8 @@ export class RecipeCardsComponent implements OnInit {
       private messageServiceMan: MessageService,
       private dialog: MatDialog,
       private router: Router,
+      private cardManService: CardManagementService,
+      private route: ActivatedRoute,
     ) {
 
 
@@ -95,7 +101,25 @@ export class RecipeCardsComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
+    // this.cards = this.cardManService.recipeSample;
+    if (this.route.queryParams) {
+      this.route.queryParams.subscribe((params) => {
+        if (params.hasOwnProperty('username')) {
+          console.log("DATA:::", params['data']);
 
+          this.username = params['username'];
+          const serializedData = params["data"];
+          const additionalData = JSON.parse(serializedData);
+          this.currentCuisine = additionalData;
+          console.log("Current Cuisine", this.currentCuisine);
+          this.cardManService.getCuisineRecipes(this.currentCuisine);
+          // this.cards = this.cardManService.filteredPlace;
+          this.messageServiceMan.showNotificationMessage(`${this.currentCuisine} recipes fetched successfully!!`, "snackbar-success")
+        } else {
+          this.messageServiceMan.showNotificationMessage(`No existing recipes for ${this.currentCuisine} cuisines`, "snackbar-danger")
+        }
+      })
+    }
   }
 
 
