@@ -4,7 +4,7 @@
     <div class="content-below-header">
         <section>
             <h5>
-                New In
+                {{currentCuisine}} Cuisines
             </h5>
 
 
@@ -62,47 +62,6 @@
 
         <!-- The recipe cards -->
 
-        <!-- <div>
-        <div class="content-container">
-            <div>
-                <div class="card-width">
-                    <div class="card-row">
-                        <mat-card class="custom-card" *ngFor="let card of cards" (mouseenter)="onMouseEnter(card.recipeId)"
-                            (mouseleave)="onMouseLeave(card.recipeId)">
-    
-                            <div class="image-container">
-                                <img [src]="card.imageUrl" alt="{{ card.name }}">
-                            </div>
-                            <div class="mat-card-header">
-                                <div class="mat-card-title" (click)="selectSingleRecipe(card.recipeId)">
-                                    {{ card.title }}
-                                </div>
-                            </div>
-                            <div class="button-container">
-                                <button mat-icon-button (click)="onComment(card.recipeId)">
-                                    <mat-icon>comment</mat-icon>
-                                </button>
-                                <button mat-icon-button (click)="onLike(card.recipeId)">
-                                    <mat-icon>favorite_border</mat-icon>
-                                </button>
-                                <button mat-icon-button (click)="onShare(card.recipeId)">
-                                    <mat-icon>share</mat-icon>
-                                </button>
-                            </div>
-                            <div class="rating-container" *ngIf="!showRating">
-                                <mat-icon class="star" *ngFor="let rating of [1, 2, 3, 4, 5]; let i = index"
-                                    [ngClass]="{ 'selected': card.rating === i + 1 }">
-                                    star
-                                </mat-icon>
-                            </div>
-    
-                        </mat-card>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
         <!-- Testing Ground -->
         <div>
             <div class="content-container">
@@ -115,8 +74,7 @@
 
                                 <div class="image-container">
                                     <div [hidden]="!showRating" class="circle-container">
-                                        <button mat-icon-button class="top-right-button"
-                                            (click)="onLike(card.recipeId)">
+                                        <button mat-icon-button class="top-right-button" (click)="onLike(card.title)">
                                             <mat-icon>favorite_border</mat-icon>
                                         </button>
                                     </div>

@@ -18,7 +18,7 @@ export interface Recipe {
     prepTime: number;
     cookTime: number;
     totalTime: number;
-    comments: {};
+    comments: Comment[];
     isFavourited?: boolean;
     rating: number;
     imageUrl?: string;
@@ -29,6 +29,11 @@ export interface Recipe {
     ingredients: { ingredients: string[] }[];
     tips: { tips: string[] }[];
     instructions: { instructions: string[] }[];
+}
+
+export interface Comment {
+    sender: string;
+    text: string;
 }
 
 

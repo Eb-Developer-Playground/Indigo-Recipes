@@ -6,6 +6,9 @@ import { FooterComponent } from '../footer/footer.component';
 import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Recipe } from '../../../../assets/db-arrays/interfaces';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { CardManagementService } from '../../../recipe-management/services/card-management.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -35,18 +38,34 @@ export class LandingPageComponent implements OnInit {
   currentlyHoveredCardId: number | null = null;
   viewPortHeight!: number;
   username: string | null;
+  favoriteRecipes: any;
+  myRecipes: any;
+  newRecipes: any;
+  allRecipes: any;
+
 
   constructor(
     private _notificationManService: MessageService,
     private router: Router,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private cardManServices: CardManagementService,
   ) {
-    this.username = sessionStorage.getItem('username')
+    this.username = sessionStorage.getItem('username');
+    
   }
 
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
+    this.allRecipes = this.cardManServices.recipeSample;
+    
+
+    /**** Fetching Recipes */
+    this.favoriteRecipes = this.findRecipeByOwnerAndFavorited(this.allRecipes, this.username, true);
+    this.myRecipes = this.findRecipesByOwner(this.allRecipes, this.username);
+    this.newRecipes = this.fetchLastFourRecipes(this.allRecipes);
+    
+
 
 
   }
@@ -75,8 +94,33 @@ export class LandingPageComponent implements OnInit {
     return this.currentlyHoveredCardId === cardId;
   }
 
-  fetchNewInRecipes(): void {
-    
+
+
+  /******* Fetching favourite recipes */
+  findRecipeByOwnerAndFavorited(recipes: Recipe[], owner: string | null, isFavourited: boolean): Recipe | undefined {
+    return recipes.find(recipe => recipe.owner === owner && recipe.isFavourited === isFavourited);
+  }
+
+  /**** Fetching My Recipes */
+  findRecipesByOwner(recipes: Recipe[], owner: string | null): Recipe[] {
+    return recipes.filter(recipe => recipe.owner === owner);
+  }
+
+  /****  Fetching new recipes (Last 4 recipes) */
+  fetchLastFourRecipes(recipes: Recipe[]): Recipe[] {
+    const numOfRecipes = recipes.length;
+    return numOfRecipes >= 4 ? recipes.slice(-4) : recipes;
+  }
+
+
+
+  /**** Listening for the changing of tabs */
+  onTabChange(event: Event) {
+    if (event instanceof MatTabChangeEvent) {
+      const selectedTabIndex = event.index;
+      const selectedTabLabel = event.tab.textLabel; // Get the label of the selected tab
+      console.log('Selected tab label:', selectedTabLabel);
+    }
   }
 
 }

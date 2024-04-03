@@ -101,25 +101,36 @@ export class RecipeCardsComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
+    const allRecipes = this.cardManService.recipeSample;
     // this.cards = this.cardManService.recipeSample;
     if (this.route.queryParams) {
       this.route.queryParams.subscribe((params) => {
         if (params.hasOwnProperty('username')) {
           console.log("DATA:::", params['data']);
-
           this.username = params['username'];
           const serializedData = params["data"];
           const additionalData = JSON.parse(serializedData);
           this.currentCuisine = additionalData;
           console.log("Current Cuisine", this.currentCuisine);
           this.cardManService.getCuisineRecipes(this.currentCuisine);
-          // this.cards = this.cardManService.filteredPlace;
+          this.cards = this.searchRecipesByPlaceLabel(allRecipes, this.currentCuisine);
           this.messageServiceMan.showNotificationMessage(`${this.currentCuisine} recipes fetched successfully!!`, "snackbar-success")
         } else {
           this.messageServiceMan.showNotificationMessage(`No existing recipes for ${this.currentCuisine} cuisines`, "snackbar-danger")
         }
       })
     }
+  }
+
+  /****** Returning values based on navigation params */
+  searchRecipesByPlaceLabel(recipes: Recipe[], searchTerm: string): Recipe[] {
+    if (!searchTerm) {
+      return recipes;
+    }
+    searchTerm = searchTerm.toLowerCase(); // Make the search case-insensitive
+    return recipes.filter(recipe => {
+      return recipe.place?.label?.toLowerCase().includes(searchTerm);
+    });
   }
 
 
@@ -130,8 +141,8 @@ export class RecipeCardsComponent implements OnInit {
    * Card Button Functions
    */
 
-  onLike(arg0: any) {
-    throw new Error('Method not implemented.');
+  onLike(cardTitle: any) {
+    this.messageServiceMan.showNotificationMessage(`${cardTitle} added to your favorite recipes`, 'snackbar-success');
   }
 
   /**** Sharing a recipe */

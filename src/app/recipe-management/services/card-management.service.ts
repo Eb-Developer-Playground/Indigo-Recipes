@@ -58,7 +58,7 @@ export class CardManagementService {
 
   recipeSample: Recipe[] = [
     {
-      title: 'Recipe 1',
+      title: 'Ugali Mayai',
       yield: 4,
       rating: 4,
       recipeId: 1,
@@ -73,38 +73,61 @@ export class CardManagementService {
       ingredients: [{ ingredients: ['Ingredient 1', 'Ingredient 2', 'Ingredient 3'] }],
       tips: [{ tips: ['Tip 1', 'Tip 2'] }],
       instructions: [{ instructions: ['Instruction 1', 'Instruction 2', 'Instruction 3'] }],
-      comments: {
+      comments: [{
         sender: 'samsicker',
         text: 'This recipe was delicious! I loved the flavor combinations.'
-      },
+      }],
       owner: 'junior',
       isFavourited: true,
     },
     {
-      title: 'Recipe 2',
-      yield: 6,
+      title: 'Nduma Omena',
+      yield: 4,
       rating: 5,
+      recipeId: 20,
+      prepTime: 20,
+      cookTime: 30,
+      totalTime: 50,
+      imageUrl: './../../../../assets/political.png',
+      place: {
+        value: 'african',
+        label: 'African'
+      },
+      ingredients: [{ ingredients: ['Ingredient 1', 'Ingredient 2', 'Ingredient 3'] }],
+      tips: [{ tips: ['Tip 1', 'Tip 2'] }],
+      instructions: [{ instructions: ['Instruction 1', 'Instruction 2', 'Instruction 3'] }],
+      comments: [{
+        sender: 'samsicker',
+        text: 'This recipe was delicious! I loved the flavor combinations.'
+      }],
+      owner: 'junior',
+      isFavourited: true,
+    },
+    {
+      title: 'Pizza',
+      yield: 6,
+      rating: 2,
       recipeId: 2,
       prepTime: 15,
       cookTime: 40,
       totalTime: 55,
       imageUrl: './../../../../assets/political.png',
       place: {
-        value: 'asian',
-        label: 'Asian'
+        value: 'Italian',
+        label: 'Italian'
       },
       ingredients: [{ ingredients: ['Ingredient 4', 'Ingredient 5', 'Ingredient 6'] }],
       tips: [{ tips: ['Tip 3', 'Tip 4'] }],
       instructions: [{ instructions: ['Instruction 4', 'Instruction 5', 'Instruction 6'] }],
-      comments: {
+      comments:[ {
         sender: 'kamaa',
         text: 'This recipe was easy to follow and turned out great!'
-      },
+      }],
       owner: 'samsicker',
       isFavourited: false,
     },
     {
-      title: 'Recipe 12',
+      title: 'Matumbo',
       yield: 2,
       rating: 1,
       recipeId: 12,
@@ -119,18 +142,18 @@ export class CardManagementService {
       ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
       tips: [{ tips: ['Tip 5'] }],
       instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
-      comments: {
+      comments: [{
         sender: 'junior',
         text: 'Needs more flavor. I will try adding some additional spices next time.'
-      },
+      }],
       owner: 'kamaa',
       isFavourited: true,
     },
     {
-      title: 'Recipe 3',
+      title: 'Chapo Waru',
       yield: 2,
-      rating: 2,
-      recipeId: 3,
+      rating: 4,
+      recipeId: 21,
       prepTime: 10,
       cookTime: 20,
       totalTime: 30,
@@ -142,10 +165,80 @@ export class CardManagementService {
       ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
       tips: [{ tips: ['Tip 5'] }],
       instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
-      comments: {
+      comments: [{
+        sender: 'junior',
+        text: 'Needs more flavor. I will try adding some additional spices next time.'
+      }],
+      owner: 'kamaa',
+      isFavourited: true,
+    },
+
+    {
+      title: 'Minji Stew',
+      yield: 2,
+      rating: 3,
+      recipeId: 22,
+      prepTime: 10,
+      cookTime: 20,
+      totalTime: 30,
+      imageUrl: './../../../../assets/political.png',
+      place: {
+        value: 'chinese',
+        label: 'Chinese'
+      },
+      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
+      tips: [{ tips: ['Tip 5'] }],
+      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      comments: [{
+        sender: 'junior',
+        text: 'Needs more flavor. I will try adding some additional spices next time.'
+      }],
+      owner: 'kamaa',
+      isFavourited: true,
+    },
+    {
+      title: 'Nyama Choma',
+      yield: 2,
+      rating: 5,
+      recipeId: 23,
+      prepTime: 10,
+      cookTime: 20,
+      totalTime: 30,
+      imageUrl: './../../../../assets/political.png',
+      place: {
+        value: 'chinese',
+        label: 'Chinese'
+      },
+      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
+      tips: [{ tips: ['Tip 5'] }],
+      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      comments: [{
+        sender: 'junior',
+        text: 'Needs more flavor. I will try adding some additional spices next time.'
+      }],
+      owner: 'kamaa',
+      isFavourited: true,
+    },
+    {
+      title: 'Kuku Boiro',
+      yield: 2,
+      rating: 2,
+      recipeId: 24,
+      prepTime: 10,
+      cookTime: 20,
+      totalTime: 30,
+      imageUrl: './../../../../assets/political.png',
+      place: {
+        value: 'chinese',
+        label: 'Chinese'
+      },
+      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
+      tips: [{ tips: ['Tip 5'] }],
+      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      comments: [{
         sender: 'samsicker',
         text: 'A quick and easy recipe for a weeknight meal.'
-      },
+      }],
       owner: 'junior',
       isFavourited: false,
     },

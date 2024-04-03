@@ -3,180 +3,183 @@
         
     </div> -->
     <app-header></app-header>
-    
-    <div class="section">
-        <div class="my-1">
-            <ng-container>
-                <mat-card class="scrollable-card2" [style.height]="viewPortHeight + 'px'">
-                    <div class="parent-container">
-                        <h3>
-                            <strong>
-                                Indigo Recipes.
-                            </strong>
-                        </h3>
-                    </div>
-                    <div class="parent-container">
-                        <p class="header-Font">
-                            Embark on a gastronomic journey with us! From the sizzle of breakfast to the savory bites of
-                            dinner,
-                        </p>
-                    </div>
-                    <div class="parent-container">
-                        <p>
-                            <strong>
-                                Indigo Recipes
-                            </strong> is
-                            your culinary companion, bringing you an array of recipes to tantalize your taste buds.
-                        </p>
-                    </div>
-                </mat-card>
-            </ng-container>
-        </div>
-        <div>
-    
-            <div class="parent-container mx-1">
-    
+    <br>
+    <br>
+
+    <div class="content-below-header">
+        <div class="section">
+            <div class="my-1">
+                <ng-container>
+                    <mat-card class="scrollable-card2">
+                        <div class="parent-container">
+                            <h3>
+                                <strong>
+                                    Indigo Recipes.
+                                </strong>
+                            </h3>
+                        </div>
+                        <div class="parent-container">
+                            <p class="header-Font">
+                                Embark on a gastronomic journey with us! From the sizzle of breakfast to the savory
+                                bites of
+                                dinner,
+                            </p>
+                        </div>
+                        <div class="parent-container">
+                            <p>
+                                <strong>
+                                    Indigo Recipes
+                                </strong> is
+                                your culinary companion, bringing you an array of recipes to tantalize your taste buds.
+                            </p>
+                        </div>
+                    </mat-card>
+                </ng-container>
             </div>
-    
-            <div class="my-3">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 mx-1 mat-elevation-z8 hover-effect"
-                        (click)="setCountry('African')">
-                        <div class="mat-card">
-                            AFRICAN
+            <div>
+
+                <div class="parent-container mx-1">
+
+                </div>
+
+                <div class="my-3">
+                    <div class="row-placement">
+                        <div class="responsive-column hover-effect" (click)="setCountry('African')">
+                            <div class="mat-card">
+                                AFRICAN
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 mx-1 mat-elevation-z8 hover-effect"
-                        (click)="setCountry('Italian')">
-                        <div class="mat-card">
-                            ITALIAN
+                        <div class="responsive-column hover-effect" (click)="setCountry('Italian')">
+                            <div class="mat-card">
+                                ITALIAN
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 mx-1 mat-elevation-z8 hover-effect"
-                        (click)="setCountry('Chinese')">
-                        <div class="mat-card">
-                            CHINESE
+                        <div class="responsive-column hover-effect" (click)="setCountry('Chinese')">
+                            <div class="mat-card">
+                                CHINESE
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    
-    
-        <div class="content-container">
-            <div class="m-4">
-                <mat-tab-group>
-    
-                    <!-- NEW IN -->
-                    <mat-tab label="NEW IN">
-                        <div class="card-width">
+
+
+            <div class="content-container">
+                <div class="m-4">
+                    <mat-tab-group (selectedChange)="onTabChange($event)">
+
+
+                        <!-- ALL RECIPES -->
+                        <mat-tab label="ALL RECIPES">
                             <div class="card-row">
-                                <mat-card class="custom-card" *ngFor="let card of cards"
-                                    [attr.mat-card-hover]="isHovering(card.id)">
+                                <mat-card class="custom-card" *ngFor="let card of allRecipes"
+                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
                                     <div class="image-container">
-                                        <img [src]="card.imageUrl" alt="{{ card.name }}">
+                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
                                     </div>
-    
+
                                     <div class="card-content">
-                                        {{ card.name }}
+                                        {{ card.title }}
                                     </div>
                                 </mat-card>
                             </div>
-                        </div>
-                    </mat-tab>
-    
-                    <!-- TOP RECIPES -->
-                    <mat-tab label="TOP RECIPES">
-                        <div class="card-row">
-                            <mat-card class="custom-card" *ngFor="let card of cards"
-                                [attr.mat-card-hover]="isHovering(card.id)">
-                                <div class="image-container">
-                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
+                        </mat-tab>
+
+                        <!-- NEW IN -->
+                        <mat-tab label="NEW IN">
+                            <div class="card-width">
+                                <div class="card-row">
+                                    <mat-card class="custom-card" *ngFor="let card of newRecipes "
+                                        [attr.mat-card-hover]="isHovering(card.recipeId)">
+                                        <div class="image-container">
+                                            <img [src]="card.imageUrl" alt="{{ card.title }}">
+                                        </div>
+
+                                        <div class="card-content">
+                                            {{ card.title }}
+                                        </div>
+                                    </mat-card>
                                 </div>
-    
-                                <div class="card-content">
-                                    {{ card.name }}
-                                </div>
-                            </mat-card>
-                        </div>
-                    </mat-tab>
-    
-                    <!-- FAVORITES -->
-                    <mat-tab label="FAVORITES">
-                        <div class="card-row">
-                            <mat-card class="custom-card" *ngFor="let card of cards"
-                                [attr.mat-card-hover]="isHovering(card.id)">
-                                <div class="image-container">
-                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
-                                </div>
-    
-                                <div class="card-content">
-                                    {{ card.name }}
-                                </div>
-                            </mat-card>
-                        </div>
-                    </mat-tab>
-    
-                    <!-- MY RECIPES -->
-                    <mat-tab label="MY RECIPES">
-                        <div class="card-row">
-                            <mat-card class="custom-card" *ngFor="let card of cards"
-                                [attr.mat-card-hover]="isHovering(card.id)">
-                                <div class="image-container">
-                                    <img [src]="card.imageUrl" alt="{{ card.name }}">
-                                </div>
-    
-                                <div class="card-content">
-                                    {{ card.name }}
-                                </div>
-                            </mat-card>
-                        </div>
-                    </mat-tab>
-    
-                </mat-tab-group>
+                            </div>
+                        </mat-tab>
+
+
+                        <!-- FAVORITES -->
+                        <mat-tab label="FAVORITES">
+                            <div class="card-row">
+                                <mat-card class="custom-card" *ngFor="let card of favoriteRecipes"
+                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
+                                    <div class="image-container">
+                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
+                                    </div>
+
+                                    <div class="card-content">
+                                        {{ card.title }}
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </mat-tab>
+
+                        <!-- MY RECIPES -->
+                        <mat-tab label="MY RECIPES">
+                            <div class="card-row">
+                                <mat-card class="custom-card" *ngFor="let card of myRecipes"
+                                    [attr.mat-card-hover]="isHovering(card.recipeId)">
+                                    <div class="image-container">
+                                        <img [src]="card.imageUrl" alt="{{ card.title }}">
+                                    </div>
+
+                                    <div class="card-content">
+                                        {{ card.title }}
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
+                </div>
             </div>
-        </div>
-    
-        <div class="my-1">
-            <ng-container>
-                <mat-card class="scrollable-card2" [style.height]="viewPortHeight + 'px'">
-                    <div class="parent-container">
-                        <h3>
+
+            <div class="my-1">
+                <ng-container>
+                    <mat-card class="scrollable-card2" [style.height]="viewPortHeight + 'px'">
+                        <div class="parent-container">
+                            <!-- <h3>
                             <strong>
                                 Indigo Recipes.
                             </strong>
-                        </h3>
+                        </h3> -->
+                        </div>
+                        <div class="parent-container">
+                            <p class="header-Font">
+                                Here's to a flavorful journey with Indigo Recipes!
+                            </p>
+                        </div>
+                        <div class="parent-container">
+                            <p>
+
+                                From breakfast sizzles to dinner delights, we're your culinary
+                                companion, offering a diverse array of tantalizing recipes.
+                            </p>
+                        </div>
+                    </mat-card>
+
+                    <!-- <div class="parent-container"> -->
+                    <div class="cross-card-container">
+                        <img src="./../../../../assets/political.png" alt="Image description" class="cross-card-image">
+                        <div class="cross-card-content">
+                        </div>
                     </div>
-                    <div class="parent-container">
-                        <p class="header-Font">
-                            Embark on a gastronomic journey with us! From the sizzle of breakfast to the savory
-                            bites of
-                            dinner,
-                        </p>
-                    </div>
-                    <div class="parent-container">
-                        <p>
-                            <strong>
-                                Indigo Recipes
-                            </strong> is
-                            your culinary companion, bringing you an array of recipes to tantalize your taste buds.
-                        </p>
-                    </div>
-                </mat-card>
-    
-                <!-- <div class="parent-container"> -->
-                <div class="cross-card-container">
-                    <img src="./../../../../assets/political.png" alt="Image description" class="cross-card-image">
-                    <div class="cross-card-content">
-                    </div>
-                </div>
-                <!-- </div> -->
-    
-    
-    
-    
-            </ng-container>
+                    <!-- </div> -->
+
+
+
+
+                </ng-container>
+            </div>
+            <app-footer></app-footer>
         </div>
-        <app-footer></app-footer>
     </div>
+
+
 </section>

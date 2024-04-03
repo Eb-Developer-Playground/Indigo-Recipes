@@ -14,6 +14,8 @@ import { usersArray } from '../../../../assets/db-arrays/interfaces';
 })
 export class HeaderComponent {
 
+  // allRecipes
+
   constructor(
     private router: Router,
     private elementRef: ElementRef,

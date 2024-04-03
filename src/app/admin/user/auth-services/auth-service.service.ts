@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
-import { User, usersArray } from '../../../../assets/db-arrays/interfaces';
+import { User } from '../../../../assets/db-arrays/interfaces';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -94,21 +94,13 @@ export class AuthServiceService {
     const userId = uuidv4();
     user.userId = userId;
     this.users.push(user);
-    console.log("USERS PRESENT::", usersArray);
+    console.log("USERS PRESENT::", this.users);
     return `You have been successfully registered`;
   }
 
-  addNewUser(user: User): User[] {
-    let newArray = [...usersArray];
-    newArray.push(user);
-    usersArray.push(user)
-    return newArray
-  }
-
-
     isUserLoggedIn(usernameOrEmail: string, password: string): boolean {
       // Iterate through the users array
-      for (const user of usersArray) {
+      for (const user of this.users) {
         // Check if the provided username/email and password match any user's credentials
         if ((user.username === usernameOrEmail || user.email === usernameOrEmail) && user.password === password) {
           console.log('User logged in successfully:', user);
