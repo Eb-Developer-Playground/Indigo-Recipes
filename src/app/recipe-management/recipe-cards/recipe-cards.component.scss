@@ -52,31 +52,7 @@ section {
 
 
 
-mat-select {
-  .mat-select-trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    .mat-select-value {
-      flex: 1 0 auto;
-      /* Allow selected value text to grow */
-    }
-
-    .mat-select-arrow {
-      transform: rotate(0deg);
-      /* Initially no rotation */
-      transition: transform 0.2s ease-in-out;
-    }
-  }
-
-  &.mat-select-opened {
-    .mat-select-arrow {
-      transform: rotate(180deg);
-      /* Rotate arrow on open */
-    }
-  }
-}
 
 
 
@@ -115,10 +91,8 @@ mat-card {
 .card-row {
   display: flex;
   justify-content: space-around;
-  /* Distribute cards evenly */
   margin: 1rem;
   flex-wrap: wrap;
-  /* Enable wrapping of cards onto new lines */
 }
 
 
@@ -243,34 +217,6 @@ mat-card {
   }
 }
 
-
-
-
-
-
-// .star {
-//   /* Style the star icon (color, size, etc.) */
-//   color: orange;
-//   font-size: 1.5rem;
-//   /* Adjust star size */
-//   cursor: pointer;
-//   /* Indicate hover interaction */
-// }
-
-// .star:hover {
-//   /* Change star color on hover (optional) */
-//   color: gold;
-// }
-
-// .star.selected {
-//   /* Style for the selected star (color, etc.) */
-//   color: gold;
-//   /* Adjust color as needed */
-// }
-
-
-
-
 /******************************************************************************************************************************************** */
 // Test Ground
 
@@ -323,4 +269,55 @@ mat-card {
 
 .dropdown-menu a:hover {
   background-color: #f8f9fa;
+}
+
+/*****************************************************************************************************************/
+// Header 
+.header2 {
+  position: fixed;
+  top: 110px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  color: #fff;
+
+
+  .search-container {
+    display: flex;
+    align-items: center;
+
+    .search-input {
+      padding: 5px;
+      margin-right: 10px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      color: #333;
+      position: relative;
+      padding-right: 35px;
+    }
+
+    .search-button {
+      padding: 5px 10px;
+      // background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      color: #333;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .search-input button[mat-raised-button] {
+      box-shadow: none;
+    }
+  }
 }

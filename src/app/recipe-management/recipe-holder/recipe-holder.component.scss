@@ -1,0 +1,125 @@
+.content-container {
+    // max-width: 80%;
+    margin: auto;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    flex-wrap: wrap;
+}
+
+.custom-card {
+    width: 25%;
+    flex: 1 0 calc(25% - 1rem);
+    transition: box-shadow 0.3s ease;
+    margin: 1rem 0.5rem;
+}
+
+.custom-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.23);
+    height: calc(100% + 3rem);
+}
+
+.image-container {
+    /* Style the image container for padding and square aspect ratio */
+    padding: 0.2rem;
+    border-width: 1rem 1rem 1rem 1rem;
+    border-color: black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+    flex: 0 0 40%;
+    /* Adjust width of image container */
+}
+
+.image-container img {
+    max-width: 100%;
+    /* Ensure image scales within container */
+    max-height: 100%;
+}
+
+.card-content {
+    flex: 1 1 60%;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.mat-card-header {
+    padding: 0 16px 8px;
+    font-size: large;
+}
+
+
+
+.mat-card-title {
+    text-align: center;
+    cursor: pointer;
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: black;
+
+}
+
+//Fav button
+.circle-container {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    transform: translate(50%, -50%);
+    background-color: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; // Ensure the button is above the image
+
+    .top-right-button {
+        color: white;
+        position: absolute;
+
+    }
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px
+}
+
+//Rating
+.rating-container {
+    position: relative;
+    margin-top: 1px;
+    display: flex;
+    padding: 10px
+}
+
+.rating-header {
+    padding: 0 16px 8px;
+}
+
+.rating-star {
+    font-size: 24px;
+    color: white;
+    outline: #000;
+    display: flex;
+}
+
+.rating-star.filled {
+    color: #000;
+    display: flex;
+}
+
+.rating-value {
+    margin-left: 5px;
+    font-size: 14px;
+}

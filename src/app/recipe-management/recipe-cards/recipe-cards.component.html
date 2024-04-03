@@ -2,6 +2,13 @@
     <app-header></app-header>
 
     <div class="content-below-header">
+        <header class="header2">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+                <button mat-button>
+                    <i class="fas fa-search"></i>Search </button>
+            </div>
+        </header>
         <section>
             <h5>
                 {{currentCuisine}} Cuisines
@@ -66,7 +73,7 @@
         <div>
             <div class="content-container">
                 <div>
-                    <div class="card-width">
+                    <div >
                         <div class="card-row">
                             <mat-card class="custom-card" *ngFor="let card of cards"
                                 [ngClass]="{ 'hovering': isBeingHovered(card.recipeId) }"
