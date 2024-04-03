@@ -21,6 +21,7 @@ export class CardManagementService {
     const newId: number = parseInt(uuidv4().split('-').join(''), 16);
     recipe.recipeId = newId;
     recipe.owner = this.username;
+    recipe.isFavourited = false;
     const newRecipes: Recipe[] = [...this.recipes];
     newRecipes.push(recipe);
     for (let recipeItem of this.recipeSample) {
@@ -31,8 +32,6 @@ export class CardManagementService {
 
     console.log("Updated recipes array:", newRecipes);
 
-    // Return the new array with the added recipe
-    // return newRecipes;
   }
 
   /***** Fetch based on cuisine */

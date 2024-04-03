@@ -148,7 +148,7 @@ export class RecipeCardsComponent implements OnInit {
   /**** Sharing a recipe */
   onShare(title: string) {
     // Generate shareable link
-    const shareLink = `https://example.com/share?title=${encodeURIComponent(title)}`;
+    const shareLink = `https://indigorecipes.com/share?title=${encodeURIComponent(title)}`;
 
     // Open Sweet Alert dialog with sharing options
     Swal.fire({

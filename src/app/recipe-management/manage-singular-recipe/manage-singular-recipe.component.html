@@ -94,7 +94,8 @@
 
 
                         <!-- Step 2: Ingredients -->
-                        <div>
+
+                        <div class="padding">
                             <mat-step label="Ingredients">
                                 <form [formGroup]="ingredientsForm">
                                     <div formArrayName="ingredients">
@@ -107,7 +108,6 @@
                                         </mat-form-field> -->
                                             <div>
                                                 <mat-form-field appearance="outline">
-                                                    <mat-label>Enter an ingredient name</mat-label>
                                                     <input matInput [formControlName]="i"
                                                         placeholder="Ingredient {{ i + 1 }}" required>
                                                     <mat-error
@@ -125,6 +125,7 @@
                                     </div>
                                     <div>
                                         <button class="btn-space" type="submit" mat-button (click)="addIngredient()">Add
+                                            Another
                                             Ingredient</button>
                                         <button type="submit" mat-button matStepperNext
                                             [disabled]="!ingredientsForm.valid">Next</button>
@@ -137,7 +138,7 @@
 
 
                         <!-- Step 3: Instructions -->
-                        <div>
+                        <div class="padding">
                             <mat-step label="Instructions">
                                 <form [formGroup]="instructionsForm">
                                     <div formArrayName="instructions">
@@ -151,7 +152,6 @@
                                         </mat-form-field> -->
                                             <div>
                                                 <mat-form-field appearance="outline">
-                                                    <mat-label>Enter an instruction</mat-label>
                                                     <textarea matInput [formControlName]="i"
                                                         placeholder="Instruction {{i +1}}" required></textarea>
                                                     <mat-error
@@ -178,51 +178,47 @@
 
 
                         <!-- Step 4: Tips -->
-                        <div>
+                        <div class="padding">
                             <mat-step label="Tips">
-                                <form [formGroup]="tipsForm">
-                                    <div formArrayName="tips">
-                                        <div *ngFor="let tip of tipControls; let i = index">
-                                            <!-- <div>
-                                            <mat-form-field appearance="outline">
-                                                <input matInput [formControl]="tip" placeholder="Tip {{ i + 1 }}" required>
-                                                <mat-error *ngIf="tip.invalid && tip.touched">Tip is required</mat-error>
-                                            </mat-form-field>
-                                        </div> -->
-
-                                            <div>
-                                                <mat-form-field appearance="outline">
-                                                    <mat-label>Enter a tip</mat-label>
-                                                    <input matInput [formControlName]="i" placeholder="Tip {{ i + 1 }}"
-                                                        required>
-                                                    <mat-error
-                                                        *ngIf="tipControls.at(i)?.invalid && tipControls.at(i)?.touched">Tip
-                                                        is
-                                                        required</mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                            <div>
-                                                <button type="submit" mat-icon-button (click)="removeTip(i)">
-                                                    <mat-icon>remove_circle</mat-icon>
-                                                </button>
+                                <div class="padding">
+                                    <form [formGroup]="tipsForm">
+                                        <div formArrayName="tips">
+                                            <div *ngFor="let tip of tipControls; let i = index">
+                                                <div>
+                                                    <mat-form-field appearance="outline">
+                                                        <input matInput [formControlName]="i"
+                                                            placeholder="Tip {{ i + 1 }}" required>
+                                                        <mat-error
+                                                            *ngIf="tipControls.at(i)?.invalid && tipControls.at(i)?.touched">Tip
+                                                            is
+                                                            required</mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" mat-icon-button (click)="removeTip(i)">
+                                                        <mat-icon>remove_circle</mat-icon>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <button type="submit" mat-button (click)="addTip()">Add Tip</button>
-                                        <button type="submit" mat-button matStepperNext
-                                            [disabled]="!tipsForm.valid">Next</button>
-                                    </div>
-                                </form>
+                                        <div>
+                                            <button type="submit" mat-button (click)="addTip()">Add Tip</button>
+                                            <button type="submit" mat-button matStepperNext
+                                                [disabled]="!tipsForm.valid">Next</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </mat-step>
                         </div>
 
 
                         <!-- Step 5: Submit -->
-                        <div>
+                        <div class="padding">
                             <mat-step>
-                                <p>Review your recipe details and submit.</p>
-                                <button type="submit" mat-button (click)="onSubmit()">Submit</button>
+                                <div class="padding">
+                                    <p>Review your recipe details and submit.</p>
+                                    <button type="submit" mat-button (click)="onSubmit()">Submit</button>
+                                </div>
                             </mat-step>
                         </div>
                     </mat-horizontal-stepper>

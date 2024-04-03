@@ -4,29 +4,9 @@ section {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-// app-header {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     z-index: 1000;
-//     /* Ensure the header appears above other content */
-// }
-
-// .content-below-header {
-    //     /* Add padding-top to accommodate the height of the header */
-    //     padding-top: 130px;
-    //     /* Adjust as needed */
-    // }
-
-    // app-footer {
-    //     position: fixed;
-    //     bottom: 0;
-    //     left: 0;
-    //     right: 0;
-    //     z-index: 1000;
-    //     /* Ensure the header appears above other content */
-    // }
+.padding {
+    top: 30px;
+}
 
 .card {
     @include card
