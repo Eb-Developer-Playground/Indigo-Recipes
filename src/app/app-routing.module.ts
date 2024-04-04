@@ -6,7 +6,7 @@ import { RecipeCardsComponent } from './waste-components/recipe-cards/recipe-car
 import { ManageSingularRecipeComponent } from './recipe-management/manage-singular-recipe/manage-singular-recipe.component';
 import { SingularViewPointComponent } from './recipe-management/singular-view-point/singular-view-point.component';
 import { SigninComponent } from './admin/authentication/signin/signin.component';
-import { registrationGuard } from './admin/guards/registration.guard';
+import { registrationGuard } from './admin/authentication/guards/registration.guard';
 import { MultipleViewPointComponent } from './recipe-management/multiple-view-point/multiple-view-point.component';
 
 const routes: Routes = [
