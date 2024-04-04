@@ -190,8 +190,18 @@ export class RecipeCardsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       //Save the input messages
     )
+  };
 
-
+  /**** View more about a recipe */
+  viewMoreAboutRecipe(recipeTitle: string): void {
+    const additionalData = recipeTitle;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/view';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
   }
 
 
@@ -241,8 +251,7 @@ export class RecipeCardsComponent implements OnInit {
 
   selectedTime(item: string): void {
     this.timeSelected = item;
-    this.onTimeFilter(); // Close the dropdown after selecting an item
-    // You can also perform any other action you need after selecting an item
+    this.onTimeFilter(); 
   }
 
 

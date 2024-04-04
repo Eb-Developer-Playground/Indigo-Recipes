@@ -49,7 +49,7 @@ export class LoginComponent {
   generateLoginForm(): void {
     this.loginForm = this._fb.group({
       email: ['', [Validators.email]],
-      username: ['', ],
+      username: ['',],
       password: ['', Validators.required]
     });
   }

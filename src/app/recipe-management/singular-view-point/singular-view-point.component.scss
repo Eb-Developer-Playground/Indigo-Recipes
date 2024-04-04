@@ -2,13 +2,33 @@ section {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.content-below-header {
+    padding-top: 120px;
+}
+
+
 .recipe-container {
     display: flex;
     flex-direction: row;
     /* Always display image and details side-by-side */
     align-items: center;
     margin: 2rem auto;
-    max-width: 800px;
+    max-width: 1100px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
 }
 
 .recipe-image {
@@ -63,6 +83,20 @@ ol {
 .tips p {
     margin-top: 1rem;
 }
+
+.selectedRecipe-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    span {
+        margin-right: 10px; // Adjust as needed
+
+
+    }
+}
+
 
 @media only screen and (max-width: 768px) {
 

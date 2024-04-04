@@ -21,19 +21,34 @@ export interface Recipe {
     comments: Comment[];
     isFavourited?: boolean;
     rating: number;
-    imageUrl?: string;
+    imageUrl: string;
     place: {
         value: string;
         label: string;
     };
-    ingredients: { ingredients: string[] }[];
-    tips: { tips: string[] }[];
-    instructions: { instructions: string[] }[];
+    ingredients: ingredients[];
+    tips: tips[];
+    instructions: instructions[];
 }
 
 export interface Comment {
     sender: string;
     text: string;
+}
+
+/***** Ingredients Interface */
+export interface ingredients {
+    ingredient: string,
+}
+
+/***** Tips interface */
+export interface tips {
+    tip: string
+}
+
+/**** * Instructions interface */
+export interface instructions{
+    instruction: string,
 }
 
 

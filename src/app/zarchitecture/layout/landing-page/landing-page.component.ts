@@ -123,8 +123,7 @@ export class LandingPageComponent implements OnInit {
   /**** Listening for the changing of tabs */
   onTabChange(event: Event) {
     if (event instanceof MatTabChangeEvent) {
-      const selectedTabIndex = event.index;
-      const selectedTabLabel = event.tab.textLabel; // Get the label of the selected tab
+      const selectedTabLabel = event.tab.textLabel; // Get the label of ya selected tab
       console.log('Selected tab label:', selectedTabLabel);
     }
   }
@@ -164,8 +163,17 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-  onSelectRecipe(recipeId: number) {
-    console.log('Selected recipe ID:', recipeId);
+  /**** View more about a recipe */
+  onSelectRecipe(recipeTitle: string) {
+    console.log('Selected recipe ID:', recipeTitle);
+    const additionalData = recipeTitle;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/view';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
   }
 
   callCommentsDialog(title: string) {
@@ -200,7 +208,5 @@ export class LandingPageComponent implements OnInit {
     let route = '/manage/recipe';
     this.router.navigate([route]);
   }
-
-
 }
 

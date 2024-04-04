@@ -69,9 +69,28 @@ export class CardManagementService {
         value: 'african',
         label: 'African'
       },
-      ingredients: [{ ingredients: ['Ingredient 1', 'Ingredient 2', 'Ingredient 3'] }],
-      tips: [{ tips: ['Tip 1', 'Tip 2'] }],
-      instructions: [{ instructions: ['Instruction 1', 'Instruction 2', 'Instruction 3'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'samsicker',
         text: 'This recipe was delicious! I loved the flavor combinations.'
@@ -92,9 +111,28 @@ export class CardManagementService {
         value: 'african',
         label: 'African'
       },
-      ingredients: [{ ingredients: ['Ingredient 1', 'Ingredient 2', 'Ingredient 3'] }],
-      tips: [{ tips: ['Tip 1', 'Tip 2'] }],
-      instructions: [{ instructions: ['Instruction 1', 'Instruction 2', 'Instruction 3'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'samsicker',
         text: 'This recipe was delicious! I loved the flavor combinations.'
@@ -115,10 +153,29 @@ export class CardManagementService {
         value: 'Italian',
         label: 'Italian'
       },
-      ingredients: [{ ingredients: ['Ingredient 4', 'Ingredient 5', 'Ingredient 6'] }],
-      tips: [{ tips: ['Tip 3', 'Tip 4'] }],
-      instructions: [{ instructions: ['Instruction 4', 'Instruction 5', 'Instruction 6'] }],
-      comments:[ {
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
+      comments: [{
         sender: 'kamaa',
         text: 'This recipe was easy to follow and turned out great!'
       }],
@@ -138,9 +195,28 @@ export class CardManagementService {
         value: 'chinese',
         label: 'Chinese'
       },
-      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
-      tips: [{ tips: ['Tip 5'] }],
-      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'junior',
         text: 'Needs more flavor. I will try adding some additional spices next time.'
@@ -161,9 +237,28 @@ export class CardManagementService {
         value: 'chinese',
         label: 'Chinese'
       },
-      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
-      tips: [{ tips: ['Tip 5'] }],
-      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'junior',
         text: 'Needs more flavor. I will try adding some additional spices next time.'
@@ -185,9 +280,28 @@ export class CardManagementService {
         value: 'chinese',
         label: 'Chinese'
       },
-      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
-      tips: [{ tips: ['Tip 5'] }],
-      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'junior',
         text: 'Needs more flavor. I will try adding some additional spices next time.'
@@ -208,9 +322,28 @@ export class CardManagementService {
         value: 'chinese',
         label: 'Chinese'
       },
-      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
-      tips: [{ tips: ['Tip 5'] }],
-      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'junior',
         text: 'Needs more flavor. I will try adding some additional spices next time.'
@@ -231,9 +364,28 @@ export class CardManagementService {
         value: 'chinese',
         label: 'Chinese'
       },
-      ingredients: [{ ingredients: ['Ingredient 7', 'Ingredient 8'] }],
-      tips: [{ tips: ['Tip 5'] }],
-      instructions: [{ instructions: ['Instruction 7', 'Instruction 8'] }],
+      ingredients: [
+      { ingredient: "2 boneless, skinless chicken breasts" },
+      { ingredient: "1 tablespoon olive oil" },
+      { ingredient: "1 teaspoon dried oregano" },
+      { ingredient: "1/2 teaspoon garlic powder" },
+      { ingredient: "1/4 teaspoon salt" },
+      { ingredient: "1/4 teaspoon black pepper" },
+      { ingredient: "1 bunch asparagus, trimmed" },
+      { ingredient: "1 lemon, sliced" }
+    ],
+    instructions: [
+      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
+      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
+      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
+      { instruction: "Top with lemon slices." },
+      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+    ],
+    tips: [
+      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
+      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
+      { tip: "Serve with rice or quinoa for a complete meal." }
+    ],
       comments: [{
         sender: 'samsicker',
         text: 'A quick and easy recipe for a weeknight meal.'

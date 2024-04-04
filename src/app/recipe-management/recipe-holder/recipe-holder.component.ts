@@ -27,9 +27,6 @@ export class RecipeHolderComponent {
   currentHoveredCardId: number | null = null;
 
   constructor(
-    private messageServiceMan: MessageService,
-    private dialog: MatDialog,
-    private router: Router,
   ) {
 
   }
