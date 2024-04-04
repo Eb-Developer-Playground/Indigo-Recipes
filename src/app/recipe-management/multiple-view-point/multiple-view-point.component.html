@@ -1,0 +1,70 @@
+<body>
+    <app-header></app-header>
+    <div class="content-below-header">
+        <header class="header2">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+                <button mat-button>
+                    <i class="fas fa-search"></i>Search </button>
+            </div>
+        </header>
+        <section>
+            <h5>
+                {{currentCuisine}} Cuisines
+            </h5>
+        </section>
+
+        <!-- Search Filter Buttons -->
+        <div class="filterarea">
+            <div class="filter-container">
+                <div>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onTimeFilter()">Time</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isTimeDropdownOpen }">
+                            <a href="#" *ngFor="let time of timeOptions" (click)="selectedTime(time.value)">{{
+                                time.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onPlaceFilter()">Place</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isPlaceDropdownOpen }">
+                            <a href="#" *ngFor="let place of placeOptions" (click)="selectedPlace(place.value)">{{
+                                place.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onDietFilter()">Diet</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isDietDropdownOpen }">
+                            <a href="#" *ngFor="let diet of dietaryOptions" (click)="selectedDiet(diet.value)">{{
+                                diet.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card population -->
+        <div [hidden]="cards.length  === 0">
+            <app-recipe-holder [cards]="cards" [showRating]="showRating" (like)="onLike($event)"
+                (selectRecipe)="onSelectSingleRecipe($event)" (comments)="callCommentsDialog($event)"
+                (share)="onShare($event)">
+            </app-recipe-holder>
+        </div>
+        <div class="center-message" [hidden]="cards.length  !== 0">
+            You haven't added any favorite recipes yet. Click on a recipe heart to add it to
+            your favorites.
+        </div>
+
+    </div>
+    <!-- Footer -->
+    <app-footer></app-footer>
+</body>

@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option } from '../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../services/card-management.service';
+import { CardManagementService } from '../aa-data/services/card-management.service';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { Router } from '@angular/router';
 

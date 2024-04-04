@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { CardManagementService } from '../services/card-management.service';
+import { CardManagementService } from '../aa-data/services/card-management.service';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
 
@@ -43,7 +43,7 @@ export class SingularViewPointComponent implements OnInit {
             console.log("RECIPE RETRIEVED", this.cardManService.recipeSample);
             const selectedCard = this.searchRecipesById(this.cardManService.recipeSample, routeData)[0]
             this.selectedRecipe = selectedCard
-            
+
           }
         }
       })

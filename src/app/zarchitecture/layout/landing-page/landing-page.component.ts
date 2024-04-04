@@ -3,12 +3,12 @@ import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
 import { FooterComponent } from '../footer/footer.component';
-import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
+import { RecipeCardsComponent } from '../../../waste-components/recipe-cards/recipe-cards.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { CardManagementService } from '../../../recipe-management/services/card-management.service';
+import { CardManagementService } from '../../../recipe-management/aa-data/services/card-management.service';
 import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/recipe-holder.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';
@@ -30,19 +30,8 @@ import { FormControl } from '@angular/forms';
 })
 export class LandingPageComponent implements OnInit {
 
-
-  cards: any[] = [
-    { id: 1, imageUrl: './../../../../assets/political.png', name: 'Image 1' },
-    { id: 2, imageUrl: './../../../../assets/political.png', name: 'Image 2' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 4' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
-    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
-  ];
-  currentlyHoveredCardId: number | null = null;
-  viewPortHeight!: number;
+  /********************************************** Variables **********************************************/
+  showRating = true;
   username: string | null;
   favoriteRecipes: any;
   myRecipes: any;
@@ -52,7 +41,7 @@ export class LandingPageComponent implements OnInit {
   searchTerm = new FormControl('');
 
 
-
+  /********************************************* Dependency Injection ************************************/
   constructor(
     private _notificationManService: MessageService,
     private router: Router,
@@ -65,11 +54,8 @@ export class LandingPageComponent implements OnInit {
   }
 
 
+  /********************************************* LifeCycles **********************************************/
   ngOnInit(): void {
-    this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
-    // this.allRecipes = this.cardManServices.recipeSample;
-    // this.recipes = this.allRecipes;
-
     this.onSearch();
     /**** Fetching Recipes */
     this.favoriteRecipes = this.findRecipeByOwnerAndFavorited(this.allRecipes, this.username, true);
@@ -79,10 +65,7 @@ export class LandingPageComponent implements OnInit {
   }
 
 
-  /**************************************************************************************** */
-  /********************************** FUNCTIONS******************************************** */
-  /***************************************************************************************** */
-
+  /***************************************** Methods ****************************************************/
   /**** Setting the country */
   setCountry(country: string): void {
     const additionalData = country;
@@ -97,11 +80,6 @@ export class LandingPageComponent implements OnInit {
 
 
   }
-
-  isHovering(cardId: number): boolean {
-    return this.currentlyHoveredCardId === cardId;
-  }
-
 
 
   /******* Fetching favourite recipes */
@@ -128,14 +106,13 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
-  /**** Test Grounds */
-
-  showRating = true; // Set to true to display rating
-
+  /************************************* Dummy Component Functions ***********************************************/
+  /**** Favoriting a recipe */
   onLike(title: string) {
     this._notificationManService.showNotificationMessage(`${title} added to your favorite recipes`, 'snackbar-success');
   }
 
+  /**** Sharing a recipe */
   onShare(title: string): void {
     // Generate shareable link
     const shareLink = `https://example.com/share?title=${encodeURIComponent(title)}`;
@@ -176,6 +153,7 @@ export class LandingPageComponent implements OnInit {
     })
   }
 
+  /*** Viewing and adding comments to a recipe */
   callCommentsDialog(title: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -192,6 +170,8 @@ export class LandingPageComponent implements OnInit {
       //Save chenye wamecomment
     )
   }
+
+  /*** Selecting a single recipe */
   onSelectSingleRecipe(recipeId: number): void {
     console.log("Title Clicked::", recipeId);
     const additionalData = recipeId;
@@ -204,6 +184,9 @@ export class LandingPageComponent implements OnInit {
     })
   }
 
+
+  /***************************************************************************************************/
+  /**** Adding a recipe */
   addRecipe(): void {
     let route = '/manage/recipe';
     this.router.navigate([route]);
@@ -220,9 +203,9 @@ export class LandingPageComponent implements OnInit {
     searchTerm = searchTerm.toLowerCase().trim();
     return recipes.filter(recipe => {
       return (
-        (recipe.owner?.toLowerCase()?.includes(searchTerm) || 
+        (recipe.owner?.toLowerCase()?.includes(searchTerm) ||
           recipe.title.toLowerCase().includes(searchTerm) ||
-          (recipe.place?.label?.toLowerCase()?.includes(searchTerm)) 
+          (recipe.place?.label?.toLowerCase()?.includes(searchTerm))
         ));
     });
   }
@@ -235,5 +218,20 @@ export class LandingPageComponent implements OnInit {
     console.log("Searched All Recipes", this.allRecipes);
 
   };
+
+
+  /*****************************************************************************************************************
+   * Dummy Data
+   */
+  cards: any[] = [
+    { id: 1, imageUrl: './../../../../assets/political.png', name: 'Image 1' },
+    { id: 2, imageUrl: './../../../../assets/political.png', name: 'Image 2' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 4' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+  ];
 }
 

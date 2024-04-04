@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { LoginComponent } from '../../waste-components/login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import Swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option } from '../../../assets/db-arrays/interfaces';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../services/card-management.service';
+import { CardManagementService } from '../../recipe-management/aa-data/services/card-management.service';
 
 
 
@@ -66,8 +66,6 @@ export class RecipeCardsComponent implements OnInit {
     { value: 'italian', label: 'Italian' },
   ];
 
-
-
   dietaryOptions: Option[] = [
     { value: 'glutenfree', label: 'Gluten-Free', selected: false },
     { value: 'nutfree', label: 'Nut-Free', selected: false },
@@ -100,7 +98,6 @@ export class RecipeCardsComponent implements OnInit {
    */
 
   ngOnInit(): void {
-    this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
     const allRecipes = this.cardManService.recipeSample;
     // this.cards = this.cardManService.recipeSample;
     if (this.route.queryParams) {
@@ -238,7 +235,7 @@ export class RecipeCardsComponent implements OnInit {
 
 
   /***********************************************************************************************************
-   *  Search & Filter Functions
+   *  
    */
 
   /**** Time Selection */

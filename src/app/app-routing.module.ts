@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Page404Component } from './zarchitecture/layout/page404/page404.component';
 import { LandingPageComponent } from './zarchitecture/layout/landing-page/landing-page.component';
-import { RecipeCardsComponent } from './recipe-management/recipe-cards/recipe-cards.component';
+import { RecipeCardsComponent } from './waste-components/recipe-cards/recipe-cards.component';
 import { ManageSingularRecipeComponent } from './recipe-management/manage-singular-recipe/manage-singular-recipe.component';
 import { SingularViewPointComponent } from './recipe-management/singular-view-point/singular-view-point.component';
 import { SigninComponent } from './admin/authentication/signin/signin.component';
 import { registrationGuard } from './admin/guards/registration.guard';
+import { MultipleViewPointComponent } from './recipe-management/multiple-view-point/multiple-view-point.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
   {
     path: 'card',
     canActivate: [registrationGuard],
-    component: RecipeCardsComponent,
+    component: MultipleViewPointComponent,
   },
   {
     path: 'view',
