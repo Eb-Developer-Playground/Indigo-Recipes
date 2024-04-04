@@ -4,11 +4,9 @@ import { Page404Component } from './zarchitecture/layout/page404/page404.compone
 import { LandingPageComponent } from './zarchitecture/layout/landing-page/landing-page.component';
 import { RecipeCardsComponent } from './recipe-management/recipe-cards/recipe-cards.component';
 import { ManageSingularRecipeComponent } from './recipe-management/manage-singular-recipe/manage-singular-recipe.component';
-import { LoginComponent } from './zarchitecture/layout/login/login.component';
-import { CommentsSectionComponent } from './zarchitecture/layout/comments-section/comments-section.component';
 import { SingularViewPointComponent } from './recipe-management/singular-view-point/singular-view-point.component';
 import { SigninComponent } from './admin/authentication/signin/signin.component';
-import { RegistrationGuardService } from './admin/guards/auth.guard';
+import { registrationGuard } from './admin/guards/registration.guard';
 
 const routes: Routes = [
   {
@@ -22,26 +20,28 @@ const routes: Routes = [
     ]
   },
   {
-    path: "logout",
-    component: SigninComponent
+    path: '#',
+    component: SigninComponent,
   },
   {
     path: 'manage/recipe',
-    // canActivate: RegistrationGuardService,
+    canActivate: [registrationGuard],
     component: ManageSingularRecipeComponent
   },
 
-
   {
     path: 'card',
+    canActivate: [registrationGuard],
     component: RecipeCardsComponent,
   },
   {
     path: 'view',
+    canActivate: [registrationGuard],
     component: SingularViewPointComponent,
   },
   {
     path: 'home',
+    canActivate: [registrationGuard],
     component: LandingPageComponent
   },
 

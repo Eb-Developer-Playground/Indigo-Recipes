@@ -7,7 +7,7 @@ import { ElementRef, Injectable } from '@angular/core';
 export class MessageService {
 
   constructor(
-    private _snacbar: MatSnackBar, 
+    public _snacbar: MatSnackBar, 
     // private elementRef: ElementRef,
   ) { }
 
@@ -29,3 +29,5 @@ export class MessageService {
   }
 
 }
+
+

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { SharedModule } from '../../shared/shared/shared.module';
-import { MessageService } from '../../services/notification-services/message.service';
+import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
+import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -55,7 +55,6 @@ export class LoginComponent {
   }
 
   onLogin(): void {
-
     if (this.loginForm.value.email == 'sw.muriu@gmail.com' && this.loginForm.value.password == 1234) {
       this.router.navigate(['/home']);
       this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success');

@@ -1,6 +1,6 @@
 // Define the User interface
 export interface User {
-    userId?: string;
+    userId?: number;
     firstName: string;
     lastName: string;
     email: string;
@@ -47,7 +47,7 @@ export interface tips {
 }
 
 /**** * Instructions interface */
-export interface instructions{
+export interface instructions {
     instruction: string,
 }
 

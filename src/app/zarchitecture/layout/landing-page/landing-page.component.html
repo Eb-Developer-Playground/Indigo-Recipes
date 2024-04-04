@@ -6,8 +6,9 @@
     <div class="content-below-header">
         <header class="header2">
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search">
-                <button mat-button>
+                <!-- <input type="text" class="search-input" placeholder="Search" *ngIf="searchTerm.value" [value]="searchTerm.value" (keyup)="onSearch()"> -->
+                <input type="text" class="search-input" placeholder="Search" [value]="searchTerm.value" (keyup)="onSearch()">
+                <button mat-button (click)="onSearch()">
                     <i class="fas fa-search"></i>Search </button>
             </div>
         </header>

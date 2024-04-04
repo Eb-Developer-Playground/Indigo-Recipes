@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { LoginComponent } from '../../zarchitecture/layout/login/login.component';
+import { LoginComponent } from '../../waste-components/login/login.component';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import Swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -251,7 +251,7 @@ export class RecipeCardsComponent implements OnInit {
 
   selectedTime(item: string): void {
     this.timeSelected = item;
-    this.onTimeFilter(); 
+    this.onTimeFilter();
   }
 
 

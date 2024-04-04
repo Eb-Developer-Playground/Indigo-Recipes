@@ -13,6 +13,7 @@ import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';
 import Swal from 'sweetalert2';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -48,6 +49,8 @@ export class LandingPageComponent implements OnInit {
   newRecipes: any;
   allRecipes: any;
   recipes: Recipe[] = [];
+  searchTerm = new FormControl('');
+
 
 
   constructor(
@@ -64,17 +67,14 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewPortHeight = window.innerHeight / 4; //Get viewpoer height
-    this.allRecipes = this.cardManServices.recipeSample;
-    this.recipes = this.allRecipes;
+    // this.allRecipes = this.cardManServices.recipeSample;
+    // this.recipes = this.allRecipes;
 
-
+    this.onSearch();
     /**** Fetching Recipes */
     this.favoriteRecipes = this.findRecipeByOwnerAndFavorited(this.allRecipes, this.username, true);
     this.myRecipes = this.findRecipesByOwner(this.allRecipes, this.username);
     this.newRecipes = this.fetchLastFourRecipes(this.allRecipes);
-
-
-
 
   }
 
@@ -208,5 +208,32 @@ export class LandingPageComponent implements OnInit {
     let route = '/manage/recipe';
     this.router.navigate([route]);
   }
+
+
+  /**** On searching for an item */
+  searchRecipes(recipes: Recipe[], searchTerm: any): Recipe[] {
+    if (!searchTerm || searchTerm.trim() === '') {
+      console.log("Empty Search");
+      return recipes; // Return all recipes if search term is empty
+    }
+
+    searchTerm = searchTerm.toLowerCase().trim();
+    return recipes.filter(recipe => {
+      return (
+        (recipe.owner?.toLowerCase()?.includes(searchTerm) || 
+          recipe.title.toLowerCase().includes(searchTerm) ||
+          (recipe.place?.label?.toLowerCase()?.includes(searchTerm)) 
+        ));
+    });
+  }
+
+  onSearch(): void {
+    console.log("Oncall");
+    const currentSearchTerm = this.searchTerm.value;
+    this.allRecipes = this.searchRecipes(this.cardManServices.recipeSample, currentSearchTerm);
+    this.recipes = this.allRecipes;
+    console.log("Searched All Recipes", this.allRecipes);
+
+  };
 }
 

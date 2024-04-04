@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
 import { User } from '../../../../assets/db-arrays/interfaces';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class AuthServiceService {
 
   /******************************************************************************************************** */
-   users: User[] = [
+  users: User[] = [
     {
       firstName: 'Sam',
       lastName: 'Sicker',
@@ -90,28 +90,27 @@ export class AuthServiceService {
 
   /**** User registration */
   registerUser(user: User): string {
-    // Generate a unique ID for the new user
-    const userId = uuidv4();
+    const userId = Math.random() * 1000;
     user.userId = userId;
     this.users.push(user);
     console.log("USERS PRESENT::", this.users);
     return `You have been successfully registered`;
   }
 
-    isUserLoggedIn(usernameOrEmail: string, password: string): boolean {
-      // Iterate through the users array
-      for (const user of this.users) {
-        // Check if the provided username/email and password match any user's credentials
-        if ((user.username === usernameOrEmail || user.email === usernameOrEmail) && user.password === password) {
-          console.log('User logged in successfully:', user);
-          // Return the username of the logged-in user
-          this.loggedInUser = user.username;
-          sessionStorage.setItem('username', this.loggedInUser);
-          return true;
-        }
+  isUserLoggedIn(usernameOrEmail: string, password: string): boolean {
+    // Iterate through the users array
+    for (const user of this.users) {
+      // Check if the provided username/email and password match any user's credentials
+      if ((user.username === usernameOrEmail || user.email === usernameOrEmail) && user.password === password) {
+        console.log('User logged in successfully:', user);
+        // Return the username of the logged-in user
+        this.loggedInUser = user.username;
+        sessionStorage.setItem('username', this.loggedInUser);
+        return true;
       }
-      console.error('Invalid username/email or password.');
-      return false; 
     }
+    console.error('Invalid username/email or password.');
+    return false;
+  }
 
 }

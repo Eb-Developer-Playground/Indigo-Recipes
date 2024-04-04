@@ -41,6 +41,8 @@ export class SigninComponent {
   /********************************************* LifeCycles **********************************************/
   ngOnInit(): void {
     this.pageFunction = "Login";
+    console.log("SIGN IN", this.pageFunction);
+
     this.generateLoginForm();
     this.generateSignUpForm();
   }
@@ -82,7 +84,7 @@ export class SigninComponent {
       } else {
         this.notificationMan.showNotificationMessage("Invalid credentials", "snackbar-danger");
       }
-    } 
+    }
   };
 
   /**** Sign in with gmail */
@@ -107,6 +109,8 @@ export class SigninComponent {
       let route = '/home';
       this.router.navigate([route]);
       this.notificationMan.showNotificationMessage("You have been successfully registered", "snackbar-success");
+      console.log("CREATED USER:::", this.signupForm.value);
+
     }
     else if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
       this.notificationMan.showNotificationMessage("Passwords do not match.", "snackbar-danger");
@@ -117,6 +121,8 @@ export class SigninComponent {
   /**Registration Point */
   onNavigateToRegistration(): void {
     this.pageFunction = "Register";
+    console.log("This.Pagefunction regeister", this.pageFunction);
+
   }
 
   /**** Back To Login */

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class CardManagementService {
 
   /********* Post a new recipe */
   postNewRecipe(recipe: Recipe): void {
-    const newId: number = parseInt(uuidv4().split('-').join(''), 16);
+    const newId = Math.random() * 1000;
     recipe.recipeId = newId;
     recipe.owner = this.username;
     recipe.isFavourited = false;

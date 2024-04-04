@@ -36,7 +36,8 @@ export class HeaderComponent {
 
   /**** Logging out */
   onLogout(): void {
-    const route = '/logout'
+    const route = 'login';
+    sessionStorage.removeItem("username");
     this.router.navigate([route]);
     console.log("Remaining Users::", usersArray);
 
