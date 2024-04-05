@@ -1,4 +1,4 @@
-@import './../../../assets/card';
+
 
 section {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -8,6 +8,3 @@ section {
     top: 30px;
 }
 
-.card {
-    @include card
-}

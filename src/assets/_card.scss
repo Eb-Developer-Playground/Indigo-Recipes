@@ -1,13 +1,18 @@
-@mixin card {
+@mixin card1 {
     background-color: #fff;
-    /* Adjust background color as needed */
     border-radius: 10px;
-    /* Adjust corner radius as desired */
+    border: 3px solid aliceblue;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    /* Optional subtle shadow */
     max-width: 80%;
     margin: 1rem auto;
-    /* Center the card horizontally */
     padding: 1rem;
-    /* Adjust padding as desired */
+
+}
+
+@mixin responsive-column($breakpoint, $width) {
+    @media (min-width: #{$breakpoint}) {
+        width: $width;
+        flex: 0 0 auto;
+        padding: 15px;
+    }
 }

@@ -8,6 +8,7 @@ import { SingularViewPointComponent } from './recipe-management/singular-view-po
 import { SigninComponent } from './admin/authentication/signin/signin.component';
 import { registrationGuard } from './admin/authentication/guards/registration.guard';
 import { MultipleViewPointComponent } from './recipe-management/multiple-view-point/multiple-view-point.component';
+import { ProfileUpdateComponent } from './admin/authentication/profile-update/profile-update/profile-update.component';
 
 const routes: Routes = [
   {
@@ -45,8 +46,11 @@ const routes: Routes = [
     canActivate: [registrationGuard],
     component: LandingPageComponent
   },
-
-
+  {
+    path: 'profile/update', 
+    canActivate: [registrationGuard],
+    component: ProfileUpdateComponent
+  },
   {
     path: '**',
     component: Page404Component

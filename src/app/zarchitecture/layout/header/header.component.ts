@@ -23,7 +23,7 @@ export class HeaderComponent {
   /**** Adding a recipe */
   addRecipe(): void {
     console.log("Adding Recipe");
-    let route = '/manage/recipe';
+    let route = '/profile/update';
     this.router.navigate([route]);
   }
 
