@@ -100,14 +100,10 @@
                                 <form [formGroup]="ingredientsForm">
                                     <div formArrayName="ingredients">
                                         <div *ngFor="let ingredient of ingredientControls; let i = index">
-                                            <!-- <mat-form-field appearance="outline">
-                                            <input matInput [formControl]="ingredient" placeholder="Ingredient {{ i + 1 }}"
-                                                required>
-                                            <mat-error *ngIf="ingredient.invalid && ingredient.touched">Ingredient is
-                                                required</mat-error>
-                                        </mat-form-field> -->
+
                                             <div>
-                                                <mat-form-field appearance="outline">
+                                                <mat-form-field appearance="outline"
+                                                    *ngFor="let ingredient of ingeredientsData">
                                                     <input matInput [formControlName]="i"
                                                         placeholder="Ingredient {{ i + 1 }}" required>
                                                     <mat-error
@@ -125,7 +121,7 @@
                                     </div>
                                     <div>
                                         <button class="btn-space" type="submit" mat-button (click)="addIngredient()">Add
-                                            Another
+
                                             Ingredient</button>
                                         <button type="submit" mat-button matStepperNext
                                             [disabled]="!ingredientsForm.valid">Next</button>

@@ -3,10 +3,10 @@ import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
-import { Option } from '../../../assets/db-arrays/interfaces';
+import { Option, Recipe } from '../../../assets/db-arrays/interfaces';
 import { CardManagementService } from '../aa-data/services/card-management.service';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-singular-recipe',
@@ -27,12 +27,15 @@ export class ManageSingularRecipeComponent implements OnInit {
   tipsForm: FormGroup;
   pageFunction: string = "Add";
   username: string | null;
+  formData: any;
+  ingredientsArray: any;
 
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
     { value: 'african', label: 'African' },
     { value: 'italian', label: 'Italian' },
   ];
+  ingeredientsData: any;
 
   /**** Dependency Injection */
   constructor(
@@ -40,6 +43,7 @@ export class ManageSingularRecipeComponent implements OnInit {
     private cardManService: CardManagementService,
     private notificationManService: MessageService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
     /**** Generate the forms whose form fields are not fixed */
     this.ingredientsForm = this.fb.group({
@@ -63,6 +67,38 @@ export class ManageSingularRecipeComponent implements OnInit {
    */
   ngOnInit(): void {
     this.initEmptyRecipeDetailsForm();
+
+    if (this.route.queryParams) {
+      this.route.queryParams.subscribe({
+        next: (params) => {
+          if (params.hasOwnProperty('data')) {
+            const serializedData = params["data"];
+            const searchTerm = JSON.parse(serializedData);
+            this.formData = this.searchRecipesByTitle(this.cardManService.recipeSample, searchTerm)[0]
+            console.log("FORMDATA:", this.formData);
+
+
+            //Initialize form with data 
+            this.recipeDetailsForm = this.fb.group({
+              title: [this.formData.title, [Validators.required]],
+              yield: [this.formData.yield, [Validators.required]],
+              prepTime: [this.formData.prepTime, [Validators.required]],
+              cookTime: [this.formData.cookTime, [Validators.required]],
+              place: [this.formData.place, [Validators.required]],
+            });
+
+            this.ingredientsForm.value.ingredients.push(this.formData.ingredients);
+            this.ingeredientsData = this.formData.ingredients
+            console.log("fetched data:::", this.ingeredientsData);
+            // this.ingredientsArray = this.formData.ingredients;
+            // console.log("ingredientsArray", this.ingredientsArray)
+            this.tipsForm.value.tips.push(this.formData.tips);
+            this.instructionsForm.value.instructions.push(this.formData.instructions);
+          }
+        }
+      })
+    }
+
 
   }
 
@@ -146,5 +182,16 @@ export class ManageSingularRecipeComponent implements OnInit {
     this.recipeDetailsForm.value.tips.push(this.tipsForm.value);
     this.recipeDetailsForm.value.totalTime = this.recipeDetailsForm.value.prepTime + this.recipeDetailsForm.value.cookTime;
 
+  }
+
+  /**** Fetch a single recipe for update */
+  searchRecipesByTitle(recipes: Recipe[], searchTerm: string): Recipe[] {
+    if (!searchTerm) {
+      return recipes;
+    }
+    searchTerm = searchTerm.toLowerCase();
+    return recipes.filter(recipe => {
+      return recipe.title?.toLowerCase().includes(searchTerm);
+    });
   }
 }

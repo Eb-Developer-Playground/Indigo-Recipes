@@ -79,7 +79,7 @@
                             <div>
                                 <app-recipe-holder [cards]="recipes" [showRating]="showRating" (like)="onLike($event)"
                                     (selectRecipe)="onSelectSingleRecipe($event)"
-                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)" (edit)="onEdit($event)">
                                 </app-recipe-holder>
                             </div>
                         </mat-tab>
@@ -89,7 +89,7 @@
                             <div [hidden]="newRecipes.length  === 0">
                                 <app-recipe-holder [cards]="newRecipes" [showRating]="showRating"
                                     (like)="onLike($event)" (selectRecipe)="onSelectSingleRecipe($event)"
-                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)" (edit)="onEdit($event)">
                                 </app-recipe-holder>
                             </div>
                             <div class="center-message" class="center-message" [hidden]="newRecipes.length  !== 0">
@@ -100,10 +100,10 @@
 
                         <!-- FAVORITES -->
                         <mat-tab label="FAVORITES">
-                            <div [hidden]="favoriteRecipes.length  === 0">
+                            <div [hidden]="favoriteRecipes.length  === 0">r
                                 <app-recipe-holder [cards]="favoriteRecipes" [showRating]="showRating"
                                     (like)="onLike($event)" (selectRecipe)="onSelectSingleRecipe($event)"
-                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)" (edit)="onEdit($event)">
                                 </app-recipe-holder>
                             </div>
                             <div class="center-message" [hidden]="favoriteRecipes.length  !== 0">
@@ -117,7 +117,7 @@
                             <div [hidden]="myRecipes.length  === 0">
                                 <app-recipe-holder [cards]="myRecipes" [showRating]="showRating" (like)="onLike($event)"
                                     (selectRecipe)="onSelectSingleRecipe($event)"
-                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)">
+                                    (comments)="callCommentsDialog($event)" (share)="onShare($event)" (edit)="onEdit($event)">
                                 </app-recipe-holder>
                             </div>
                             <div [hidden]="myRecipes.length  !== 0">

@@ -24,6 +24,7 @@ export class RecipeHolderComponent {
   @Output() selectRecipe = new EventEmitter<number>();
   @Output() comments = new EventEmitter<string>();
   @Output() share = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<string>();
   currentHoveredCardId: number | null = null;
 
   constructor(
@@ -65,4 +66,9 @@ export class RecipeHolderComponent {
     this.share.emit(title);
   }
 
+  onEdit(title: string): void {
+    this.edit.emit(title);
+  }
+
 }
+

@@ -161,6 +161,17 @@ export class MultipleViewPointComponent implements OnInit {
     });
   }
 
+  /**** Edit a recipe */
+  onEdit(title: string) {
+    const serializedData = JSON.stringify(title);
+    let route = 'manage/recipe';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
+  };
+
   /**** View more about a recipe */
   onSelectRecipe(recipeTitle: string) {
     console.log('Selected recipe ID:', recipeTitle);
