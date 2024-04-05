@@ -1,0 +1,147 @@
+@import '../../../../../assets/card';
+
+app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.content-below-header {
+    padding-top: 120px;
+}
+
+section {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+
+.responsive-col {
+    @include responsive-column(extra-large, 25%);
+    @include responsive-column(large, 25%);
+    @include responsive-column(small, 25%)
+}
+
+
+//Row definition
+.row-defintion {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.form-margin {
+    margin: 2rem 1rem;
+}
+
+/***************************************************************************/
+
+/* update-user.component.scss */
+
+.update-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+        }
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+}
+
+// Sign up styling 
+
+.signup-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-card {
+    width: 400px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.signup-input-field {
+    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+        border-radius: 20px;
+    }
+}
+
+.signup-button {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
