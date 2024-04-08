@@ -5,10 +5,17 @@ import { MessageService } from '../../../zarchitecture/services/notification-ser
 import { AuthServiceService } from '../../user/auth-services/auth-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '../../../zarchitecture/shared/shared/shared.module';
+import { FormBuilder, Validators } from '@angular/forms';
+import { group } from '@angular/animations';
+import { Router } from '@angular/router';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
+  let fb: FormBuilder;
+  let notificationMan: MessageService;
+  let authManService: AuthServiceService;
+  let router: Router
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,6 +38,31 @@ describe('SigninComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  beforeEach(() => {
+    fb = {
+      group: jest.fn(() => ({
+        value: {},
+        get: jest.fn(),
+        setValidators: jest.fn()
+      }))
+    }
+    component = new SigninComponent(notificationMan, authManService, fb, router);
+  }); 
+
+
+  it('should init sign up form', () => {
+    component.generateSignUpForm();
+    expect(fb.group).toHaveBeenCalledWith({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    })
+  })
 
   // it('should create login form with usernameOrEmail and password controls', () => {
   //   component.generateLoginForm();
