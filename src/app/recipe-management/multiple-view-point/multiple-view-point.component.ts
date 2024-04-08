@@ -35,6 +35,7 @@ export class MultipleViewPointComponent implements OnInit {
   isTimeDropdownOpen: boolean = false;
   isPlaceDropdownOpen: boolean = false;
   isDietDropdownOpen: boolean = false;
+  allRecipes: Recipe[] = [];
 
   /********************************************* Dependency Injection ************************************/
   constructor(
@@ -49,7 +50,7 @@ export class MultipleViewPointComponent implements OnInit {
 
   /********************************************* LifeCycles **********************************************/
   ngOnInit(): void {
-    const allRecipes = this.cardManService.recipeSample;
+    this.allRecipes = this.cardManService.recipeSample;
 
     //Fetch data based on the incoming route params
     if (this.route.queryParams) {
@@ -62,7 +63,7 @@ export class MultipleViewPointComponent implements OnInit {
           this.currentCuisine = additionalData;
           console.log("Current Cuisine", this.currentCuisine);
           this.cardManService.getCuisineRecipes(this.currentCuisine);
-          this.cards = this.searchRecipesByPlaceLabel(allRecipes, this.currentCuisine);
+          this.cards = this.searchRecipesByPlaceLabel(this.allRecipes, this.currentCuisine);
           this._notificationManService.showNotificationMessage(`${this.currentCuisine} recipes fetched successfully!!`, "snackbar-success")
         } else {
           this._notificationManService.showNotificationMessage(`No existing recipes for ${this.currentCuisine} cuisines`, "snackbar-danger")
@@ -101,7 +102,7 @@ export class MultipleViewPointComponent implements OnInit {
 
   selectedTime(item: string): void {
     this.timeSelected = item;
-    this.cards = this.searchByTime(this.cardManService.recipeSample, item);
+    this.cards = this.searchByTime(this.allRecipes, item);
     console.log("SELECTED TIME", item);
     
     this.onTimeFilter();
