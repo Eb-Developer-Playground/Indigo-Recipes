@@ -153,6 +153,17 @@ export class LandingPageComponent implements OnInit {
     })
   }
 
+  /**** Edit a recipe */
+  onEdit(title: string) {
+    const serializedData = JSON.stringify(title);
+    let route = 'manage/recipe';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    })
+  };
+
   /*** Viewing and adding comments to a recipe */
   callCommentsDialog(title: string) {
     const dialogConfig = new MatDialogConfig();

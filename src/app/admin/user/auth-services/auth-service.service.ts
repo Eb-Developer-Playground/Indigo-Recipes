@@ -28,6 +28,7 @@ export class AuthServiceService {
         console.log('User logged in successfully:', user);
         this.loggedInUser = user.username;
         sessionStorage.setItem('username', this.loggedInUser);
+        sessionStorage.setItem('email', user.email);
         return true;
       }
     }

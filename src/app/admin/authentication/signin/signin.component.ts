@@ -106,6 +106,7 @@ export class SigninComponent {
         .registerUser(user);
       console.log('User registered successfully:');
       sessionStorage.setItem('username', user.username);
+      sessionStorage.setItem('email', user.email);
       let route = '/home';
       this.router.navigate([route]);
       this.notificationMan.showNotificationMessage("You have been successfully registered", "snackbar-success");
