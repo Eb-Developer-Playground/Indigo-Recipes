@@ -83,6 +83,13 @@ export class MultipleViewPointComponent implements OnInit {
     });
   }
 
+  searchByTime(recipes: Recipe[], time: string): Recipe[] {
+  time = time.toLowerCase(); 
+    return recipes.filter(recipe => {
+      return recipe.time?.toLowerCase().includes(time);
+    });
+  }
+
   /*********************** Search & Filter Functions */
   /**** Time Selection */
   timeSelected: string = '';
@@ -94,6 +101,9 @@ export class MultipleViewPointComponent implements OnInit {
 
   selectedTime(item: string): void {
     this.timeSelected = item;
+    this.cards = this.searchByTime(this.cardManService.recipeSample, item);
+    console.log("SELECTED TIME", item);
+    
     this.onTimeFilter();
   }
 

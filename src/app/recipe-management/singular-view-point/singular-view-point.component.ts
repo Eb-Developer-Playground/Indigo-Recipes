@@ -65,6 +65,7 @@ export class SingularViewPointComponent implements OnInit {
     cookTime: 25,
     totalTime: 35,
     recipeId: 190,
+    time: "Breakfast",
     rating: 3,
     place:
     {
