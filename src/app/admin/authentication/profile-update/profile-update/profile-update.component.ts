@@ -73,7 +73,7 @@ export class ProfileUpdateComponent implements OnInit {
         this.notificationManService.showNotificationMessage("Kindly confirm that your new passwords match!!", "snackbar-danger");
       } else {
         const updatedUser = this.updateForm.value;
-        const updatedUsersArray = this.existingUsers.map(user => user == this.currentUser ? {
+        const updatedUsersArray = this.existingUsers.map((user: User) => user == this.currentUser ? {
           ...updatedUser
         } : user)
 

@@ -95,7 +95,7 @@
 
                         <!-- Step 2: Ingredients -->
 
-                        <div class="padding">
+                        <!-- <div class="padding">
                             <mat-step label="Ingredients">
                                 <form [formGroup]="ingredientsForm">
                                     <div formArrayName="ingredients">
@@ -128,6 +128,30 @@
                                     </div>
                                 </form>
                             </mat-step>
+                        </div> -->
+
+                        <div class="padding">
+                            <mat-step label="Ingredients">
+                                <form [formGroup]="ingredientsForm">
+                                    <div formArrayName="ingredients">
+                                        <div *ngFor="let ingredientControl of ingredientControls; let i = index">
+                                            <mat-form-field appearance="outline">
+                                                <textarea matInput [formControl]="ingredientControl" placeholder="Ingredient {{ i + 1 }}" required></textarea>
+                                                <mat-error *ngIf="ingredientControl.invalid && ingredientControl.touched">
+                                                    The ingredient is required
+                                                </mat-error>
+                                            </mat-form-field>
+                                            <button type="button" mat-icon-button (click)="removeIngredient(i)">
+                                                <mat-icon>remove_circle</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" mat-button (click)="addIngredient()">Add Ingredient</button>
+                                        <button type="submit" mat-button matStepperNext [disabled]="!ingredientsForm.valid">Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
                         </div>
 
 
@@ -136,39 +160,25 @@
                         <!-- Step 3: Instructions -->
                         <div class="padding">
                             <mat-step label="Instructions">
-                                <form [formGroup]="instructionsForm">
-                                    <div formArrayName="instructions">
-                                        <div *ngFor="let instructionCtrl of instructionControls; let i = index">
-                                            <!-- <mat-form-field appearance="outline">
-                                            <input matInput [formControl]="instructionCtrl"
-                                                placeholder="Instruction {{ i + 1 }}" required>
-                                            <mat-error
-                                                *ngIf="instructionCtrl.invalid && instructionCtrl.touched">Instruction is
-                                                required</mat-error>
-                                        </mat-form-field> -->
-                                            <div>
-                                                <mat-form-field appearance="outline">
-                                                    <textarea matInput [formControlName]="i"
-                                                        placeholder="Instruction {{i +1}}" required></textarea>
-                                                    <mat-error
-                                                        *ngIf="instructionControls.at(i)?.invalid && ingredientControls.at(i)?.touched">
-                                                        The instruction is required</mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                            <div>
-                                                <button type="submit" mat-icon-button (click)="removeInstruction(i)">
-                                                    <mat-icon>remove_circle</mat-icon>
-                                                </button>
-                                            </div>
-                                        </div>
+                            <form [formGroup]="instructionsForm">
+                                <div formArrayName="instructions">
+                                    <div *ngFor="let instructionControl of instructionControls; let i = index">
+                                        <mat-form-field appearance="outline">
+                                            <textarea matInput [formControl]="instructionControl" placeholder="Instruction {{ i + 1 }}" required></textarea>
+                                            <mat-error *ngIf="instructionControl.invalid && instructionControl.touched">
+                                                The instruction is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <button type="button" mat-icon-button (click)="removeInstruction(i)">
+                                            <mat-icon>remove_circle</mat-icon>
+                                        </button>
                                     </div>
-                                    <div>
-                                        <button type="submit" mat-button (click)="addInstruction()">Add
-                                            Instruction</button>
-                                        <button type="submit" mat-button matStepperNext
-                                            [disabled]="!instructionsForm.valid">Next</button>
-                                    </div>
-                                </form>
+                                </div>
+                                <div>
+                                    <button type="button" mat-button (click)="addInstruction()">Add Instruction</button>
+                                    <button type="submit" mat-button matStepperNext [disabled]="!ingredientsForm.valid">Next</button>
+                                </div>
+                            </form>
                             </mat-step>
                         </div>
 
@@ -177,32 +187,25 @@
                         <div class="padding">
                             <mat-step label="Tips">
                                 <div class="padding">
-                                    <form [formGroup]="tipsForm">
-                                        <div formArrayName="tips">
-                                            <div *ngFor="let tip of tipControls; let i = index">
-                                                <div>
-                                                    <mat-form-field appearance="outline">
-                                                        <input matInput [formControlName]="i"
-                                                            placeholder="Tip {{ i + 1 }}" required>
-                                                        <mat-error
-                                                            *ngIf="tipControls.at(i)?.invalid && tipControls.at(i)?.touched">Tip
-                                                            is
-                                                            required</mat-error>
-                                                    </mat-form-field>
-                                                </div>
-                                                <div>
-                                                    <button type="submit" mat-icon-button (click)="removeTip(i)">
-                                                        <mat-icon>remove_circle</mat-icon>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                <form [formGroup]="tipsForm">
+                                    <div formArrayName="tips">
+                                        <div *ngFor="let tipControl of tipsControls; let i = index">
+                                            <mat-form-field appearance="outline">
+                                                <textarea matInput [formControl]="tipControl" placeholder="Tip {{ i + 1 }}" required></textarea>
+                                                <mat-error *ngIf="tipControl.invalid && tipControl.touched">
+                                                    The tip is required
+                                                </mat-error>
+                                            </mat-form-field>
+                                            <button type="button" mat-icon-button (click)="removeTip(i)">
+                                                <mat-icon>remove_circle</mat-icon>
+                                            </button>
                                         </div>
-                                        <div>
-                                            <button type="submit" mat-button (click)="addTip()">Add Tip</button>
-                                            <button type="submit" mat-button matStepperNext
-                                                [disabled]="!tipsForm.valid">Next</button>
-                                        </div>
-                                    </form>
+                                    </div>
+                                    <div>
+                                        <button type="button" mat-button (click)="addTip()">Add Tip</button>
+                                        <button type="submit" mat-button matStepperNext [disabled]="!ingredientsForm.valid">Next</button>
+                                    </div>
+                                </form>
                                 </div>
                             </mat-step>
                         </div>

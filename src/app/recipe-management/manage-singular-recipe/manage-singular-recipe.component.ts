@@ -29,13 +29,16 @@ export class ManageSingularRecipeComponent implements OnInit {
   username: string | null;
   formData: any;
   ingredientsArray: any;
+  ingeredientsData: any;
+  tipsData: any;
+  instructionsData: any;
+  existingRecipes: any;
 
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
     { value: 'african', label: 'African' },
     { value: 'italian', label: 'Italian' },
   ];
-  ingeredientsData: any;
 
   /**** Dependency Injection */
   constructor(
@@ -68,17 +71,22 @@ export class ManageSingularRecipeComponent implements OnInit {
   ngOnInit(): void {
     this.initEmptyRecipeDetailsForm();
 
-    if (this.route.queryParams) {
+    if (!this.route.queryParams) {
+      this.pageFunction = 'Add';
+    } else {
       this.route.queryParams.subscribe({
         next: (params) => {
           if (params.hasOwnProperty('data')) {
             const serializedData = params["data"];
             const searchTerm = JSON.parse(serializedData);
-            this.formData = this.searchRecipesByTitle(this.cardManService.recipeSample, searchTerm)[0]
+            this.existingRecipes = this.cardManService.recipeSample;
+            this.formData = this.searchRecipesByTitle(this.existingRecipes, searchTerm)[0]
             console.log("FORMDATA:", this.formData);
 
+            this.pageFunction = 'Update'
 
-            //Initialize form with data 
+
+            //Initialize recipe Details form with data 
             this.recipeDetailsForm = this.fb.group({
               title: [this.formData.title, [Validators.required]],
               yield: [this.formData.yield, [Validators.required]],
@@ -87,13 +95,19 @@ export class ManageSingularRecipeComponent implements OnInit {
               place: [this.formData.place, [Validators.required]],
             });
 
-            this.ingredientsForm.value.ingredients.push(this.formData.ingredients);
+
+            //Call the dat for the nested arrays of the recipeDetails Form
             this.ingeredientsData = this.formData.ingredients
-            console.log("fetched data:::", this.ingeredientsData);
+            this.tipsData = this.formData.tips;
+            this.instructionsData = this.formData.instructions;
+
+            //Populate the forms with the collected nested arrays data
+            this.populateFormsWithData();
+
             // this.ingredientsArray = this.formData.ingredients;
             // console.log("ingredientsArray", this.ingredientsArray)
-            this.tipsForm.value.tips.push(this.formData.tips);
-            this.instructionsForm.value.instructions.push(this.formData.instructions);
+            // this.tipsForm.value.tips.push(this.formData.tips);
+            // this.instructionsForm.value.instructions.push(this.formData.instructions);
           }
         }
       })
@@ -119,8 +133,26 @@ export class ManageSingularRecipeComponent implements OnInit {
       tips: [[]],
       instructions: [[]],
     });
-  }
+  };
 
+  /**** Init nested arrays kama empty form groups of arrays */
+  // initEmptyIngredientsForm(): void {
+  //   this.ingredientsForm = this.fb.group({
+  //     ingredients: this.fb.array([]),
+  //   });
+  // }
+
+  // initEmptyInstructionsForm(): void {
+  //   this.instructionsForm = this.fb.group({
+  //     instructions: this.fb.array([]),
+  //   });
+  // };
+
+  // initEmptyTipsForm(): void {
+  //   this.tipsForm = this.fb.group({
+  //     tips: this.fb.array([]),
+  //   });
+  // }
 
 
   /**** Defining the getter function which are triggered in the DOM structure */
@@ -132,7 +164,7 @@ export class ManageSingularRecipeComponent implements OnInit {
     return (this.instructionsForm?.get('instructions') as FormArray)?.controls as FormControl[];
   }
 
-  get tipControls() {
+  get tipsControls() {
     return (this.tipsForm?.get('tips') as FormArray)?.controls as FormControl[];
   }
 
@@ -170,10 +202,22 @@ export class ManageSingularRecipeComponent implements OnInit {
 
   onSubmit(): void {
     this.patchNestedArrays();
-    console.log("RecipeDetails:::", this.recipeDetailsForm.value);
-    this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
-    this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
-    this.router.navigate(['/home'])
+    if (this.pageFunction == 'Add') {
+      console.log("RecipeDetails:::", this.recipeDetailsForm.value);
+      this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
+      this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
+      this.router.navigate(['/home']);
+    } else {
+      const updatedRecipe = this.recipeDetailsForm.value;
+      this.existingRecipes = this.cardManService.recipeSample;
+      const updatedRecipesArray = this.existingRecipes.map((recipe: Recipe) => recipe == this.formData ? {
+        ...updatedRecipe
+      } : recipe);
+      console.log("Existing Recipes", this.existingRecipes);
+      console.log("Updated Recipes", updatedRecipesArray);
+      this.existingRecipes = updatedRecipesArray;
+    }
+
   }
 
   patchNestedArrays() {
@@ -193,5 +237,32 @@ export class ManageSingularRecipeComponent implements OnInit {
     return recipes.filter(recipe => {
       return recipe.title?.toLowerCase().includes(searchTerm);
     });
+  }
+
+  /**** Populate forms with the recieved data */
+  populateFormsWithData(): void {
+    if (this.ingeredientsData && this.ingeredientsData.length > 0) {
+      //Since the formData is an array of objects, and we need the ingredient value in each object, we have to loop through
+      this.ingeredientsData.forEach((ingredientObject: any) => {
+        //Pick the object for each j
+        const ingredientValue = ingredientObject.ingredient;
+        this.ingredientControls.push(this.fb.control(ingredientValue, Validators.required));
+      });
+    }
+
+    //Finally fucking works!!!!!, now for the others. 
+    if (this.instructionsData && this.instructionsData.length > 0) {
+      this.instructionsData.forEach((insrtructionObj: any) => {
+        const instructionValue = insrtructionObj.instruction;
+        this.instructionControls.push(this.fb.control(instructionValue, Validators.required));
+      });
+    }
+
+    if (this.tipsData && this.tipsData.length > 0) {
+      this.tipsData.forEach((tipsObj: any) => {
+        const tipsValue = tipsObj.tip;
+        this.tipsControls.push(this.fb.control(tipsValue, Validators.required));
+      });
+    }
   }
 }
