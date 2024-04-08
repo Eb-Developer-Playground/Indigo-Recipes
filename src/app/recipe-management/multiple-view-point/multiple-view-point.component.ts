@@ -83,6 +83,12 @@ export class MultipleViewPointComponent implements OnInit {
     });
   }
 
+  searchRecipesByTime(recipes: Recipe[], selectedTime: string): Recipe[]{
+    return recipes.filter(recipe => {
+      return recipe.time?.toLocaleLowerCase().includes(selectedTime.toLocaleLowerCase());
+    })
+  }
+
   /*********************** Search & Filter Functions */
   /**** Time Selection */
   timeSelected: string = '';
@@ -92,8 +98,8 @@ export class MultipleViewPointComponent implements OnInit {
     this.isDietDropdownOpen = false;
   }
 
-  selectedTime(item: string): void {
-    this.timeSelected = item;
+  selectedTime(timeSelected: string): void {
+    this.cards = this.searchRecipesByTime(this.cards, this.timeSelected);
     this.onTimeFilter();
   }
 
