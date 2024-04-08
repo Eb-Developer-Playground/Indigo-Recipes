@@ -17,19 +17,28 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, 
-    MatFormField
+    CommonModule,
+    MatFormField,
+    MatInputModule
+    // MatFormFieldControl
+
   ],
   exports: [
     MatFormField,
     MatFormFieldModule,
-    // MatInputModule,
+    MatInputModule,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -48,6 +57,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCheckboxModule,
     MatRadioModule,
     ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    // MatFormFieldControlModule
+    // MatFormFieldControl
+
+
   ]
+
 })
 export class SharedModule { }

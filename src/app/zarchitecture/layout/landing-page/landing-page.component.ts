@@ -2,6 +2,9 @@ import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChi
 import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
+import { FooterComponent } from '../footer/footer.component';
+import { RecipeCardsComponent } from '../../../recipe-management/recipe-cards/recipe-cards.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,21 +13,30 @@ import { MessageService } from '../../services/notification-services/message.ser
   styleUrl: './landing-page.component.scss',
   imports: [
     HeaderComponent,
-    SharedModule
+    SharedModule,
+    FooterComponent,
+    RecipeCardsComponent
   ]
 })
 export class LandingPageComponent implements OnInit {
 
-  cards: any[] = [
-    { title: 'Indigo Recipes', description: 'Embark on a gastronomic journey...' },
-    // Add your card data for the second card here:
-    { title: 'Another Great Recipe', description: 'Try out this delicious recipe!', description2: 'This is an optional second description for the second card.' }
-  ];
 
+  cards: any[] = [
+    { id: 1, imageUrl: './../../../../assets/political.png', name: 'Image 1' },
+    { id: 2, imageUrl: './../../../../assets/political.png', name: 'Image 2' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 3' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 4' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+    { id: 3, imageUrl: './../../../../assets/political.png', name: 'Image 5' },
+  ];
+  currentlyHoveredCardId: number | null = null;
   viewPortHeight!: number;
 
   constructor(
-    private _notificationManService: MessageService
+    private _notificationManService: MessageService,
+    private router: Router,
   ) {
   }
 
@@ -40,8 +52,19 @@ export class LandingPageComponent implements OnInit {
 
   /**** Setting the country */
   setCountry(country: string): void {
-    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger")
-
+    const additionalData = country;
+    const serializedData = JSON.stringify(additionalData);
+    let route = '/card';
+    this.router.navigate([route], {
+      queryParams: {
+        data: serializedData
+      }
+    });
+    this._notificationManService.showNotificationMessage("ASSSSS", "snackbar-danger");
   }
 
+  isHovering(cardId: number): boolean {
+    return this.currentlyHoveredCardId === cardId;
+  }
 }
+
