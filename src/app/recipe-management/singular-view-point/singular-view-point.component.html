@@ -1,36 +1,63 @@
 <app-header></app-header>
 
-<body [style.background]="'url(' + backgroundImageUrl + ') no-repeat center center fixed; filter: brightness(0.9);'">
-    <div class="recipe-container">
-        <div class="recipe-image">
-            <img [src]="recipe.imageUrl" alt="{{ recipe.title }}">
-        </div>
-        <div class="recipe-details">
-            <h2>{{ recipe.title }}</h2>
-            <div class="recipe-info">
-                <mat-icon>person</mat-icon>
-                <span>Yield: {{ recipe.yield }}</span>
-                <mat-icon>timer</mat-icon>
-                <span>Prep: {{ recipe.prepTime }}</span>
-                <mat-icon>timer</mat-icon>
-                <span>Cook: {{ recipe.cookTime }}</span>
-                <mat-icon>access_time</mat-icon>
-                <span>Total: {{ recipe.totalTime }}</span>
+<section class="content-below-header">
+
+    <body
+        [style.background]="'url(' + backgroundImageUrl + ') no-repeat center center fixed; filter: brightness(0.9);'">
+        <div class="recipe-container">
+            <div class="recipe-image">
+                <img [src]="selectedRecipe.imageUrl" alt="{{ selectedRecipe.title }}">
             </div>
+            <div class="recipe-details">
+                <div class="centered">
+                    <h2>{{ selectedRecipe.title }}</h2>
+                </div>
 
-            <h3>Ingredients</h3>
-            <ul>
-                <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
-            </ul>
+                <div class="selectedRecipe-info">
+                    <mat-icon>person</mat-icon>
+                    <span>Yield: {{ selectedRecipe.yield }} Person(s)</span>
+                    <mat-icon>timer</mat-icon>
+                    <span>Prep: {{ selectedRecipe.prepTime }} Minutes</span>
+                    <mat-icon>timer</mat-icon>
+                    <span>Cook: {{ selectedRecipe.cookTime }} Minutes</span>
+                    <mat-icon>access_time</mat-icon>
+                    <span>Total: {{ selectedRecipe.totalTime }} Minutes</span>
+                </div>
 
-            <h3>Instructions</h3>
-            <ol>
-                <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
-            </ol>
+                <br>
+                <br>
 
-            <h3>Tips</h3>
-            <p>{{ recipe.tips }}</p>
+                <!-- Ingredients -->
+                <div class="centered">
+                    <h3>Ingredients</h3>
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let ingredient of selectedRecipe.ingredients">
+                        {{ ingredient.ingredient }}
+                    </mat-list-item>
+                </mat-list>
+
+                <!-- Instructions -->
+                <div class="centered">
+                    <h3>Instructions</h3>
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let instruction of selectedRecipe.instructions">
+                        {{ instruction.instruction }}
+                    </mat-list-item>
+                </mat-list>
+
+                <!-- Tips -->
+                <div class="centered">
+                    <h3>Tips</h3>
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let tip of selectedRecipe.tips">
+                        {{ tip.tip }}
+                    </mat-list-item>
+                </mat-list>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
+</section>
 <app-footer></app-footer>

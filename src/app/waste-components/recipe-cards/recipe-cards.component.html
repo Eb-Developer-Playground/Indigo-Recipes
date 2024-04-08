@@ -1,0 +1,130 @@
+<body>
+    <app-header></app-header>
+
+    <div class="content-below-header">
+        <header class="header2">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search">
+                <button mat-button>
+                    <i class="fas fa-search"></i>Search </button>
+            </div>
+        </header>
+        <section>
+            <h5>
+                {{currentCuisine}} Cuisines
+            </h5>
+
+
+        </section>
+
+        <!-- Search Filter Buttons -->
+        <div class="filterarea">
+            <div class="filter-container">
+                <div>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onTimeFilter()">Time</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isTimeDropdownOpen }">
+                            <a href="#" *ngFor="let time of timeOptions" (click)="selectedTime(time.value)">{{
+                                time.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onPlaceFilter()">Place</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isPlaceDropdownOpen }">
+                            <a href="#" *ngFor="let place of placeOptions" (click)="selectedPlace(place.value)">{{
+                                place.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="onDietFilter()">Diet</button>
+                        <div class="dropdown-menu" [ngClass]="{ 'show': isDietDropdownOpen }">
+                            <a href="#" *ngFor="let diet of dietaryOptions" (click)="selectedDiet(diet.value)">{{
+                                diet.label
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- The recipe cards -->
+
+        <!-- Testing Ground -->
+        <div>
+            <div class="content-container">
+                <div>
+                    <div>
+                        <div class="card-row">
+                            <mat-card class="custom-card" *ngFor="let card of cards"
+                                [ngClass]="{ 'hovering': isBeingHovered(card.recipeId) }"
+                                (mouseenter)="onMouseEnter(card.recipeId)" (mouseleave)="onMouseLeave()">
+
+                                <div class="image-container">
+                                    <div [hidden]="!showRating" class="circle-container">
+                                        <button mat-icon-button class="top-right-button" (click)="onLike(card.title)">
+                                            <mat-icon>favorite_border</mat-icon>
+                                        </button>
+                                    </div>
+                                    <img [src]="card.imageUrl" alt="{{ card.title }}">
+                                </div>
+                                <br>
+                                <div class="mat-card-header">
+                                    <div (mouseenter)="hoverUnderline = true" (mouseleave)="hoverUnderline = false"
+                                        (click)="selectSingleRecipe(card.recipeId)">
+                                        <div class="mat-card-title"
+                                            [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.recipeId) }">
+                                            {{ card.title }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div [hidden]="!showRating" class="rating-container">
+                                    <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                        <mat-icon class="rating-star"
+                                            [ngClass]="{ 'filled': card.rating >= star }">star</mat-icon>
+                                    </ng-container>
+
+                                </div>
+
+                                <div class="button-container">
+                                    <button mat-icon-button (click)="commentsLookup(card.title)">
+                                        <mat-icon>comment</mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="onShare(card.title)">
+                                        <mat-icon>share</mat-icon>
+                                    </button>
+                                </div>
+
+                            </mat-card>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</body>

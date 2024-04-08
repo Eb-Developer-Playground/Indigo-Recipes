@@ -8,6 +8,10 @@
 // }
 
 // .left-section,
+section {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .right-section {
     flex: 1;
     display: flex;
@@ -109,6 +113,38 @@ main {
     // background: var(--red-to-pink-to-purple-vertical-gradient);
     background: white;
     margin-inline: 0.5rem;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+
+}
+
+.search-input {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    position: relative;
+    padding-right: 35px;
+}
+
+.search-button {
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-color: #fff;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    padding: 5px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 

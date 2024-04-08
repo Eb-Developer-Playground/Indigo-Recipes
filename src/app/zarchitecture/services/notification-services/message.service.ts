@@ -7,7 +7,7 @@ import { ElementRef, Injectable } from '@angular/core';
 export class MessageService {
 
   constructor(
-    private _snacbar: MatSnackBar, 
+    public _snacbar: MatSnackBar, 
     // private elementRef: ElementRef,
   ) { }
 
@@ -28,18 +28,6 @@ export class MessageService {
     });
   }
 
-  onWindowScroll(event: any) {
-    // const header = this.elementRef.nativeElement.querySelector('app-header');
-    // const contentBelowHeader = this.elementRef.nativeElement.querySelector('.content-below-header');
-
-    // if (contentBelowHeader) {
-    //   if (window.scrollY > 0) {
-    //     contentBelowHeader.style.position = 'relative'; // or 'static'
-    //   } else {
-    //     const headerHeight = header ? header.offsetHeight : 0;
-    //     contentBelowHeader.style.position = 'fixed';
-    //     contentBelowHeader.style.top = headerHeight + 'px';
-    //   }
-    // }
-  }
 }
+
+

@@ -4,6 +4,10 @@ $space-above-header: 4rem; // Set the space above the header
 
 //******************* TOP HEADER    *******************************************/
 
+section {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .header {
     // position: fixed;
     display: flex;
@@ -19,6 +23,8 @@ $space-above-header: 4rem; // Set the space above the header
     }
 
     .header-left {
+        cursor: pointer;
+
         .logo {
             max-width: 150px; // Set the maximum width for the logo
             height: auto; // Maintain aspect ratio
