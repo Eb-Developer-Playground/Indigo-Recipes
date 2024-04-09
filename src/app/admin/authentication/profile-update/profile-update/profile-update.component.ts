@@ -30,7 +30,6 @@ export class ProfileUpdateComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
     private authManService: AuthServiceService,
     private notificationManService: MessageService,
   ) {

@@ -4,60 +4,87 @@ import { MessageService } from './message.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+// Mock MatSnackBar
+jest.mock('@angular/material/snack-bar', () => ({
+  MatSnackBar: {
+    open: jest.fn()
+  }
+}));
+
 describe('MessageService', () => {
-  let service: MessageService;
-  let snackBar: MatSnackBar
+  let messageService: MessageService
+  let snackbarMock: MatSnackBar; 
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-      ]
-    });
-    service = TestBed.inject(MessageService);
+    // snackbarMock = {
+    //   open: jest.fn(), 
+    //   _openedSnackBarRef: {},
+      
+      
+      
+      
+      
+      
+      
+      
+    
+      
+      
+     
+
+    //  };
+    messageService = new MessageService(snackbarMock);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  afterEach(() => {
+    jest.clearAllMocks(); // Clear all mocks after each test
   });
 
-  it('should open snackbar with correct message, type and duration', () => {
-    const message = 'This is a test message';
+  it('should call snackbar open with correct parameters for danger type', () => {
+    const message = 'Danger Message';
     const type = 'snackbar-danger';
-    const duration = 1000; // Override default duration
+    const duration = 500;
 
-    // service.showNotificationMessage(message, type, duration);
+    messageService.showNotificationMessage(message, type, duration);
 
-    expect(service.showNotificationMessage(message, type, duration)).toHaveBeenCalledWith(
-      message,
-      'X',
-      {
-        duration,
-        horizontalPosition: service.horizontalPosition,
-        verticalPosition: service.verticalPosition,
-        panelClass: [type]
-      }
-    );
+    expect(snackbarMock.open).toHaveBeenCalledWith(message, 'X', {
+      duration,
+      horizontalPosition: messageService.horizontalPosition,
+      verticalPosition: messageService.verticalPosition,
+      panelClass: [type]
+    });
   });
 
-  // it('should use default duration when no duration provided', () => {
-  //   const message = 'This is another test message';
-  //   const type = 'snackbar-success';
+  it('should call snackbar open with correct parameters for success type', () => {
+    const message = 'Success Message';
+    const type = 'snackbar-success';
+    const duration = 500;
 
-  //   service.showNotificationMessage(message, type);
+    messageService.showNotificationMessage(message, type, duration);
 
-  //   expect(snackBar.open).toHaveBeenCalledWith(
-  //     message,
-  //     'X',
-  //     {
-  //       duration: 500, // Default duration
-  //       horizontalPosition: service.horizontalPosition,
-  //       verticalPosition: service.verticalPosition,
-  //       panelClass: [type]
-  //     }
-  //   );
-  // });
+    expect(snackbarMock.open).toHaveBeenCalledWith(message, 'X', {
+      duration,
+      horizontalPosition: messageService.horizontalPosition,
+      verticalPosition: messageService.verticalPosition,
+      panelClass: [type]
+    });
+  });
 
+  it('should call snackbar open with correct parameters for login-snackbar type', () => {
+    const message = 'Login Message';
+    const type = 'login-snackbar';
+    const duration = 500;
+
+    messageService.showNotificationMessage(message, type, duration);
+
+    expect(snackbarMock.open).toHaveBeenCalledWith(message, 'X', {
+      duration,
+      horizontalPosition: messageService.horizontalPosition,
+      verticalPosition: messageService.verticalPosition,
+      panelClass: [type]
+    });
+  });
 });
 
 

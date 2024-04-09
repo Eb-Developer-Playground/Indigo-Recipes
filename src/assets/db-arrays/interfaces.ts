@@ -23,6 +23,7 @@ export interface Recipe {
     isFavourited?: boolean;
     rating: number;
     imageUrl: string;
+    time: string;
     place: {
         value: string;
         label: string;
