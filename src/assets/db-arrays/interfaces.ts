@@ -15,6 +15,7 @@ export interface Recipe {
     recipeId: number;
     title: string;
     yield: number;
+    time: string;
     prepTime: number;
     cookTime: number;
     totalTime: number;

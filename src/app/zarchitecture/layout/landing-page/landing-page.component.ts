@@ -214,16 +214,17 @@ export class LandingPageComponent implements OnInit {
     searchTerm = searchTerm.toLowerCase().trim();
     return recipes.filter(recipe => {
       return (
-        (recipe.owner?.toLowerCase()?.includes(searchTerm) ||
-          recipe.title.toLowerCase().includes(searchTerm) ||
-          (recipe.place?.label?.toLowerCase()?.includes(searchTerm))
+        (
+          // recipe.owner?.toLowerCase()?.includes(searchTerm) ||
+          recipe.title.toLowerCase().includes(searchTerm) 
+          // (recipe.place?.label?.toLowerCase()?.includes(searchTerm))
         ));
     });
   }
 
   onSearch(): void {
-    console.log("Oncall");
     const currentSearchTerm = this.searchTerm.value;
+    console.log("Oncall", currentSearchTerm);
     this.allRecipes = this.searchRecipes(this.cardManServices.recipeSample, currentSearchTerm);
     this.recipes = this.allRecipes;
     console.log("Searched All Recipes", this.allRecipes);
