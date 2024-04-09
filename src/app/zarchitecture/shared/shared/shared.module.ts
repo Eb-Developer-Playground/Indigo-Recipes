@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -18,18 +18,28 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, 
-    MatFormField
+    CommonModule,
+    MatFormField,
+    MatInputModule, 
+    // MatFormFieldControl
+
   ],
   exports: [
+    // FormsModule,
     MatFormField,
     MatFormFieldModule,
-    // MatInputModule,
+    MatInputModule,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -48,7 +58,16 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatCheckboxModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatButtonToggleModule,    
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    // MatFormFieldControlModule
+    // MatFormFieldControl
+
+
   ]
 
 })

@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "private": true,
   "dependencies": {
@@ -21,20 +22,37 @@
     "@angular/router": "^17.1.0",
     "bootstrap": "^5.3.3",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.10.7",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.1",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.1.1",
     "@angular/cli": "^17.1.1",
     "@angular/compiler-cli": "^17.1.0",
-    "@types/jasmine": "~5.1.0",
-    "jasmine-core": "~5.1.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
+    "@babel/preset-typescript": "^7.24.1",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.0.3",
     "typescript": "~5.3.2"
+  },
+  "jest-config": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    }
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\src\\assets\\tests\\setup-jest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\node_modules\\",
+      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\dist\\"
+    ]
   }
 }

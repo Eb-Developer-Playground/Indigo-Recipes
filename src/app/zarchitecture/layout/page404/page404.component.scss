@@ -1,0 +1,44 @@
+// @import '../../../../assets/card';
+
+section {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+// .card {
+//     @include card
+// }
+
+.center-message {
+    text-align: center;
+    font-size: 2rem;
+    padding: 100px;
+    // padding: 20px
+}
+
+.center-button {
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 20px;
+}
+
+.lettering {
+    text-align: center;
+    padding: 20px;
+}
+
+// Add button
+.add-button {
+    padding: 5px 10px;
+    background-color: black;
+    border: 1px solid white;
+    border-color: black;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    padding: 5px;
+    // background-color: transparent;
+    cursor: pointer;
+}

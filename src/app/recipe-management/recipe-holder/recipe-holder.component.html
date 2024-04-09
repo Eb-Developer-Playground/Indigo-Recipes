@@ -1,0 +1,59 @@
+<!-- Testing Ground -->
+<div>
+    <div class="content-container">
+        <div>
+            <div>
+                <div class="card-row">
+                    <mat-card class="custom-card" *ngFor="let card of cards"
+                        [ngClass]="{ 'hovering': isBeingHovered(card.recipeId) }"
+                        (mouseenter)="onMouseEnter(card.recipeId)" (mouseleave)="onMouseLeave()">
+
+                        <div class="image-container">
+                            <div [hidden]="!showRating" class="circle-container">
+                                <button mat-icon-button class="top-right-button" (click)="onLike(card.title)">
+                                    <mat-icon>favorite_border</mat-icon>
+                                </button>
+                            </div>
+                            <img [src]="card.imageUrl" alt="{{ card.title }}">
+                        </div>
+                        <br>
+                        <div class="mat-card-header">
+                            <div (mouseenter)="hoverUnderline = true" (mouseleave)="hoverUnderline = false"
+                                (click)="onSelectSingleRecipe(card.recipeId)">
+                                <div class="mat-card-title"
+                                    [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.recipeId) }">
+                                    {{ card.title }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div [hidden]="!showRating" class="rating-header">
+                            Rating: {{ card.rating}}/5
+                        </div>
+                        <div [hidden]="!showRating" class="rating-container">
+                            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                <mat-icon class="rating-star"
+                                    [ngClass]="{ 'filled': card.rating >= star }">star</mat-icon>
+                            </ng-container>
+                        </div>
+
+                        <div class="button-container">
+                            <button mat-icon-button (click)="callCommentsDialog(card.title)">
+                                <mat-icon>comment</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="onShare(card.title)">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="onEdit(card.title)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+
+                    </mat-card>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

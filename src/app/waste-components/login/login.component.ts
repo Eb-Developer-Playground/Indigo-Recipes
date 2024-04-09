@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { SharedModule } from '../../shared/shared/shared.module';
-import { MessageService } from '../../services/notification-services/message.service';
+import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
+import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,18 @@ export class LoginComponent {
   /********************************************** Variables **********************************************/
   loginForm!: FormGroup;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  loading = false;
+  submitted = false;
+  // loginForm: FormGroup;
+  error = '';
+  hide = true;
+  dataResponse: any;
 
   /********************************************* Dependency Injection ************************************/
   constructor(
     private notificationMan: MessageService,
     private _fb: FormBuilder,
+    private router: Router,
   ) {
 
   }
@@ -41,13 +49,18 @@ export class LoginComponent {
   generateLoginForm(): void {
     this.loginForm = this._fb.group({
       email: ['', [Validators.email]],
-      // username: ['', [Validators.required]],
+      username: ['',],
       password: ['', Validators.required]
     });
   }
 
-  login(): void {
-    this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success')
+  onLogin(): void {
+    if (this.loginForm.value.email == 'sw.muriu@gmail.com' && this.loginForm.value.password == 1234) {
+      this.router.navigate(['/home']);
+      this.notificationMan.showNotificationMessage("Login Successfull!!", 'snackbar-success');
+    } else {
+      this.notificationMan.showNotificationMessage("Username or password is incorrect", "snackbar-danger");
+    }
   }
 
   loginWithGoogle(): void {
@@ -62,5 +75,6 @@ export class LoginComponent {
   register(): void {
 
   }
+
 
 }

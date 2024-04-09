@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '/node_modules/bootstrap/dist/css/bootstrap.min.css'; */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./assets/_card.scss";
+
+
+.card1 {
+    @include card1
+}
+
+
+
+// @mixin generate-columns($columns) {
+//     $breakpoints: (xl: 1200px,
+//             lg: 992px,
+//             md: 768px,
+//             sm: 576px);
+
+//     @each $breakpoint,
+//     $max-width in $breakpoints {
+//         @media (max-width: $max-width) {
+//             @for $i from 1 through $columns {
+//                 .col-#{$breakpoint}-#{$i} {
+//                     flex: 0 0 percentage(1 / $columns * $i);
+//                     max-width: percentage(1 / $columns * $i);
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @include generate-columns($columns-xl);

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { Router } from '@angular/router';
+import { usersArray } from '../../../../assets/db-arrays/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +12,53 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  currentUserName!: string | null;
+  currentUserEmail!: string | null;
 
   constructor(
     private router: Router,
+
   ) { }
-  
-  addButton() {
-    const route = `/add`;
+
+
+  ngOnInit(): void {
+    this.currentUserName = sessionStorage.getItem('username');
+    this.currentUserEmail = sessionStorage.getItem('email');
+  }
+
+
+  /**** Adding a recipe */
+  addRecipe(): void {
+    console.log("Adding Recipe");
+    let route = 'manage/recipe';
+    this.router.navigate([route]);
+  }
+
+  /**** Navigate back to home */
+  navigateToHome(): void {
+    let route = '/home'
+    this.router.navigate([route]);
+    console.log("Remaining Users::", usersArray);
+  }
+
+  /**** Logging out */
+  onLogout(): void {
+    const route = '/#';
+    sessionStorage.removeItem("username");
+    this.router.navigate([route]);
+    console.log("Remaining Users::", usersArray);
+
+  }
+
+  updateProfile():void  {
+    let route = '/profile/update';
     this.router.navigate([route]);
   }
 
 }
+
+
+
+

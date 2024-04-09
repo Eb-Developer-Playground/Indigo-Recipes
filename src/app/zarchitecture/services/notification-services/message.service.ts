@@ -1,5 +1,5 @@
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class MessageService {
 
   constructor(
-    private _snacbar: MatSnackBar
+    public _snacbar: MatSnackBar, 
+    // private elementRef: ElementRef,
   ) { }
 
   horizontalPosition: MatSnackBarHorizontalPosition = "end";
@@ -26,4 +27,7 @@ export class MessageService {
       panelClass: [type]
     });
   }
+
 }
+
+
