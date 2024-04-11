@@ -76,40 +76,12 @@ describe('SigninComponent', () => {
     }); 
     component.onLogin();
 
-    expect(spyOnAuthService).toHaveBeenCalledWith('samsicker', 'pass123');
+    expect(spyOnAuthService).toHaveBeenCalledWith(component.loginForm.value.usernameOrEmail, component.loginForm.value.password);
     expect(notificationMan.showNotificationMessage).toHaveBeenCalledWith('Login successful', 'snackbar-success');
     expect(router.navigate).toHaveBeenCalledWith(['/home']);
     spyOnAuthService.mockRestore();
   })
   
 
-  // it('should init sign up form', () => {
-  //   component.generateSignUpForm();
-  //   expect(fb.group).toHaveBeenCalledWith({
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     username: ['', Validators.required],
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: ['', Validators.required]
-  //   })
-  // })
-
-  // it('should create login form with usernameOrEmail and password controls', () => {
-  //   component.generateLoginForm();
-  //   expect(component.loginForm).FormGroup; // Assert it's a FormGroup
-
-  //   const usernameOrEmailControl = component.loginForm.get('usernameOrEmail');
-  //   const passwordControl = component.loginForm.get('password');
-
-  //   expect(usernameOrEmailControl).not.toBeNull();
-  //   expect(passwordControl).not.toBeNull();
-
-  //   expect(usernameOrEmailControl.value).toBe('');
-  //   expect(passwordControl.value).toBe('');
-
-  //   // Optional: Test validators
-  //   expect(usernameOrEmailControl.validator).toContainEqual(Validators.required);
-  //   expect(passwordControl.validator).toContainEqual(Validators.required);
-  // });
+ 
 });
