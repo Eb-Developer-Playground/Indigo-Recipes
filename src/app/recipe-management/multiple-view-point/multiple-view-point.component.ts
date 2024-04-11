@@ -104,7 +104,7 @@ export class MultipleViewPointComponent implements OnInit {
 
   selectedTime(item: string): void {
     this.timeSelected = item;
-    this.cards = this.searchByTime(this.allRecipes, item);
+    this.cards = this.searchRecipesByTime(this.allRecipes, item);
     console.log("SELECTED TIME", item);
     this.onTimeFilter();
   }
