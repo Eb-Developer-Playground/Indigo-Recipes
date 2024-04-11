@@ -106,7 +106,7 @@ export class CardManagementService {
       recipeId: 20,
       prepTime: 20,
       cookTime: 30,
-      time: "Brunch",
+      
       totalTime: 50,
       imageUrl: './../../../../assets/political.png',
       place: {
@@ -148,7 +148,7 @@ export class CardManagementService {
       rating: 2,
       time: "Dinner",
       recipeId: 2,
-      time: "Lunch",
+      
       prepTime: 15,
       cookTime: 40,
       totalTime: 55,
@@ -193,7 +193,7 @@ export class CardManagementService {
       rating: 1,
       recipeId: 12,
       prepTime: 10,
-      time: "Dinner",
+      
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -237,7 +237,7 @@ export class CardManagementService {
       time: "Breakfast",
       recipeId: 21,
       prepTime: 10,
-      time: "Breakfast",
+      
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -282,7 +282,7 @@ export class CardManagementService {
       time: "Brunch",
       recipeId: 22,
       prepTime: 10,
-      time: "Brunch",
+      
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -325,7 +325,7 @@ export class CardManagementService {
       time: "Lunch",
       rating: 5,
       recipeId: 23,
-      time: "Lunch",
+      
       prepTime: 10,
       cookTime: 20,
       totalTime: 30,
@@ -370,7 +370,7 @@ export class CardManagementService {
       time: "Dinner",
       recipeId: 24,
       prepTime: 10,
-      time: "Dinner",
+      
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',

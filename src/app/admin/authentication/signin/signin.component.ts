@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { MessageService } from '../../../zarchitecture/services/notification-services/message.service';
 import { SharedModule } from '../../../zarchitecture/shared/shared/shared.module';
 import { AuthServiceService } from '../../user/auth-services/auth-service.service';
@@ -26,7 +26,8 @@ export class SigninComponent {
   pageFunction: string = "";
   error = '';
   hide = true;
-  dataResponse: any;
+  dataResponse: any
+  
 
   /********************************************* Dependency Injection ************************************/
   constructor(
@@ -74,18 +75,40 @@ export class SigninComponent {
   }
 
   /**** Loggin In */
+  // onLogin(): void {
+  //   if (this.loginForm.valid) {
+  //     const isUserLoggedIn = this.authManService.isUserLoggedIn(this.loginForm.value.usernameOrEmail, this.loginForm.value.password) ? true : false;
+  //     if (isUserLoggedIn) {
+  //       let route = '/home';
+  //       this.router.navigate([route]);
+  //       this.notificationMan.showNotificationMessage("Login successful", "snackbar-success");
+  //     } else {
+  //       this.notificationMan.showNotificationMessage("Invalid credentials", "snackbar-danger");
+  //     }
+  //   }
+  // };
+
   onLogin(): void {
-    if (this.loginForm.valid) {
-      const isUserLoggedIn = this.authManService.isUserLoggedIn(this.loginForm.value.usernameOrEmail, this.loginForm.value.password) ? true : false;
-      if (isUserLoggedIn) {
-        let route = '/home';
-        this.router.navigate([route]);
-        this.notificationMan.showNotificationMessage("Login successful", "snackbar-success");
-      } else {
-        this.notificationMan.showNotificationMessage("Invalid credentials", "snackbar-danger");
-      }
-    }
-  };
+    this.authManService
+      .logInUser(this.signupForm.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (!!res && res.statusCode == 200) {
+            sessionStorage.setItem('username', res.entity.returnedUser.username);
+            let route = `/home`;
+            this.router.navigate([route]);
+            this.notificationMan.showNotificationMessage(res.message, "login-snackbar");
+          } else {
+            this.notificationMan.showNotificationMessage(res.message, "login-snackbar");
+          }
+        }, 
+        error: (err) => {
+          this.notificationMan.showNotificationMessage("Server Error!!", "snackbar-danger");
+        }, 
+        complete: ()=> {}
+    })
+  }
 
   /**** Sign in with gmail */
   loginWithGmail(): void {
@@ -98,29 +121,48 @@ export class SigninComponent {
   };
 
   /**** Signing Up User */
-  onSignup(): void {
-    if (this.signupForm.valid && this.signupForm.value.password === this.signupForm.value.confirmPassword) {
-      console.log("Signing up user::", this.signupForm.value);
-      const user = this.signupForm.value;
-      this.authManService
-        .registerUser(user);
-      console.log('User registered successfully:');
-      sessionStorage.setItem('username', user.username);
-      sessionStorage.setItem('email', user.email);
-      let route = '/home';
-      this.router.navigate([route]);
-      this.notificationMan.showNotificationMessage("You have been successfully registered", "snackbar-success");
-      console.log("CREATED USER:::", this.signupForm.value);
-
-    }
-    else if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
-      this.notificationMan.showNotificationMessage("Passwords do not match.", "snackbar-danger");
-    }
-  }
-
   // onSignup(): void {
+  //   if (this.signupForm.valid && this.signupForm.value.password === this.signupForm.value.confirmPassword) {
+  //     console.log("Signing up user::", this.signupForm.value);
+  //     const user = this.signupForm.value;
+  //     this.authManService
+  //       .registerUser(user);
+  //     console.log('User registered successfully:');
+  //     sessionStorage.setItem('username', user.username);
+  //     sessionStorage.setItem('email', user.email);
+  //     let route = '/home';
+  //     this.router.navigate([route]);
+  //     this.notificationMan.showNotificationMessage("You have been successfully registered", "snackbar-success");
+  //     console.log("CREATED USER:::", this.signupForm.value);
 
+  //   }
+  //   else if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
+  //     this.notificationMan.showNotificationMessage("Passwords do not match.", "snackbar-danger");
+  //   }
   // }
+
+  onSignup(): void {
+    this.authManService
+      .registerUser(this.signupForm.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            const username = res.entity.username;
+            const email = res.entity.email;
+            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('username', username);
+            this.notificationMan.showNotificationMessage(res.message, "snackbar-success");
+          } else {
+            this.notificationMan.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this.notificationMan.showNotificationMessage(err.message, "snackbar-danger");
+        },
+        complete: () => { }
+      });
+  }
 
 
   /**Registration Point */

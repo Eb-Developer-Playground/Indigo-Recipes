@@ -20,13 +20,13 @@ export class AuthServiceService {
   ) { }
 
   /**** User registration */
-  registerUser(user: User): string {
-    const userId = Math.random() * 1000;
-    user.userId = userId;
-    this.users.push(user);
-    console.log("USERS PRESENT::", this.users);
-    return `You have been successfully registered`;
-  }
+  // registerUser(user: User): string {
+  //   const userId = Math.random() * 1000;
+  //   user.userId = userId;
+  //   this.users.push(user);
+  //   console.log("USERS PRESENT::", this.users);
+  //   return `You have been successfully registered`;
+  // }
 
   isUserLoggedIn(usernameOrEmail: string, password: string): boolean {
     for (const user of this.users) {
@@ -44,10 +44,18 @@ export class AuthServiceService {
 
   /******************************************************************************************************** */
   //Server Side Services
-  // registerUser(userData: User): Observable<User[]>{
-  //   const userUrl = `${this.serverUrl}register/`;
-  //   return this._http.post<any>(userUrl, userData);
-  // }
+  registerUser(userData: User): Observable<any>{
+    const userUrl = `${this.serverUrl}register/`;
+    return this._http.post<any>(userUrl, userData);
+  }
+
+  //Login Uer
+  logInUser(loginData: any): Observable<any> {
+    const loginUrl = `${this.serverUrl}/signIn`;
+    return this._http.post<any[]>(loginUrl, loginData, {});
+  }
+    
+  
 
 
 
