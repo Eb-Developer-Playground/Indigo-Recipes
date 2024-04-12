@@ -44,8 +44,9 @@ export class AuthServiceService {
 
   /******************************************************************************************************** */
   //Server Side Services
-  registerUser(userData: User): Observable<any>{
-    const userUrl = `${this.serverUrl}register/`;
+  registerUser(userData: User): Observable<any> {
+    console.log("USER DATA:::", userData)
+    const userUrl = `${this.serverUrl}/register`;
     return this._http.post<any>(userUrl, userData);
   }
 
@@ -54,8 +55,15 @@ export class AuthServiceService {
     const loginUrl = `${this.serverUrl}/signIn`;
     return this._http.post<any[]>(loginUrl, loginData, {});
   }
-    
-  
+
+  //Fetch All users
+  fetchAll(): Observable<any> {
+    const url = `${this.serverUrl}/getAll`;
+    return this._http.get<any[]>(url);
+  }
+
+
+
 
 
 

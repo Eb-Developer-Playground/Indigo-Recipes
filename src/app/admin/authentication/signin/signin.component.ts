@@ -95,7 +95,7 @@ export class SigninComponent {
       .subscribe({
         next: (res) => {
           if (!!res && res.statusCode == 200) {
-            sessionStorage.setItem('username', res.entity.returnedUser.username);
+            sessionStorage.setItem('username', res.entity.username);
             let route = `/home`;
             this.router.navigate([route]);
             this.notificationMan.showNotificationMessage(res.message, "login-snackbar");
@@ -152,6 +152,8 @@ export class SigninComponent {
             const email = res.entity.email;
             sessionStorage.setItem('email', email);
             sessionStorage.setItem('username', username);
+                let route = '/home';
+                this.router.navigate([route]);
             this.notificationMan.showNotificationMessage(res.message, "snackbar-success");
           } else {
             this.notificationMan.showNotificationMessage(res.message, "snackbar-danger");
@@ -160,7 +162,9 @@ export class SigninComponent {
         error: (err) => {
           this.notificationMan.showNotificationMessage(err.message, "snackbar-danger");
         },
-        complete: () => { }
+        complete: () => { 
+          this.fetchAllUsers();
+        }
       });
   }
 
@@ -175,6 +179,22 @@ export class SigninComponent {
   /**** Back To Login */
   backToLogin(): void {
     this.pageFunction = "Login";
+  }
+
+
+  fetchAllUsers(): void {
+    this.authManService
+      .fetchAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.notificationMan.showNotificationMessage(res.message, "snackbar-success");
+          console.log("OUR USERS:::", res.entity);
+        }, 
+        error: (err) => {
+          this.notificationMan.showNotificationMessage(err.message, "snackbar-danger");
+        }
+    })
   }
 
 
