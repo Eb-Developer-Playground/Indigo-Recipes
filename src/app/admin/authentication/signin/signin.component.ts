@@ -5,6 +5,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { MessageService } from '../../../zarchitecture/services/notification-services/message.service';
 import { SharedModule } from '../../../zarchitecture/shared/shared/shared.module';
 import { AuthServiceService } from '../../user/auth-services/auth-service.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -89,8 +90,10 @@ export class SigninComponent {
   // };
 
   onLogin(): void {
+    const params = new HttpParams()
+      .set("userNameorEmail", this.loginForm.value.userNameOrEmail)
     this.authManService
-      .logInUser(this.signupForm.value)
+      .logInUser(this.loginForm.value, params)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
@@ -142,6 +145,7 @@ export class SigninComponent {
   // }
 
   onSignup(): void {
+    
     this.authManService
       .registerUser(this.signupForm.value)
       .pipe(takeUntil(this.destroy$))
@@ -163,7 +167,7 @@ export class SigninComponent {
           this.notificationMan.showNotificationMessage(err.message, "snackbar-danger");
         },
         complete: () => { 
-          this.fetchAllUsers();
+          // this.fetchAllUsers();
         }
       });
   }

@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { HeadersInterceptorService } from './zarchitecture/services/interceptors/headers-interceptor.service';
 
 
 @NgModule({
@@ -28,7 +29,12 @@ import { FormsModule } from '@angular/forms';
 
   ],
   providers: [
-    HttpClientModule
+    HttpClientModule, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeadersInterceptorService,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

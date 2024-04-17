@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../../../assets/db-arrays/interfaces';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment/environment';
-import { HttpClient } from '@angular/common/http';
-// import { v4 as uuidv4 } from 'uuid';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class AuthServiceService {
   /******************************************************************************************************** */
-
+  // headers = new HttpHeaders().set("content-Type", "application/json");
   serverUrl: String = `${environment.baseUrl}/ap1/v1/users`;
 
   loggedInUser!: string;
@@ -34,7 +33,7 @@ export class AuthServiceService {
         console.log('User logged in successfully:', user);
         this.loggedInUser = user.username;
         sessionStorage.setItem('username', this.loggedInUser);
-        sessionStorage.setItem('email', user.email);
+        sessionStorage.setItem('email', user.email, );
         return true;
       }
     }
@@ -51,9 +50,9 @@ export class AuthServiceService {
   }
 
   //Login Uer
-  logInUser(loginData: any): Observable<any> {
+  logInUser(loginData: any, params: any ): Observable<any> {
     const loginUrl = `${this.serverUrl}/signIn`;
-    return this._http.post<any[]>(loginUrl, loginData, {});
+    return this._http.post<any[]>(loginUrl, loginData, { params: params });
   }
 
   //Fetch All users

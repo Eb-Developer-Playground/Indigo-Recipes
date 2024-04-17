@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   /**** Logging out */
   onLogout(): void {
     const route = '/#';
-    sessionStorage.removeItem("username");
+    sessionStorage.clear();
     this.router.navigate([route]);
     console.log("Remaining Users::", usersArray);
 
