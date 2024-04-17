@@ -1,37 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environment/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardManagementService {
 
+
+  serverUrl: String = `${environment.baseUrl}/ap1/v1/recipes`;
+
   private recipes: Recipe[] = [];
   username: string | null;
   filteredPlace: any;
 
-  constructor() {
+  constructor(
+    private _http: HttpClient,
+  ) {
     this.username = localStorage.getItem('username');
   }
 
 
   /********* Post a new recipe */
-  postNewRecipe(recipe: Recipe): void {
-    const newId = Math.random() * 1000;
-    recipe.recipeId = newId;
-    recipe.owner = this.username;
-    recipe.isFavourited = false;
-    const newRecipes: Recipe[] = [...this.recipes];
-    newRecipes.push(recipe);
-    for (let recipeItem of this.recipeSample) {
-      newRecipes.push(recipeItem);
-    }
+  // postNewRecipe(recipe: Recipe): void {
+  //   const newId = Math.random() * 1000;
+  //   recipe.recipeId = newId;
+  //   recipe.owner = this.username;
+  //   recipe.isFavourited = false;
+  //   const newRecipes: Recipe[] = [...this.recipes];
+  //   newRecipes.push(recipe);
+  //   for (let recipeItem of this.recipeSample) {
+  //     newRecipes.push(recipeItem);
+  //   }
 
-    this.recipes = newRecipes
+  //   this.recipes = newRecipes
 
-    console.log("Updated recipes array:", newRecipes);
+  //   console.log("Updated recipes array:", newRecipes);
 
-  }
+  // }
 
   /***** Fetch based on cuisine */
   getCuisineRecipes(placeLabel: string): void {
@@ -48,6 +56,16 @@ export class CardManagementService {
 
 
 
+  /***********************************************************************************************************
+   * Server integration
+   */
+  postNewRecipe(recipeDetails: Recipe): Observable<any>{
+    console.log("RECIPE DETAILSSSS:::", recipeDetails);    
+    const url = `${this.serverUrl}/post`;
+    return this._http.post<any>(url, recipeDetails);
+  }
+
+  //
 
   /***********************************************************************************************************
    * Sample Recipes
@@ -106,7 +124,7 @@ export class CardManagementService {
       recipeId: 20,
       prepTime: 20,
       cookTime: 30,
-      
+
       totalTime: 50,
       imageUrl: './../../../../assets/political.png',
       place: {
@@ -148,7 +166,7 @@ export class CardManagementService {
       rating: 2,
       time: "Dinner",
       recipeId: 2,
-      
+
       prepTime: 15,
       cookTime: 40,
       totalTime: 55,
@@ -193,7 +211,7 @@ export class CardManagementService {
       rating: 1,
       recipeId: 12,
       prepTime: 10,
-      
+
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -237,7 +255,7 @@ export class CardManagementService {
       time: "Breakfast",
       recipeId: 21,
       prepTime: 10,
-      
+
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -282,7 +300,7 @@ export class CardManagementService {
       time: "Brunch",
       recipeId: 22,
       prepTime: 10,
-      
+
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',
@@ -325,7 +343,7 @@ export class CardManagementService {
       time: "Lunch",
       rating: 5,
       recipeId: 23,
-      
+
       prepTime: 10,
       cookTime: 20,
       totalTime: 30,
@@ -370,7 +388,7 @@ export class CardManagementService {
       time: "Dinner",
       recipeId: 24,
       prepTime: 10,
-      
+
       cookTime: 20,
       totalTime: 30,
       imageUrl: './../../../../assets/political.png',

@@ -3,7 +3,6 @@ import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
 import { FooterComponent } from '../footer/footer.component';
-import { RecipeCardsComponent } from '../../../waste-components/recipe-cards/recipe-cards.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
@@ -24,7 +23,6 @@ import { FormControl } from '@angular/forms';
     SharedModule,
     HeaderComponent,
     FooterComponent,
-    RecipeCardsComponent,
     RecipeHolderComponent,
   ]
 })

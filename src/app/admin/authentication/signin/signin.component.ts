@@ -58,7 +58,7 @@ export class SigninComponent {
   /**Form Management */
   generateLoginForm(): void {
     this.loginForm = this._fb.group({
-      usernameOrEmail: ['', [Validators.required]],
+      userNameOrEmail: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -68,7 +68,7 @@ export class SigninComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
@@ -95,7 +95,7 @@ export class SigninComponent {
       .subscribe({
         next: (res) => {
           if (!!res && res.statusCode == 200) {
-            sessionStorage.setItem('username', res.entity.username);
+            sessionStorage.setItem('username', res.entity.userName);
             let route = `/home`;
             this.router.navigate([route]);
             this.notificationMan.showNotificationMessage(res.message, "login-snackbar");
@@ -128,7 +128,7 @@ export class SigninComponent {
   //     this.authManService
   //       .registerUser(user);
   //     console.log('User registered successfully:');
-  //     sessionStorage.setItem('username', user.username);
+  //     sessionStorage.setItem('username', user.userName);
   //     sessionStorage.setItem('email', user.email);
   //     let route = '/home';
   //     this.router.navigate([route]);
@@ -148,7 +148,7 @@ export class SigninComponent {
       .subscribe({
         next: (res) => {
           if (res.statusCode == 200) {
-            const username = res.entity.username;
+            const username = res.entity.userName;
             const email = res.entity.email;
             sessionStorage.setItem('email', email);
             sessionStorage.setItem('username', username);

@@ -4,7 +4,6 @@ import { HeaderComponent } from '../../../../zarchitecture/layout/header/header.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../../../assets/db-arrays/interfaces';
-import { UserService } from '../../../user/data/services/user.service';
 import { AuthServiceService } from '../../../user/auth-services/auth-service.service';
 import { MessageService } from '../../../../zarchitecture/services/notification-services/message.service';
 
@@ -53,7 +52,7 @@ export class ProfileUpdateComponent implements OnInit {
       firstName: [this.currentUser.firstName, Validators.required],
       lastName: [this.currentUser.lastName, Validators.required],
       email: [this.currentUser.email, [Validators.required, Validators.email]],
-      username: [this.currentUser.username, Validators.required],
+      userName: [this.currentUser.userName, Validators.required],
       oldPassword: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]

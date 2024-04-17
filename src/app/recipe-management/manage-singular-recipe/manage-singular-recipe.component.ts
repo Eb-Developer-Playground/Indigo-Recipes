@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
@@ -7,6 +7,7 @@ import { Option, Recipe } from '../../../assets/db-arrays/interfaces';
 import { CardManagementService } from '../aa-data/services/card-management.service';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-manage-singular-recipe',
@@ -19,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './manage-singular-recipe.component.html',
   styleUrl: './manage-singular-recipe.component.scss'
 })
-export class ManageSingularRecipeComponent implements OnInit {
+export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
   /**** Variable Declaration */
   recipeDetailsForm!: FormGroup;
   ingredientsForm: FormGroup;
@@ -33,12 +34,15 @@ export class ManageSingularRecipeComponent implements OnInit {
   tipsData: any;
   instructionsData: any;
   existingRecipes: any;
+  detroy$: Subject<any> = new Subject<boolean>();
 
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
     { value: 'african', label: 'African' },
     { value: 'italian', label: 'Italian' },
   ];
+
+  
 
   /**** Dependency Injection */
   constructor(
@@ -112,8 +116,11 @@ export class ManageSingularRecipeComponent implements OnInit {
         }
       })
     }
+  }
 
-
+  ngOnDestroy(): void {
+    this.detroy$.next(true);
+    this.detroy$.complete();
   }
 
 
@@ -200,25 +207,26 @@ export class ManageSingularRecipeComponent implements OnInit {
 
   /**** Form Submission */
 
-  onSubmit(): void {
-    this.patchNestedArrays();
-    if (this.pageFunction == 'Add') {
-      console.log("RecipeDetails:::", this.recipeDetailsForm.value);
-      this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
-      this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
-      this.router.navigate(['/home']);
-    } else {
-      const updatedRecipe = this.recipeDetailsForm.value;
-      this.existingRecipes = this.cardManService.recipeSample;
-      const updatedRecipesArray = this.existingRecipes.map((recipe: Recipe) => recipe == this.formData ? {
-        ...updatedRecipe
-      } : recipe);
-      console.log("Existing Recipes", this.existingRecipes);
-      console.log("Updated Recipes", updatedRecipesArray);
-      this.existingRecipes = updatedRecipesArray;
-    }
+  // onSubmit(): void {
+  //   this.patchNestedArrays();
+  //   if (this.pageFunction == 'Add') {
+  //     console.log("RecipeDetails:::", this.recipeDetailsForm.value);
+  //     this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
+  //     this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
+  //     this.router.navigate(['/home']);
+  //   } else {
+  //     const updatedRecipe = this.recipeDetailsForm.value;
+  //     this.existingRecipes = this.cardManService.recipeSample;
+  //     const updatedRecipesArray = this.existingRecipes.map((recipe: Recipe) => recipe == this.formData ? {
+  //       ...updatedRecipe
+  //     } : recipe);
+  //     console.log("Existing Recipes", this.existingRecipes);
+  //     console.log("Updated Recipes", updatedRecipesArray);
+  //     this.existingRecipes = updatedRecipesArray;
+  //   }
 
-  }
+  // }
+
 
   patchNestedArrays() {
     this.recipeDetailsForm.value.ingredients.push(this.ingredientsForm.value);
@@ -250,7 +258,7 @@ export class ManageSingularRecipeComponent implements OnInit {
       });
     }
 
-    //Finally fucking works!!!!!, now for the others. 
+     
     if (this.instructionsData && this.instructionsData.length > 0) {
       this.instructionsData.forEach((insrtructionObj: any) => {
         const instructionValue = insrtructionObj.instruction;
@@ -263,6 +271,39 @@ export class ManageSingularRecipeComponent implements OnInit {
         const tipsValue = tipsObj.tip;
         this.tipsControls.push(this.fb.control(tipsValue, Validators.required));
       });
+    }
+  }
+
+
+
+/***********************************************************************************************************************
+ * Server side integration
+ */
+  
+  onSubmit(): void {
+    this.patchNestedArrays();
+
+    if (this.pageFunction == "Add") {
+      this.cardManService
+        .postNewRecipe(this.recipeDetailsForm.value)
+        .pipe(takeUntil(this.detroy$))
+        .subscribe({
+          next: (res) => {
+            console.log("DATA SENT", this.recipeDetailsForm.value)
+            console.log("RES", res);
+            if (res.statusCode == 200) {
+              this.notificationManService.showNotificationMessage(res.message, "snackbar-success");
+              this.router.navigate(['/home']);
+            }
+            else {
+              this.notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+             }
+          }, 
+          error: (err) => {
+            this.notificationManService.showNotificationMessage(err.message, "snackbar-danger");
+          }
+      })
+
     }
   }
 }
