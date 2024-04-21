@@ -13,6 +13,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';
 import Swal from 'sweetalert2';
 import { FormControl } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
+import { AuthServiceService } from '../../../admin/user/auth-services/auth-service.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -30,13 +33,14 @@ export class LandingPageComponent implements OnInit {
 
   /********************************************** Variables **********************************************/
   showRating = true;
-  username: string | null;
-  favoriteRecipes: any;
-  myRecipes: any;
-  newRecipes: any;
-  allRecipes: any;
+  username: string;
+  favoriteRecipes: [] = [];
+  myRecipes: [] = [];
+  newRecipes: [] = [];
+  allRecipes: [] = [];
   recipes: Recipe[] = [];
   searchTerm = new FormControl('');
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
 
   /********************************************* Dependency Injection ************************************/
@@ -45,10 +49,10 @@ export class LandingPageComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private cardManServices: CardManagementService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authManService: AuthServiceService
   ) {
-    this.username = sessionStorage.getItem('username');
-
+    this.username = this.authManService.loggedInUser
   }
 
 
@@ -56,10 +60,16 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
     this.onSearch();
     /**** Fetching Recipes */
-    this.favoriteRecipes = this.findRecipeByOwnerAndFavorited(this.allRecipes, this.username, true);
-    this.myRecipes = this.findRecipesByOwner(this.allRecipes, this.username);
-    this.newRecipes = this.fetchLastFourRecipes(this.allRecipes);
+    this.getAllRecipes();
+    this.getFavoriteRecipes();
+    this.getMyRecipes();
+    this.getNewRecipes();
 
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 
@@ -77,31 +87,6 @@ export class LandingPageComponent implements OnInit {
     });
 
 
-  }
-
-
-  /******* Fetching favourite recipes */
-  findRecipeByOwnerAndFavorited(recipes: Recipe[], owner: string | null, isFavourited: boolean): Recipe[] {
-    return recipes.filter(recipe => recipe.owner === owner && recipe.isFavourited === isFavourited);
-  }
-
-  /**** Fetching My Recipes */
-  findRecipesByOwner(recipes: Recipe[], owner: string | null): Recipe[] {
-    return recipes.filter(recipe => recipe.owner === owner);
-  }
-
-  /****  Fetching new recipes (Last 4 recipes) */
-  fetchLastFourRecipes(recipes: Recipe[]): Recipe[] {
-    const numOfRecipes = recipes.length;
-    return numOfRecipes >= 4 ? recipes.slice(-4) : recipes;
-  }
-
-  /**** Listening for the changing of tabs */
-  onTabChange(event: Event) {
-    if (event instanceof MatTabChangeEvent) {
-      const selectedTabLabel = event.tab.textLabel; // Get the label of ya selected tab
-      console.log('Selected tab label:', selectedTabLabel);
-    }
   }
 
   /************************************* Dummy Component Functions ***********************************************/
@@ -214,7 +199,7 @@ export class LandingPageComponent implements OnInit {
       return (
         (
           // recipe.owner?.toLowerCase()?.includes(searchTerm) ||
-          recipe.title.toLowerCase().includes(searchTerm) 
+          recipe.title.toLowerCase().includes(searchTerm)
           // (recipe.place?.label?.toLowerCase()?.includes(searchTerm))
         ));
     });
@@ -223,11 +208,107 @@ export class LandingPageComponent implements OnInit {
   onSearch(): void {
     const currentSearchTerm = this.searchTerm.value;
     console.log("Oncall", currentSearchTerm);
-    this.allRecipes = this.searchRecipes(this.cardManServices.recipeSample, currentSearchTerm);
+    // this.allRecipes = this.searchRecipes(this.cardManServices.recipeSample, currentSearchTerm);
     this.recipes = this.allRecipes;
     console.log("Searched All Recipes", this.allRecipes);
 
   };
+
+
+  /*****************************************************************************************************************
+ * Server-side Integration
+ */
+
+  //Fetching Favorite Recipes
+  getFavoriteRecipes(): void {
+    const params = new HttpParams()
+      .set('username', this.username);
+
+    this.cardManServices
+      .fetchFavRecipes()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            this.favoriteRecipes = res.entity;
+            this._notificationManService.showNotificationMessage(res.message, "snackbar-success");
+          } else {
+            this._notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this._notificationManService.showNotificationMessage("server-error!!", "snackbar-danger");
+        },
+        complete: () => { }
+      })
+  }
+
+  //Fetch My Recipes
+  getMyRecipes(): void {
+    const params = new HttpParams()
+      .set('username', this.username);
+    this.cardManServices
+      .fetchMyRecipes()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            this.myRecipes = res.entity;
+          } else {
+            this._notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this._notificationManService.showNotificationMessage("server-error!!", "snackbar-danger");
+        },
+        complete: () => { }
+      })
+  }
+
+
+  //fetch New Recipes
+  getNewRecipes(): void {
+    this.cardManServices
+      .fetchNewRecipes()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            this.newRecipes = res.entity;
+          } else {
+            this._notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this._notificationManService.showNotificationMessage("server-error!!", "snackbar-danger");
+        },
+        complete: () => { }
+      })
+
+  }
+
+  //fetch All Recipes
+  getAllRecipes(): void {
+    const params = new HttpParams()
+      .set('username', this.username);
+    this.cardManServices
+      .fetchAllRecipes()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            console.log("ALL RECIPES", res);
+            this.recipes = res.entity;
+          } else {
+            this._notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this._notificationManService.showNotificationMessage("server-error!!", "snackbar-danger");
+        },
+        complete: () => { }
+      })
+  }
 
 
   /*****************************************************************************************************************

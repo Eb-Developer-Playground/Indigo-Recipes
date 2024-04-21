@@ -33,15 +33,15 @@ export class RecipeHolderComponent {
   }
 
   /*** placeholder for hover state logic */
-  isBeingHovered(recipeId: number): boolean {
-    this.showRating = this.currentHoveredCardId === recipeId ? true : false;
-    return this.currentHoveredCardId === recipeId;
+  isBeingHovered(id: number): boolean {
+    this.showRating = this.currentHoveredCardId === id ? true : false;
+    return this.currentHoveredCardId === id;
   }
 
   hoverUnderline = false; // Flag for underline on hover
 
-  onMouseEnter(recipeId: number) {
-    this.currentHoveredCardId = recipeId;
+  onMouseEnter(id: number) {
+    this.currentHoveredCardId = id;
   }
 
   onMouseLeave() {

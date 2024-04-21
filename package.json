@@ -7,6 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
+    "test: watch": "jest",
+    "test: ci": "jest --runInBand",
     "test:coverage": "jest --coverage"
   },
   "private": true,
@@ -56,3 +58,4 @@
     ]
   }
 }
+

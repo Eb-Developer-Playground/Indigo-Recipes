@@ -12,9 +12,10 @@ export interface User {
 /**** Recipe interface */
 export interface Recipe {
     owner?: string | null;
-    recipeId: number;
     title: string;
+    id: number;
     yield: number;
+    // recipeCode: string;
     time: string;
     prepTime: number;
     cookTime: number;
@@ -23,13 +24,10 @@ export interface Recipe {
     isFavourited?: boolean;
     rating: number;
     imageUrl: string;
-    place: {
-        value: string;
-        label: string;
-    };
-    ingredients: ingredients[];
-    tips: tips[];
-    instructions: instructions[];
+    place: string;
+    ingredients: string[];
+    tips: string[];
+    instructions: string[];
 }
 
 export interface Comment {

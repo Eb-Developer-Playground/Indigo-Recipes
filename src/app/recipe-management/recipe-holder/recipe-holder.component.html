@@ -5,8 +5,8 @@
             <div>
                 <div class="card-row">
                     <mat-card class="custom-card" *ngFor="let card of cards"
-                        [ngClass]="{ 'hovering': isBeingHovered(card.recipeId) }"
-                        (mouseenter)="onMouseEnter(card.recipeId)" (mouseleave)="onMouseLeave()">
+                        [ngClass]="{ 'hovering': isBeingHovered(card.id) }"
+                        (mouseenter)="onMouseEnter(card.id)" (mouseleave)="onMouseLeave()">
 
                         <div class="image-container">
                             <div [hidden]="!showRating" class="circle-container">
@@ -19,9 +19,9 @@
                         <br>
                         <div class="mat-card-header">
                             <div (mouseenter)="hoverUnderline = true" (mouseleave)="hoverUnderline = false"
-                                (click)="onSelectSingleRecipe(card.recipeId)">
+                                (click)="onSelectSingleRecipe(card.id)">
                                 <div class="mat-card-title"
-                                    [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.recipeId) }">
+                                    [ngClass]="{ 'underline': hoverUnderline && isBeingHovered(card.id) }">
                                     {{ card.title }}
                                 </div>
                             </div>

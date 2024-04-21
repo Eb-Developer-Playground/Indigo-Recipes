@@ -33,7 +33,7 @@
                 </div>
                 <mat-list>
                     <mat-list-item *ngFor="let ingredient of selectedRecipe.ingredients">
-                        {{ ingredient.ingredient }}
+                        {{ ingredient }}
                     </mat-list-item>
                 </mat-list>
 
@@ -43,7 +43,7 @@
                 </div>
                 <mat-list>
                     <mat-list-item *ngFor="let instruction of selectedRecipe.instructions">
-                        {{ instruction.instruction }}
+                        {{ instruction }}
                     </mat-list-item>
                 </mat-list>
 
@@ -53,7 +53,7 @@
                 </div>
                 <mat-list>
                     <mat-list-item *ngFor="let tip of selectedRecipe.tips">
-                        {{ tip.tip }}
+                        {{ tip }}
                     </mat-list-item>
                 </mat-list>
             </div>

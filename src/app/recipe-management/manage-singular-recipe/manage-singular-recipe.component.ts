@@ -23,7 +23,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
   /**** Variable Declaration */
   recipeDetailsForm!: FormGroup;
-  ingredientsForm: FormGroup;
+  ingredientsForm!: FormGroup;
   instructionsForm: FormGroup;
   tipsForm: FormGroup;
   pageFunction: string = "Add";
@@ -40,6 +40,13 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
     { value: 'chinese', label: 'Chinese' },
     { value: 'african', label: 'African' },
     { value: 'italian', label: 'Italian' },
+  ];
+
+  timeOptions: Option[] = [
+    { value: 'Breakfast', label: 'Breakfast' },
+    { value: 'Brunch', label: 'Brunch' },
+    { value: 'Lunch', label: 'Lunch' },
+    { value: 'Dinner', label: 'Dinner' },
   ];
 
   
@@ -74,6 +81,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
    */
   ngOnInit(): void {
     this.initEmptyRecipeDetailsForm();
+    
 
     if (!this.route.queryParams) {
       this.pageFunction = 'Add';
@@ -97,6 +105,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
               prepTime: [this.formData.prepTime, [Validators.required]],
               cookTime: [this.formData.cookTime, [Validators.required]],
               place: [this.formData.place, [Validators.required]],
+              time: [this.formData.time, [Validators.required]],
             });
 
 
@@ -135,6 +144,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
       prepTime: ['', [Validators.required]],
       cookTime: ['', [Validators.required]],
       place: ['', [Validators.required]],
+      time: ['', [Validators.required]],
       totalTime: [''],
       ingredients: [[]],
       tips: [[]],
@@ -229,6 +239,10 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
 
 
   patchNestedArrays() {
+
+
+
+
     this.recipeDetailsForm.value.ingredients.push(this.ingredientsForm.value);
     this.recipeDetailsForm.value.instructions.push(this.instructionsForm.value);
     this.recipeDetailsForm.value.tips.push(this.tipsForm.value);
@@ -283,9 +297,32 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
   onSubmit(): void {
     this.patchNestedArrays();
 
+    console.log("TEST PLACE", this.recipeDetailsForm.value.place.label)
+
+    const payload: Recipe = {
+      title: this.recipeDetailsForm.value.title,
+      yield: this.recipeDetailsForm.value.yield,
+      prepTime: this.recipeDetailsForm.value.prepTime,
+      cookTime: this.recipeDetailsForm.value.cookTime,
+      place: this.recipeDetailsForm.value.place.label,
+      time: this.recipeDetailsForm.value.time.label,
+      totalTime: this.recipeDetailsForm.value.prepTime + this.recipeDetailsForm.value.cookTime,
+      ingredients: this.ingredientsForm.value.ingredients,
+      tips: this.tipsForm.value.tips,
+      instructions: this.instructionsForm.value.instructions,
+      comments: [],
+      rating: 0,
+      imageUrl: '',
+      id: 0 ,
+    }
+
+    
+
     if (this.pageFunction == "Add") {
+      console.log(" PAYLOAD:::", payload);
+      
       this.cardManService
-        .postNewRecipe(this.recipeDetailsForm.value)
+        .postNewRecipe(payload)
         .pipe(takeUntil(this.detroy$))
         .subscribe({
           next: (res) => {
@@ -301,9 +338,13 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
           }, 
           error: (err) => {
             this.notificationManService.showNotificationMessage(err.message, "snackbar-danger");
+          },
+          complete: () => {
+            
           }
       })
 
     }
   }
 }
+

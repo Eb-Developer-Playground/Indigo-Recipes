@@ -41,8 +41,8 @@ export class SingularViewPointComponent implements OnInit {
             const routeData = JSON.parse(params['data']);
             console.log("routeData", routeData);
             console.log("RECIPE RETRIEVED", this.cardManService.recipeSample);
-            const selectedCard = this.searchRecipesById(this.cardManService.recipeSample, routeData)[0]
-            this.selectedRecipe = selectedCard
+            // const selectedCard = this.searchRecipesById(this.cardManService.recipeSample, routeData)[0]
+            // this.selectedRecipe = selectedCard
 
           }
         }
@@ -50,9 +50,9 @@ export class SingularViewPointComponent implements OnInit {
     }
   }
 
-  searchRecipesById(recipes: Recipe[], searchTerm: number): Recipe[] {
-    return recipes.filter(recipe => recipe.recipeId === searchTerm);
-  }
+  // searchRecipesById(recipes: Recipe[], searchTerm: number): Recipe[] {
+  //   return recipes.filter(recipe => recipe.recipeId === searchTerm);
+  // }
 
   /*************************************************************************************** */
 
@@ -62,38 +62,35 @@ export class SingularViewPointComponent implements OnInit {
     imageUrl: "./../../../../assets/political.png",
     yield: 4,
     prepTime: 10,
+    // recipeCode: "",
+    id: 0,
     cookTime: 25,
     totalTime: 35,
-    recipeId: 190,
     time: "Breakfast",
     rating: 3,
-    place:
-    {
-      value: "italian",
-      label: "Italian"
-    },
+    place: "African",
     comments: [],
     ingredients: [
-      { ingredient: "2 boneless, skinless chicken breasts" },
-      { ingredient: "1 tablespoon olive oil" },
-      { ingredient: "1 teaspoon dried oregano" },
-      { ingredient: "1/2 teaspoon garlic powder" },
-      { ingredient: "1/4 teaspoon salt" },
-      { ingredient: "1/4 teaspoon black pepper" },
-      { ingredient: "1 bunch asparagus, trimmed" },
-      { ingredient: "1 lemon, sliced" }
+      "2 boneless, skinless chicken breasts",
+      "1 tablespoon olive oil",
+      "1 teaspoon dried oregano",
+      "1/2 teaspoon garlic powder",
+      "1/4 teaspoon salt",
+      "1/4 teaspoon black pepper",
+      "1 bunch asparagus, trimmed",
+      "1 lemon, sliced"
     ],
     instructions: [
-      { instruction: "Preheat oven to 400°F (200°C). Lightly grease a baking sheet." },
-      { instruction: "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper." },
-      { instruction: "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken." },
-      { instruction: "Top with lemon slices." },
-      { instruction: "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp" }
+       "Preheat oven to 400°F (200°C). Lightly grease a baking sheet.",
+       "In a bowl, toss chicken breasts with olive oil, oregano, garlic powder, salt, and pepper.",
+       "Arrange chicken breasts on the prepared baking sheet. Scatter asparagus spears around the chicken.",
+      "Top with lemon slices." ,
+       "Bake for 25 minutes, or until chicken is cooked through and asparagus is tender-crisp"
     ],
     tips: [
-      { tip: "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." },
-      { tip: "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." },
-      { tip: "Serve with rice or quinoa for a complete meal." }
+      "For added flavor, marinate the chicken in the olive oil mixture for 30 minutes before baking." ,
+      "You can substitute other vegetables for the asparagus, such as broccoli florets or bell peppers." ,
+      "Serve with rice or quinoa for a complete meal." 
     ]
   };
 

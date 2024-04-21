@@ -79,6 +79,20 @@
                                                 </ng-container>
                                             </div>
 
+                                            <div>
+                                                <ng-container>
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>Time of Meal</mat-label>
+                                                        <mat-select formControlName="time" placeholder="Time">
+                                                            <mat-option *ngFor="let option of timeOptions" [value]="option">{{ option.label }}</mat-option>
+                                                        </mat-select>
+                                                        <mat-error *ngIf="recipeDetailsForm.get('time')?.hasError('required')">The
+                                                            meal time is required</mat-error>
+                                                    </mat-form-field>
+                                                </ng-container>
+                                            </div>
+
+
                                         </div>
                                         <div>
                                             <button type="submit" mat-button matStepperNext

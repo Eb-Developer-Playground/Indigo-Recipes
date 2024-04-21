@@ -71,7 +71,7 @@
 
             <div class="content-container">
                 <div>
-                    <mat-tab-group (selectedChange)="onTabChange($event)">
+                    <mat-tab-group>
 
 
                         <!-- ALL RECIPES -->
@@ -86,7 +86,7 @@
 
                         <!-- NEW IN -->
                         <mat-tab label="NEW IN">
-                            <div [hidden]="newRecipes.length  === 0">
+                            <div [hidden]="newRecipes.length  == 0">
                                 <app-recipe-holder [cards]="newRecipes" [showRating]="showRating"
                                     (like)="onLike($event)" (selectRecipe)="onSelectSingleRecipe($event)"
                                     (comments)="callCommentsDialog($event)" (share)="onShare($event)" (edit)="onEdit($event)">

@@ -80,7 +80,7 @@ export class MultipleViewPointComponent implements OnInit {
     }
     searchTerm = searchTerm.toLowerCase(); // Make the search case-insensitive
     return recipes.filter(recipe => {
-      return recipe.place?.label?.toLowerCase().includes(searchTerm);
+      return recipe.place?.toLowerCase().includes(searchTerm);
     });
   }
 
