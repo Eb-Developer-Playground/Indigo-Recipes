@@ -7,7 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CardManagementService } from '../aa-data/services/card-management.service';
+import { CardManagementService } from '../services/card-management.service';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
 import { Option } from '../../../assets/db-arrays/interfaces';
 import { RecipeHolderComponent } from '../recipe-holder/recipe-holder.component';
@@ -83,7 +83,7 @@ export class MultipleViewPointComponent implements OnInit {
     });
   }
 
-  searchRecipesByTime(recipes: Recipe[], selectedTime: string): Recipe[]{
+  searchRecipesByTime(recipes: Recipe[], selectedTime: string): Recipe[] {
     return recipes.filter(recipe => {
       return recipe.time?.toLocaleLowerCase().includes(selectedTime.toLocaleLowerCase());
     })

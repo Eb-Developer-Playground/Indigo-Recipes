@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { CardManagementService } from '../../../recipe-management/aa-data/services/card-management.service';
+import { CardManagementService } from '../../../recipe-management/services/card-management.service';
 import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/recipe-holder.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';

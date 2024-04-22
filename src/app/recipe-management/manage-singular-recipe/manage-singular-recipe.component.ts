@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option, Recipe } from '../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../aa-data/services/card-management.service';
+import { CardManagementService } from '../services/card-management.service';
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -201,8 +201,9 @@ export class ManageSingularRecipeComponent implements OnInit {
   /**** Form Submission */
 
   onSubmit(): void {
-    this.patchNestedArrays();
+        
     if (this.pageFunction == 'Add') {
+      this.patchNestedArrays();
       console.log("RecipeDetails:::", this.recipeDetailsForm.value);
       this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
       this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
@@ -216,6 +217,7 @@ export class ManageSingularRecipeComponent implements OnInit {
       console.log("Existing Recipes", this.existingRecipes);
       console.log("Updated Recipes", updatedRecipesArray);
       this.existingRecipes = updatedRecipesArray;
+      this.router.navigate(['/home']);
     }
 
   }

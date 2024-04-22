@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option } from '../../../assets/db-arrays/interfaces';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../../recipe-management/aa-data/services/card-management.service';
+import { CardManagementService } from '../../recipe-management/services/card-management.service';
 
 
 

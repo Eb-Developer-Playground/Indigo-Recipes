@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Recipe } from '../../../../assets/db-arrays/interfaces';
+import { Recipe } from '../../../assets/db-arrays/interfaces';
 
 @Injectable({
   providedIn: 'root'
