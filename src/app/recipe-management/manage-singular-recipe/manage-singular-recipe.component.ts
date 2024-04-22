@@ -8,6 +8,7 @@ import { CardManagementService } from '../aa-data/services/card-management.servi
 import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-singular-recipe',
@@ -20,7 +21,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './manage-singular-recipe.component.html',
   styleUrl: './manage-singular-recipe.component.scss'
 })
-export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
+export class ManageSingularRecipeComponent implements OnInit, OnDestroy {
   /**** Variable Declaration */
   recipeDetailsForm!: FormGroup;
   ingredientsForm!: FormGroup;
@@ -34,7 +35,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
   tipsData: any;
   instructionsData: any;
   existingRecipes: any;
-  detroy$: Subject<any> = new Subject<boolean>();
+  destroy$: Subject<any> = new Subject<boolean>();
 
   placeOptions: Option[] = [
     { value: 'chinese', label: 'Chinese' },
@@ -48,8 +49,9 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
     { value: 'Lunch', label: 'Lunch' },
     { value: 'Dinner', label: 'Dinner' },
   ];
+  currentId: any;
 
-  
+
 
   /**** Dependency Injection */
   constructor(
@@ -81,7 +83,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
    */
   ngOnInit(): void {
     this.initEmptyRecipeDetailsForm();
-    
+
 
     if (!this.route.queryParams) {
       this.pageFunction = 'Add';
@@ -91,28 +93,9 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
           if (params.hasOwnProperty('data')) {
             const serializedData = params["data"];
             const searchTerm = JSON.parse(serializedData);
-            this.existingRecipes = this.cardManService.recipeSample;
-            this.formData = this.searchRecipesByTitle(this.existingRecipes, searchTerm)[0]
-            console.log("FORMDATA:", this.formData);
+            console.log("SearchTerm:", searchTerm);
+            this.formData = this.onSearchRecipe(searchTerm)
 
-            this.pageFunction = 'Update'
-
-
-            //Initialize recipe Details form with data 
-            this.recipeDetailsForm = this.fb.group({
-              title: [this.formData.title, [Validators.required]],
-              yield: [this.formData.yield, [Validators.required]],
-              prepTime: [this.formData.prepTime, [Validators.required]],
-              cookTime: [this.formData.cookTime, [Validators.required]],
-              place: [this.formData.place, [Validators.required]],
-              time: [this.formData.time, [Validators.required]],
-            });
-
-
-            //Call the dat for the nested arrays of the recipeDetails Form
-            this.ingeredientsData = this.formData.ingredients
-            this.tipsData = this.formData.tips;
-            this.instructionsData = this.formData.instructions;
 
             //Populate the forms with the collected nested arrays data
             this.populateFormsWithData();
@@ -128,8 +111,8 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.detroy$.next(true);
-    this.detroy$.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 
@@ -151,25 +134,6 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
       instructions: [[]],
     });
   };
-
-  /**** Init nested arrays kama empty form groups of arrays */
-  // initEmptyIngredientsForm(): void {
-  //   this.ingredientsForm = this.fb.group({
-  //     ingredients: this.fb.array([]),
-  //   });
-  // }
-
-  // initEmptyInstructionsForm(): void {
-  //   this.instructionsForm = this.fb.group({
-  //     instructions: this.fb.array([]),
-  //   });
-  // };
-
-  // initEmptyTipsForm(): void {
-  //   this.tipsForm = this.fb.group({
-  //     tips: this.fb.array([]),
-  //   });
-  // }
 
 
   /**** Defining the getter function which are triggered in the DOM structure */
@@ -266,40 +230,32 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
     if (this.ingeredientsData && this.ingeredientsData.length > 0) {
       //Since the formData is an array of objects, and we need the ingredient value in each object, we have to loop through
       this.ingeredientsData.forEach((ingredientObject: any) => {
-        //Pick the object for each j
-        const ingredientValue = ingredientObject.ingredient;
-        this.ingredientControls.push(this.fb.control(ingredientValue, Validators.required));
+        this.ingredientControls.push(this.fb.control(ingredientObject, Validators.required));
       });
     }
 
-     
+
     if (this.instructionsData && this.instructionsData.length > 0) {
       this.instructionsData.forEach((insrtructionObj: any) => {
-        const instructionValue = insrtructionObj.instruction;
-        this.instructionControls.push(this.fb.control(instructionValue, Validators.required));
+        this.instructionControls.push(this.fb.control(insrtructionObj, Validators.required));
       });
     }
 
     if (this.tipsData && this.tipsData.length > 0) {
       this.tipsData.forEach((tipsObj: any) => {
-        const tipsValue = tipsObj.tip;
-        this.tipsControls.push(this.fb.control(tipsValue, Validators.required));
+        this.tipsControls.push(this.fb.control(tipsObj, Validators.required));
       });
     }
   }
 
 
 
-/***********************************************************************************************************************
- * Server side integration
- */
-  
+  /***********************************************************************************************************************
+   * Server side integration
+   */
+
   onSubmit(): void {
-    this.patchNestedArrays();
-
-    console.log("TEST PLACE", this.recipeDetailsForm.value.place.label)
-
-    const payload: Recipe = {
+    const payload: any = {
       title: this.recipeDetailsForm.value.title,
       yield: this.recipeDetailsForm.value.yield,
       prepTime: this.recipeDetailsForm.value.prepTime,
@@ -313,38 +269,125 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy{
       comments: [],
       rating: 0,
       imageUrl: '',
-      id: 0 ,
+      // id: 0,
     }
 
-    
+    const UpdatePayload: any = {
+      title: this.recipeDetailsForm.value.title,
+      yield: this.recipeDetailsForm.value.yield,
+      prepTime: this.recipeDetailsForm.value.prepTime,
+      cookTime: this.recipeDetailsForm.value.cookTime,
+      place: this.recipeDetailsForm.value.place.label,
+      time: this.recipeDetailsForm.value.time.label,
+      totalTime: this.recipeDetailsForm.value.prepTime + this.recipeDetailsForm.value.cookTime,
+      ingredients: this.ingredientsForm.value.ingredients,
+      tips: this.tipsForm.value.tips,
+      instructions: this.instructionsForm.value.instructions,
+      id: this.currentId,
+    }
 
-    if (this.pageFunction == "Add") {
-      console.log(" PAYLOAD:::", payload);
-      
-      this.cardManService
-        .postNewRecipe(payload)
-        .pipe(takeUntil(this.detroy$))
-        .subscribe({
-          next: (res) => {
-            console.log("DATA SENT", this.recipeDetailsForm.value)
-            console.log("RES", res);
-            if (res.statusCode == 200) {
-              this.notificationManService.showNotificationMessage(res.message, "snackbar-success");
-              this.router.navigate(['/home']);
-            }
-            else {
-              this.notificationManService.showNotificationMessage(res.message, "snackbar-danger");
-             }
-          }, 
-          error: (err) => {
-            this.notificationManService.showNotificationMessage(err.message, "snackbar-danger");
-          },
-          complete: () => {
-            
-          }
-      })
+    switch (this.pageFunction) {
+      case 'Update':
+        console.log("Updating");
 
+        this.onUpdateRecipe(UpdatePayload);
+        break;
+      default:
+        this.onAddRecipe(payload);
+        break;
     }
   }
+
+
+
+  //Add Recipe
+  onAddRecipe(payload: Recipe) {
+    this.cardManService
+      .postNewRecipe(payload)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res.statusCode == 200) {
+            this.notificationManService.showNotificationMessage(res.message, "snackbar-success");
+            this.router.navigate(['/home']);
+          }
+          else {
+            this.notificationManService.showNotificationMessage(res.message, "snackbar-danger");
+          }
+        },
+        error: (err) => {
+          this.notificationManService.showNotificationMessage(err.message, "snackbar-danger");
+        },
+        complete: () => {
+
+        }
+      })
+  }
+
+  onUpdateRecipe(payload: Recipe) {
+    this.cardManService
+      .updateRecipe(payload)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.notificationManService.showNotificationMessage(res.message, "snackbar-success");
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.notificationManService.showNotificationMessage(err.message, "snackbar-danger");
+          this.router.navigate(['/home']);
+        }
+      })
+  }
+
+  onSearchRecipe(id: number): [] {
+    const params = new HttpParams()
+      .set("id", id)
+
+    this.cardManService
+      .searchRecipeById(params)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          console.log("RESPONSE", res);
+
+          if (res.statusCode == 200) {
+            this.formData = res.entity;
+            this.currentId = res.entity.id;
+            
+            this.pageFunction = 'Update'
+
+
+            //Initialize recipe Details form with data 
+            this.recipeDetailsForm = this.fb.group({
+              title: [this.formData.title, [Validators.required]],
+              yield: [this.formData.yield, [Validators.required]],
+              prepTime: [this.formData.prepTime, [Validators.required]],
+              cookTime: [this.formData.cookTime, [Validators.required]],
+              place: [this.formData.place, [Validators.required]],
+              time: [this.formData.time, [Validators.required]],
+            });
+
+
+            //Call the dat for the nested arrays of the recipeDetails Form
+            this.ingeredientsData = this.formData.ingredients
+            this.tipsData = this.formData.tips;
+            this.instructionsData = this.formData.instructions;
+            this.populateFormsWithData();
+
+          } else {
+            console.log("Not 200");
+            this.notificationManService.showNotificationMessage(res.message, "snackbar-danger")
+          }
+        },
+        error: (err) => {
+          this.notificationManService.showNotificationMessage(err.message, "snackbar-danger")
+        }
+      });
+    return this.formData;
+  }
+
 }
+
+
 

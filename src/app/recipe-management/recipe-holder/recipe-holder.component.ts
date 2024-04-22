@@ -22,9 +22,9 @@ export class RecipeHolderComponent {
   @Input() showRating = false;
   @Output() like = new EventEmitter<string>();
   @Output() selectRecipe = new EventEmitter<number>();
-  @Output() comments = new EventEmitter<string>();
+  @Output() comments = new EventEmitter<number>();
   @Output() share = new EventEmitter<string>();
-  @Output() edit = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<number>();
   currentHoveredCardId: number | null = null;
 
   constructor(
@@ -58,16 +58,16 @@ export class RecipeHolderComponent {
     this.selectRecipe.emit(recipeId);
   }
 
-  callCommentsDialog(title: string) {
-    this.comments.emit(title);
+  callCommentsDialog(id: number) {
+    this.comments.emit(id);
   }
 
   onShare(title: string) {
     this.share.emit(title);
   }
 
-  onEdit(title: string): void {
-    this.edit.emit(title);
+  onEdit(id: number): void {
+    this.edit.emit(id);
   }
 
 }

@@ -85,6 +85,16 @@ export class CardManagementService {
     return this._http.get<any>(url);
   }
 
+  searchRecipeById(params: any): Observable<any>{
+    const url = `${this.serverUrl}/get/id`;
+    return this._http.get<any>(url,{params: params});
+  }
+
+  updateRecipe(recipeDetails: any): Observable<any>{
+    const url = `${this.serverUrl}/update`;
+    return this._http.put<any>(url, recipeDetails)
+  }
+
   /***********************************************************************************************************
    * Sample Recipes
    */

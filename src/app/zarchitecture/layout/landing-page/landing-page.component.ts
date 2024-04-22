@@ -137,8 +137,8 @@ export class LandingPageComponent implements OnInit {
   }
 
   /**** Edit a recipe */
-  onEdit(title: string) {
-    const serializedData = JSON.stringify(title);
+  onEdit(id: number) {
+    const serializedData = JSON.stringify(id);
     let route = 'manage/recipe';
     this.router.navigate([route], {
       queryParams: {
@@ -148,7 +148,7 @@ export class LandingPageComponent implements OnInit {
   };
 
   /*** Viewing and adding comments to a recipe */
-  callCommentsDialog(title: string) {
+  callCommentsDialog(id: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.hasBackdrop = true;
@@ -156,7 +156,7 @@ export class LandingPageComponent implements OnInit {
     // dialogConfig.height = "900px";
     dialogConfig.data = {
       action: "View Comments",
-      selectedCard: title,
+      selectedCard: id,
     }
 
     const dialogRef = this.dialog.open(CommentsSectionComponent, dialogConfig);
