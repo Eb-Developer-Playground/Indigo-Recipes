@@ -9,7 +9,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { HeadersInterceptorService } from './zarchitecture/services/interceptors/headers-interceptor.service';
+import { HeadersInterceptorService } from './architecture/services/interceptors/headers-interceptor.service';
 
 
 @NgModule({

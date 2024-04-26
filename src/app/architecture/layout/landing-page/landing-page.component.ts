@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { MessageService } from '../../services/notification-services/message.service';
@@ -6,8 +6,6 @@ import { FooterComponent } from '../footer/footer.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../../../../assets/db-arrays/interfaces';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { CardManagementService } from '../../../recipe-management/aa-data/services/card-management.service';
 import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/recipe-holder.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';
@@ -16,6 +14,7 @@ import { FormControl } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { AuthServiceService } from '../../../admin/user/auth-services/auth-service.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CardManagementService } from '../../../recipe-management/services/card-management.service';
 
 @Component({
   selector: 'app-landing-page',

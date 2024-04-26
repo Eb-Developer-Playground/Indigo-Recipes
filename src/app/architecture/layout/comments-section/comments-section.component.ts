@@ -3,8 +3,8 @@ import { SharedModule } from '../../shared/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Recipe, Comment } from '../../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../../../recipe-management/aa-data/services/card-management.service';
 import { RecipeHolderComponent } from '../../../recipe-management/recipe-holder/recipe-holder.component';
+import { CardManagementService } from '../../../recipe-management/services/card-management.service';
 
 
 

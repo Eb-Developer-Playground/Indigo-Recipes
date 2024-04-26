@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option, Recipe } from '../../../assets/db-arrays/interfaces';
-import { CardManagementService } from '../aa-data/services/card-management.service';
-import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { FooterComponent } from '../../architecture/layout/footer/footer.component';
+import { HeaderComponent } from '../../architecture/layout/header/header.component';
+import { MessageService } from '../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../architecture/shared/shared/shared.module';
+import { CardManagementService } from '../services/card-management.service';
 
 @Component({
   selector: 'app-manage-singular-recipe',
@@ -94,16 +94,10 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy {
             const serializedData = params["data"];
             const searchTerm = JSON.parse(serializedData);
             console.log("SearchTerm:", searchTerm);
-            this.formData = this.onSearchRecipe(searchTerm)
-
+            this.formData = this.onSearchRecipe(searchTerm);
 
             //Populate the forms with the collected nested arrays data
             this.populateFormsWithData();
-
-            // this.ingredientsArray = this.formData.ingredients;
-            // console.log("ingredientsArray", this.ingredientsArray)
-            // this.tipsForm.value.tips.push(this.formData.tips);
-            // this.instructionsForm.value.instructions.push(this.formData.instructions);
           }
         }
       })
@@ -180,33 +174,7 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy {
   }
 
   /**** Form Submission */
-
-  // onSubmit(): void {
-  //   this.patchNestedArrays();
-  //   if (this.pageFunction == 'Add') {
-  //     console.log("RecipeDetails:::", this.recipeDetailsForm.value);
-  //     this.cardManService.postNewRecipe(this.recipeDetailsForm.value);
-  //     this.notificationManService.showNotificationMessage("Recipe added successfully!", "snackbar-success");
-  //     this.router.navigate(['/home']);
-  //   } else {
-  //     const updatedRecipe = this.recipeDetailsForm.value;
-  //     this.existingRecipes = this.cardManService.recipeSample;
-  //     const updatedRecipesArray = this.existingRecipes.map((recipe: Recipe) => recipe == this.formData ? {
-  //       ...updatedRecipe
-  //     } : recipe);
-  //     console.log("Existing Recipes", this.existingRecipes);
-  //     console.log("Updated Recipes", updatedRecipesArray);
-  //     this.existingRecipes = updatedRecipesArray;
-  //   }
-
-  // }
-
-
   patchNestedArrays() {
-
-
-
-
     this.recipeDetailsForm.value.ingredients.push(this.ingredientsForm.value);
     this.recipeDetailsForm.value.instructions.push(this.instructionsForm.value);
     this.recipeDetailsForm.value.tips.push(this.tipsForm.value);
@@ -228,7 +196,6 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy {
   /**** Populate forms with the recieved data */
   populateFormsWithData(): void {
     if (this.ingeredientsData && this.ingeredientsData.length > 0) {
-      //Since the formData is an array of objects, and we need the ingredient value in each object, we have to loop through
       this.ingeredientsData.forEach((ingredientObject: any) => {
         this.ingredientControls.push(this.fb.control(ingredientObject, Validators.required));
       });
@@ -297,7 +264,6 @@ export class ManageSingularRecipeComponent implements OnInit, OnDestroy {
         break;
     }
   }
-
 
 
   //Add Recipe

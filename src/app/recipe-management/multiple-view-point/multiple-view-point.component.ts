@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
-import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
-import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CardManagementService } from '../aa-data/services/card-management.service';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
 import { Option } from '../../../assets/db-arrays/interfaces';
 import { RecipeHolderComponent } from '../recipe-holder/recipe-holder.component';
+import { CommentsSectionComponent } from '../../architecture/layout/comments-section/comments-section.component';
+import { FooterComponent } from '../../architecture/layout/footer/footer.component';
+import { HeaderComponent } from '../../architecture/layout/header/header.component';
+import { MessageService } from '../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../architecture/shared/shared/shared.module';
+import { CardManagementService } from '../services/card-management.service';
 
 
 @Component({

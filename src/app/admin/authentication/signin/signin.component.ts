@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, take, takeUntil } from 'rxjs';
-import { MessageService } from '../../../zarchitecture/services/notification-services/message.service';
-import { SharedModule } from '../../../zarchitecture/shared/shared/shared.module';
 import { AuthServiceService } from '../../user/auth-services/auth-service.service';
 import { HttpParams } from '@angular/common/http';
+import { MessageService } from '../../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../../architecture/shared/shared/shared.module';
 
 @Component({
   selector: 'app-signin',
