@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HeaderComponent } from '../../zarchitecture/layout/header/header.component';
-import { FooterComponent } from '../../zarchitecture/layout/footer/footer.component';
 import { Option, Recipe } from '../../../assets/db-arrays/interfaces';
 import { CardManagementService } from '../services/card-management.service';
-import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FooterComponent } from '../../architecture/layout/footer/footer.component';
+import { HeaderComponent } from '../../architecture/layout/header/header.component';
+import { MessageService } from '../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../architecture/shared/shared/shared.module';
 
 @Component({
   selector: 'app-manage-singular-recipe',

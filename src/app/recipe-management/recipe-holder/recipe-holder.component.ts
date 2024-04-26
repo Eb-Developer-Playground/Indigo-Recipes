@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SharedModule } from '../../zarchitecture/shared/shared/shared.module';
 import { Recipe } from '../../../assets/db-arrays/interfaces';
 import Swal from 'sweetalert2';
-import { MessageService } from '../../zarchitecture/services/notification-services/message.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CommentsSectionComponent } from '../../zarchitecture/layout/comments-section/comments-section.component';
 import { Router } from '@angular/router';
+import { SharedModule } from '../../architecture/shared/shared/shared.module';
 
 @Component({
   selector: 'app-recipe-holder',

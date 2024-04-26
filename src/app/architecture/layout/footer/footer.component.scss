@@ -53,7 +53,7 @@ section {
 
 h1 {
     font-size: 3.125rem;
-    color: white;
+    color: black;
     font-weight: 500;
     line-height: 100%;
     letter-spacing: -0.125rem;
@@ -86,8 +86,8 @@ main {
     padding: 1rem;
     box-sizing: inherit;
     position: relative;
-    background-color: black;
-    color: white;
+    background-color: #f5f5f5;
+    color: black;
 }
 
 
@@ -133,11 +133,11 @@ main {
 
 .search-button {
     padding: 5px 10px;
-    background-color: white;
-    border: 1px solid black;
-    border-color: #fff;
+    background-color: black;
+    border: 1px solid white;
+    border-color: black;
     border-radius: 10px;
-    color: white;
+    color: black;
     cursor: pointer;
     // position: absolute;
     // top: 0;
@@ -157,7 +157,8 @@ main {
     .divider {
         height: 1px;
         width: 100%;
-        background: var(--red-to-pink-to-purple-horizontal-gradient);
+        // background: var(--red-to-pink-to-purple-horizontal-gradient);
+        background: black;
         margin-block: 1.5rem;
     }
 }

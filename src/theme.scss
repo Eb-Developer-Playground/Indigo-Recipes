@@ -27,28 +27,45 @@ $indigo-color-pallete: (50: #e8eaf6,
         A700: white,
     ));
 
-
-$mat-warn: (main: #ff0000,
-    lighter: #ffb3b3,
-    darker: #ff0000,
-    200: #ff0000, // For slide toggle,
-    contrast : (main: $light-primary-text,
-        lighter: $dark-primary-text,
-        darker: $light-primary-text,
+$indigo-stone-palette: (50: #ededed,
+    100: #d0d0d0,
+    200: #b2b1b1,
+    300: #99918c,
+    400: #86786f,
+    500: #736053,
+    600: #67564c,
+    700: #584a42,
+    800: #493d38,
+    900: #39302c,
+    contrast: (50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: rgba(black, 0.87),
+        A200: rgba(black, 0.87),
+        A400: white,
+        A700: white,
     ));
 
-$recipe-primary: mat.define-palette($indigo-color-pallete, 800);
-$recipe-warn: mat.define-palette($mat-warn, main);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-$my-theme: mat.define-light-theme((color: (primary: $recipe-primary,
-            accent: $my-accent,
-            primary: $recipe-primary,
-            warn: $recipe-primary) typography: mat.define-typography-config(),
+$meeting-master-primary: mat.define-palette($equity-brown-palette, 900);
+$meeting-master-accent: mat.define-palette($equity-stone-brown-palette, 400);
+
+
+$meeting-master-theme: mat.define-light-theme((color: (primary: $meeting-master-primary,
+            accent: $meeting-master-accent,
+        ),
         density: 0,
     ));
 
-@include mat.core-theme($my-theme);
-@include mat.button-theme($my-theme);
-@include mat.form-field-theme($my-theme);
-@include mat.input-theme($my-theme);
+
+@include mat.core-theme($meeting-master-theme);
+@include mat.button-theme($meeting-master-theme);
+@include mat.form-field-theme($meeting-master-theme);
+@include mat.input-theme($meeting-master-theme);

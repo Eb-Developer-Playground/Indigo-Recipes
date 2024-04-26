@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from '../../../../zarchitecture/shared/shared/shared.module';
-import { HeaderComponent } from '../../../../zarchitecture/layout/header/header.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../../../assets/db-arrays/interfaces';
-import { UserService } from '../../../user/data/services/user.service';
 import { AuthServiceService } from '../../../user/auth-services/auth-service.service';
-import { MessageService } from '../../../../zarchitecture/services/notification-services/message.service';
+import { HeaderComponent } from '../../../../architecture/layout/header/header.component';
+import { MessageService } from '../../../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../../../architecture/shared/shared/shared.module';
 
 @Component({
   selector: 'app-profile-update',
