@@ -106,44 +106,6 @@
                             </mat-step>
                         </div>
 
-
-                        <!-- Step 2: Ingredients -->
-
-                        <!-- <div class="padding">
-                            <mat-step label="Ingredients">
-                                <form [formGroup]="ingredientsForm">
-                                    <div formArrayName="ingredients">
-                                        <div *ngFor="let ingredient of ingredientControls; let i = index">
-
-                                            <div>
-                                                <mat-form-field appearance="outline"
-                                                    *ngFor="let ingredient of ingeredientsData">
-                                                    <input matInput [formControlName]="i"
-                                                        placeholder="Ingredient {{ i + 1 }}" required>
-                                                    <mat-error
-                                                        *ngIf="ingredientControls.at(i)?.invalid && ingredientControls.at(i)?.touched">
-                                                        The ingredient is required
-                                                    </mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                            <div>
-                                                <button type="submit" mat-icon-button (click)="removeIngredient(i)">
-                                                    <mat-icon>remove_circle</mat-icon>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button class="btn-space" type="submit" mat-button (click)="addIngredient()">Add
-
-                                            Ingredient</button>
-                                        <button type="submit" mat-button matStepperNext
-                                            [disabled]="!ingredientsForm.valid">Next</button>
-                                    </div>
-                                </form>
-                            </mat-step>
-                        </div> -->
-
                         <div class="padding">
                             <mat-step label="Ingredients">
                                 <form [formGroup]="ingredientsForm">

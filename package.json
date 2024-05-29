@@ -8,8 +8,23 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test: watch": "jest",
-    "test: ci": "jest --runInBand",
     "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup-jest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    }
   },
   "private": true,
   "dependencies": {
@@ -46,16 +61,5 @@
         "stringifyContentPathRegex": "\\.html$"
       }
     }
-  },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": [
-      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\src\\assets\\tests\\setup-jest.ts"
-    ],
-    "testPathIgnorePatterns": [
-      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\node_modules\\",
-      "C:\\Users\\Sammy.Wambui\\Desktop\\EBL.FE\\WN.NG\\E.Macharia\\RecipeApp-v1\\dist\\"
-    ]
   }
 }
-

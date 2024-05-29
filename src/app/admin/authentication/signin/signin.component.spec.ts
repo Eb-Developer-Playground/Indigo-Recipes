@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
-import { MessageService } from '../../../zarchitecture/services/notification-services/message.service';
 import { AuthServiceService } from '../../user/auth-services/auth-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from '../../../zarchitecture/shared/shared/shared.module';
 import { FormBuilder, Validators } from '@angular/forms';
 import { group } from '@angular/animations';
 import { Router } from '@angular/router';
+import { MessageService } from '../../../architecture/services/notification-services/message.service';
+import { SharedModule } from '../../../architecture/shared/shared/shared.module';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;

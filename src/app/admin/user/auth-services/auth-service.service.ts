@@ -9,8 +9,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class AuthServiceService {
-  /******************************************************************************************************** */
-  // headers = new HttpHeaders().set("content-Type", "application/json");
   serverUrl: String = `${environment.baseUrl}/ap1/v1/users`;
 
   loggedInUser!: string;
@@ -18,14 +16,6 @@ export class AuthServiceService {
     private _http: HttpClient,
   ) { }
 
-  /**** User registration */
-  // registerUser(user: User): string {
-  //   const userId = Math.random() * 1000;
-  //   user.userId = userId;
-  //   this.users.push(user);
-  //   console.log("USERS PRESENT::", this.users);
-  //   return `You have been successfully registered`;
-  // }
 
   isUserLoggedIn(usernameOrEmail: string, password: string): boolean {
     for (const user of this.users) {

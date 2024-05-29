@@ -5,7 +5,7 @@ import { Form, FormBuilder, Validators } from '@angular/forms';
 import { group } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../user/auth-services/auth-service.service';
-import { MessageService } from '../../../../zarchitecture/services/notification-services/message.service';
+import { MessageService } from '../../../../architecture/services/notification-services/message.service';
 
 describe('ProfileUpdateComponent', () => {
   let component: ProfileUpdateComponent;
